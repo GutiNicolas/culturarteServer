@@ -74,6 +74,12 @@ public class Alta_Categoria extends javax.swing.JFrame {
 
         jLabel2.setText("Hijo");
 
+        jt_hijo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jt_hijoActionPerformed(evt);
+            }
+        });
+
         jb_aceptar.setText("Aceptar");
         jb_aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +166,8 @@ public class Alta_Categoria extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jT_categoriasMouseClicked
     private boolean controlDatos() {
-        if (jt_hijo.getText() == null) {
+
+        if (jt_hijo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe escribir un nombre de categoria");
             jt_hijo.selectAll();
             jt_hijo.requestFocus();
@@ -168,11 +175,12 @@ public class Alta_Categoria extends javax.swing.JFrame {
         }
         return true;
     }
-    private void limpiar(){
-    jt_padre.setText(null);
-    jt_hijo.setText(null);
+
+    private void limpiar() {
+        jt_padre.setText(null);
+        jt_hijo.setText(null);
     }
-    
+
     private void jb_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_aceptarActionPerformed
         if (jt_padre.getText() == null && controlDatos() == true) {
 
@@ -200,6 +208,10 @@ public class Alta_Categoria extends javax.swing.JFrame {
     private void jt_padreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_padreKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_jt_padreKeyTyped
+
+    private void jt_hijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_hijoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jt_hijoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,6 +262,7 @@ public class Alta_Categoria extends javax.swing.JFrame {
 //FUNCIONES......
     private void cargaCategorias() {
         try {
+            cat.clear();
             cat = (ArrayList< dtCategoria>) contProp.getdtCategorias();
 
         } catch (Exception e) {

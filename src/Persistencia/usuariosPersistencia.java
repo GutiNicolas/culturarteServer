@@ -156,7 +156,7 @@ public class usuariosPersistencia {
 
     public void levantarFavoritos(ArrayList<dtFavoritos> favo) {
         try {
-            String sql = "SELECT * FROM `Favoritos` ";
+            String sql = "SELECT * FROM cultuRarte.Favoritos";
             Connection conn = conexion.getConexion();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);

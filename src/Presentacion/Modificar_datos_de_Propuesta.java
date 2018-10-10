@@ -31,21 +31,20 @@ import javax.swing.table.DefaultTableModel;
  * @author nicolasgutierrez
  */
 public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
-
+    
     ContUsuario contUsu = ContUsuario.getInstance();
-    ContPropuesta contProp= ContPropuesta.getInstance();
-    String imagenRuta ="COSO";
+    ContPropuesta contProp = ContPropuesta.getInstance();
+    String imagenRuta = "COSO";
     JFileChooser navegadorArchivos = new JFileChooser();
+
     /**
      * Creates new form Modificar_datos_de_Propuesta
      */
     public Modificar_datos_de_Propuesta() {
         
-        
         initComponents();
         contProp.propAutomaticas();
         this.setSize(801, 620);
-        
         
         jLabel1.setText("Propuestas");
         jLabel13.setText("Titulo");
@@ -276,21 +275,21 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_busquedapropuestasActionPerformed
 
     private void busquedapropuestasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_busquedapropuestasKeyPressed
-        List<String> proponentes= contUsu.listartodaslaspropuestas(busquedapropuestas.getText());
-        DefaultTableModel modelo=(DefaultTableModel) jTable1.getModel();
+        List<String> proponentes = contUsu.listartodaslaspropuestas(busquedapropuestas.getText());
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setRowCount(0);
-        for (int i=0;i<proponentes.size();i++) {
-            String p=proponentes.get(i);
-            Object[] dat={p};
+        for (int i = 0; i < proponentes.size(); i++) {
+            String p = proponentes.get(i);
+            Object[] dat = {p};
             modelo.addRow(dat);
         }
         
-        List<String> estados= contProp.listarEstados();
-        DefaultTableModel modelo2=(DefaultTableModel) tableestados.getModel();
+        List<String> estados = contProp.listarEstados();
+        DefaultTableModel modelo2 = (DefaultTableModel) tableestados.getModel();
         modelo2.setRowCount(0);
-        for(int x=0;x<estados.size();x++){
-            String e=estados.get(x);
-            Object[] dat2={e};
+        for (int x = 0; x < estados.size(); x++) {
+            String e = estados.get(x);
+            Object[] dat2 = {e};
             modelo2.addRow(dat2);
         }
     }//GEN-LAST:event_busquedapropuestasKeyPressed
@@ -303,13 +302,11 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         try {
-            int row=jTable1.rowAtPoint(evt.getPoint());
-            int col=jTable1.columnAtPoint(evt.getPoint());
+            int row = jTable1.rowAtPoint(evt.getPoint());
+            int col = jTable1.columnAtPoint(evt.getPoint());
             dtPropuesta dtp;
             
-            
-
-            dtp=contUsu.infoPropuesta((String)jTable1.getValueAt(row, col));
+            dtp = contUsu.infoPropuesta((String) jTable1.getValueAt(row, col));
             txtdescripcion.setText(dtp.getDescripcion());
             txtlugar.setText(dtp.getLugar());
             txtdiadia.setText(dtp.getFechaRealizacion().getDia());
@@ -323,10 +320,8 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
             imagenRuta = dtp.getImagen();
             labelcategoria.setText(dtp.getCategoria());
             labelfechacreacion.setText(dtp.getFechapublicada().getFecha());
+            labelretorno.setText(dtp.getRetorno());
             
-           
-            
-
         } catch (Exception ex) {
             Logger.getLogger(Registrar_Colaboracion_a_Propuesta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -334,13 +329,13 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
 
     private void tableestadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableestadosMouseClicked
         // TODO add your handling code here:
-        try{
-            int row=tableestados.rowAtPoint(evt.getPoint());
-            int col=tableestados.columnAtPoint(evt.getPoint());
-            String estado=(String)tableestados.getValueAt(row, col);
+        try {
+            int row = tableestados.rowAtPoint(evt.getPoint());
+            int col = tableestados.columnAtPoint(evt.getPoint());
+            String estado = (String) tableestados.getValueAt(row, col);
             txtestado.setText(estado);
             
-        } catch (Exception ex){
+        } catch (Exception ex) {
             Logger.getLogger(Registrar_Colaboracion_a_Propuesta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tableestadosMouseClicked
@@ -351,25 +346,23 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
-        try{
-        dtFecha dtf= new dtFecha(txtdiadia.getText(),txtmesmes.getText(),txtanioanio.getText());
-        String[] fp= labelfechacreacion.getText().split("/");
-        dtFecha dtfp= new dtFecha(fp[0],fp[1],fp[2]);
-        dtPropuesta dtp=new dtPropuesta(labeltitulo.getText(),txtdescripcion.getText(),imagenRuta,txtlugar.getText(),txtestado.getText(),labelcategoria.getText(),labelproponente.getText(),dtf,dtfp,Integer.parseInt(txtprecioetrada.getText()),Integer.parseInt(txtmontorequerido.getText()),0,labelretorno.getText());
-        
-        Calendar cal=Calendar.getInstance();
-        Date da=cal.getTime();
-        da.setYear(2018);
-        dtFecha dtf2=new dtFecha(Integer.toString(da.getDay()),Integer.toString(da.getMonth()),Integer.toString(da.getYear()));
-        dtHora dth2=new dtHora(da.getHours(),da.getMinutes());
-        
-        
-        contProp.actualizardatospropuesta(dtp, txtestado.getText(), dtf2, dth2);
-        JOptionPane.showMessageDialog(null, "Propuesta modificada con exito");
-        sacarlabasura();
-        
-        
-        } catch (Exception ex){
+        try {
+            dtFecha dtf = new dtFecha(txtdiadia.getText(), txtmesmes.getText(), txtanioanio.getText());
+            String[] fp = labelfechacreacion.getText().split("/");
+            dtFecha dtfp = new dtFecha(fp[0], fp[1], fp[2]);
+            dtPropuesta dtp = new dtPropuesta(labeltitulo.getText(), txtdescripcion.getText(), imagenRuta, txtlugar.getText(), txtestado.getText(), labelcategoria.getText(), labelproponente.getText(), dtf, dtfp, Integer.parseInt(txtprecioetrada.getText()), Integer.parseInt(txtmontorequerido.getText()), 0, labelretorno.getText());
+            
+            Calendar cal = Calendar.getInstance();
+            Date da = cal.getTime();
+            da.setYear(2018);
+            dtFecha dtf2 = new dtFecha(Integer.toString(da.getDay()), Integer.toString(da.getMonth()), Integer.toString(da.getYear()));
+            dtHora dth2 = new dtHora(da.getHours(), da.getMinutes());
+            
+            contProp.actualizardatospropuesta(dtp, txtestado.getText(), dtf2, dth2);
+            JOptionPane.showMessageDialog(null, "Propuesta modificada con exito");
+            sacarlabasura();
+            
+        } catch (Exception ex) {
             Logger.getLogger(Registrar_Colaboracion_a_Propuesta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnguardarActionPerformed
@@ -429,38 +422,38 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtprecioetrada;
     // End of variables declaration//GEN-END:variables
 
-       private void selecImagen(){
-       FileNameExtensionFilter filtroImagen=new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
-       navegadorArchivos.setFileFilter(filtroImagen);
-       navegadorArchivos.showOpenDialog(this);
-       File imagen = navegadorArchivos.getSelectedFile();
-       String path = navegadorArchivos.getSelectedFile().getPath();
-       labelimage.setIcon(new ImageIcon(path));
-       ImageIcon icon = new ImageIcon(path);
-       Image foto = icon.getImage();
-       Image nuevaFoto = foto.getScaledInstance(labelimage.getWidth(), labelimage.getHeight(), Image.SCALE_DEFAULT);
-       ImageIcon nuevoIcono = new ImageIcon(nuevaFoto);
-       labelimage.setIcon(nuevoIcono);
-       //BufferedImage img= nuevoIcono;
-       salvarImagen(foto);}
-       
-       
-          private void salvarImagen(Image imagen){
-   BufferedImage img = (BufferedImage) imagen;
-   File outputfile = new File("/home/juan/ProgAplicaciones2018/progAplicaciones/imagenesPropuesta"+labeltitulo.getText()+".png");
-   imagenRuta="/home/juan/ProgAplicaciones2018/progAplicaciones/imagenesPropuesta"+labeltitulo.getText()+".png";
-    try { 
-        ImageIO.write(img, "png", outputfile);
-    } catch (IOException ex) {
-        Logger.getLogger(Alta_perfil.class.getName()).log(Level.SEVERE, null, ex);
+    private void selecImagen() {
+        FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");
+        navegadorArchivos.setFileFilter(filtroImagen);
+        navegadorArchivos.showOpenDialog(this);
+        File imagen = navegadorArchivos.getSelectedFile();
+        String path = navegadorArchivos.getSelectedFile().getPath();
+        labelimage.setIcon(new ImageIcon(path));
+        ImageIcon icon = new ImageIcon(path);
+        Image foto = icon.getImage();
+        Image nuevaFoto = foto.getScaledInstance(labelimage.getWidth(), labelimage.getHeight(), Image.SCALE_DEFAULT);
+        ImageIcon nuevoIcono = new ImageIcon(nuevaFoto);
+        labelimage.setIcon(nuevoIcono);
+        //BufferedImage img= nuevoIcono;
+        salvarImagen(foto);
     }
-   }
-
+    
+    private void salvarImagen(Image imagen) {
+        BufferedImage img = (BufferedImage) imagen;
+        File outputfile = new File("/home/juan/ProgAplicaciones2018/progAplicaciones/imagenesPropuesta" + labeltitulo.getText() + ".png");
+        imagenRuta = "/home/juan/ProgAplicaciones2018/progAplicaciones/imagenesPropuesta" + labeltitulo.getText() + ".png";
+        try {            
+            ImageIO.write(img, "png", outputfile);
+        } catch (IOException ex) {
+            Logger.getLogger(Alta_perfil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void sacarlabasura() {
         labeltitulo.setText("Seleccione una propuesta");
         labelproponente.setText("Seleccione una propuesta");
         labelcategoria.setText("Seleccione una propuesta");
-        labelretorno.setText("Seleccione una propuesta");  
+        labelretorno.setText("Seleccione una propuesta");        
         labelfechacreacion.setText("Seleccione una propuesta");
         txtdescripcion.setText("");
         txtlugar.setText("");
@@ -471,5 +464,5 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
         txtprecioetrada.setText("");
         txtmontorequerido.setText("");
     }
-
+    
 }

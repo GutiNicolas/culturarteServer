@@ -353,7 +353,10 @@ public class BDCulturarte {
             monto = Integer.toString(dtcola.getMonto());
             retorno = dtcola.getRetorno();
             String sql = null;
+            if(dtcola.getComentario()!=null){
             sql = "INSERT INTO `cultuRarte`.`Colaboraciones` (`nickusuario`, `tituloprop`, `fecha`, `hora`, `monto`, `retorno`,`comentario`) VALUES ('" + colaborador + "','" + titulo + "','" + fecha + "','" + hora + "','" + monto + "','" + retorno + "','"+dtcola.getComentario()+"')";
+            }else{sql = "INSERT INTO `cultuRarte`.`Colaboraciones` (`nickusuario`, `tituloprop`, `fecha`, `hora`, `monto`, `retorno`) VALUES ('" + colaborador + "','" + titulo + "','" + fecha + "','" + hora + "','" + monto + "','" + retorno + "')";
+            }
             Connection conn = conexion.getConexion();
             Statement st = conn.createStatement();
             st.executeUpdate(sql);

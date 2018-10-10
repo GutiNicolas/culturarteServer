@@ -26,7 +26,7 @@ public class Evaluar_Prop extends javax.swing.JFrame {
      * Creates new form Evaluar_Prop
      */
     public Evaluar_Prop() {
-        
+
         initComponents();
         contP.propAutomaticas();
         btn_aceptar.setEnabled(false);
@@ -152,7 +152,7 @@ public class Evaluar_Prop extends javax.swing.JFrame {
     }//GEN-LAST:event_tabla_propuestasMouseClicked
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-      
+
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
@@ -165,7 +165,8 @@ public class Evaluar_Prop extends javax.swing.JFrame {
         if (res == 0) {
             if (altaEstado()) {
                 JOptionPane.showMessageDialog(null, "El nuevo estado " + cancel_publicada + " se a agregado con exito!");
-                 limpiar();
+                limpiar();
+
             }
         }
 
@@ -177,7 +178,6 @@ public class Evaluar_Prop extends javax.swing.JFrame {
      */
     private boolean altaEstado() {
         if (jT_propuesta.getText() != null) {
-           
 
             return contP.nuevoEstadoProp(jT_propuesta.getText(), cancel_publicada);
 
@@ -187,6 +187,7 @@ public class Evaluar_Prop extends javax.swing.JFrame {
 
     private void limpiar() {
         jT_propuesta.setText("Propuesta");
+        propuestas.clear();
         llenaGrilla(propuestas);
 
     }
@@ -230,30 +231,36 @@ public class Evaluar_Prop extends javax.swing.JFrame {
      *
      *
      */
-    private void bloquear(){
-    jT_busqueda.setEnabled(false);
-    jT_propuesta.setEnabled(false);
-    tabla_propuestas.setEnabled(false);
-    jR_cancelada.setEnabled(false);
-    jR_publicada.setEnabled(false);
-    
+    private void bloquear() {
+        jT_busqueda.setEnabled(false);
+        jT_propuesta.setEnabled(false);
+        tabla_propuestas.setEnabled(false);
+        jR_cancelada.setEnabled(false);
+        jR_publicada.setEnabled(false);
+        btn_aceptar.setEnabled(false);
+
     }
+
     private void llenaGrilla(ArrayList<dtPropuestasBD> prop) {
         try {
-            DefaultTableModel modelo;
-            Vector vect = new Vector();
-            vect.add("Titulo");
-            vect.add("Proponente");
-            modelo = new DefaultTableModel(vect, prop.size());
-            if(prop.isEmpty()){JOptionPane.showMessageDialog(null, "No hay propuestas con estado Ingresada");
-            bloquear();
-            return;}
-            for (int i = 0; i < prop.size(); i++) {
-                dtPropuestasBD p = (dtPropuestasBD) prop.get(i);
-                modelo.setValueAt(p.getTitulo(), i, 0);
-                modelo.setValueAt(p.getNickproponente(), i, 1);
+
+            if (prop.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No hay propuestas con estado Ingresada");
+                bloquear();
+            } else {
+                DefaultTableModel modelo;
+                Vector vect = new Vector();
+                vect.add("Titulo");
+                vect.add("Proponente");
+                modelo = new DefaultTableModel(vect, prop.size());
+                for (int i = 0; i < prop.size(); i++) {
+                    dtPropuestasBD p = (dtPropuestasBD) prop.get(i);
+                    modelo.setValueAt(p.getTitulo(), i, 0);
+                    modelo.setValueAt(p.getNickproponente(), i, 1);
+                }
+                tabla_propuestas.setModel(modelo);
             }
-            tabla_propuestas.setModel(modelo);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -24,9 +24,14 @@ public class colaboracionesPersistencia {
 
     public boolean registrarColaboracion(String colaborador, String titulo, String fecha, String hora, String monto, String retorno, String comentario) {
         try {
-            
+
             String sql = null;
-            sql = "INSERT INTO `cultuRarte`.`Colaboraciones` (`nickusuario`, `tituloprop`, `fecha`, `hora`, `monto`, `retorno`, `comentario`) VALUES ('" + colaborador + "','" + titulo + "','" + fecha + "','" + hora + "','" + monto + "','" + retorno + "','" + comentario + "')";
+            if (comentario != null) {
+                sql = "INSERT INTO `cultuRarte`.`Colaboraciones` (`nickusuario`, `tituloprop`, `fecha`, `hora`, `monto`, `retorno`, `comentario`) VALUES ('" + colaborador + "','" + titulo + "','" + fecha + "','" + hora + "','" + monto + "','" + retorno + "','" + comentario + "')";
+            } else {
+                sql = "INSERT INTO `cultuRarte`.`Colaboraciones` (`nickusuario`, `tituloprop`, `fecha`, `hora`, `monto`, `retorno`) VALUES ('" + colaborador + "','" + titulo + "','" + fecha + "','" + hora + "','" + monto + "','" + retorno + "')";
+            }
+
             Connection conn = conexion.getConexion();
             Statement st = conn.createStatement();
             st.executeUpdate(sql);
@@ -76,23 +81,24 @@ public class colaboracionesPersistencia {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                String fechaS= rs.getString(3);
+                String fechaS = rs.getString(3);
                 dtFecha dtf = construirFecha(fechaS);
                 String horaS = rs.getString(4);
-                dtHora dth= construirHora(horaS);
+                dtHora dth = construirHora(horaS);
                 int monto = Integer.parseInt(rs.getString(5));
-                dtColaboracionCompleto dtc = new dtColaboracionCompleto(rs.getString(1), rs.getString(2), dtf, dth, monto, rs.getString(6),rs.getString(7));
+                dtColaboracionCompleto dtc = null;
+                if (rs.getString(7) != null) {
+                    dtc = new dtColaboracionCompleto(rs.getString(1), rs.getString(2), dtf, dth, monto, rs.getString(6), rs.getString(7));
+                } else {
+                    dtc = new dtColaboracionCompleto(rs.getString(1), rs.getString(2), dtf, dth, monto, rs.getString(6), null);
+                }
                 dtcolaboraciones.add(dtc);
 
             }
-         
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-     
-        
-        
-        
+
         }
 
     }

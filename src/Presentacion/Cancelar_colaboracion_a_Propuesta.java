@@ -216,14 +216,13 @@ private ContPropuesta contP=ContPropuesta.getInstance();
     private void btnconfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconfirmarActionPerformed
         // TODO add your handling code here:
         try {
-        if(labelnickname.getText().isEmpty() || labeltitulo.getText().isEmpty())
-            JOptionPane.showMessageDialog(null,"Seleccione una propuesta");
-        else{
-            
-                ICC.eliminarcolaboracion(labelnickname.getText(), labeltitulo.getText());
+        if(labelnickname.getText().isEmpty() || labeltitulo.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Seleccione una propuesta");}
+        if(!labelnickname.getText().isEmpty() && !labeltitulo.getText().isEmpty()){ 
+            ICC.eliminarcolaboracion(labelnickname.getText(), labeltitulo.getText());
                 JOptionPane.showMessageDialog(null,"Colaboracion eliminada"); 
-                limpiartodo();
-            }
+                limpiartodo();}
+            
          } catch (Exception ex) {
                 Logger.getLogger(Cancelar_colaboracion_a_Propuesta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -259,7 +258,8 @@ private ContPropuesta contP=ContPropuesta.getInstance();
 
     private void limpiartodo() {
         labeltitulo.setText("Seleccione una colaboracion");
-        labelnickname.setText("Seleccione una colaboracion");      
+        labelnickname.setText("Seleccione una colaboracion");  
+        vaciarTablas();
     }
 
 }

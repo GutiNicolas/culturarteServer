@@ -41,7 +41,10 @@ public class colProp {
         this.montocolaborado = montocolaborado;
         this.retorno = retorno;
         this.propColaborada=prop;
+        if(comen!=null){
         this.comentario=comen;
+        }
+        
     }
     
     //GETTERS//

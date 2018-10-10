@@ -38,7 +38,6 @@ public class ContPropuesta implements iConPropuesta {
     private ContCargaBD contCarga = ContCargaBD.getInstance();
     ArrayList<propuesta> propFiltradaING = new ArrayList<>();
     ArrayList<propuesta> propCambioEstadoAuto = new ArrayList<>();
-
     ArrayList<dtEstadosPropuestas> arregloDtEstProp = new ArrayList<>();
     utilidades util = utilidades.getInstance();
 
@@ -410,8 +409,8 @@ public class ContPropuesta implements iConPropuesta {
         this.propCambioEstadoAuto.clear();
         this.propFiltradaING.clear();
         this.arregloDtEstProp.clear();
-        
-
+        this.propCambioEstadoAuto.clear();
+        this.propuestas.clear();
     }
 
     /**
@@ -463,7 +462,7 @@ public class ContPropuesta implements iConPropuesta {
                 if (cate.getPadre().equals("Categorias") != true) {
                     categoria catP = (categoria) categorias.get(cate.getPadre());
                     categoria categ = new categoria(catP, cate.getNombre());
-                    categorias.put(cate.getNombre(), catP);
+                    categorias.put(cate.getNombre(), categ);
                     catPer.altaCategoria(cate.getNombre(), cate.getPadre());
                 } else {
                     categoria categ = new categoria(null, cate.getNombre());
@@ -471,6 +470,17 @@ public class ContPropuesta implements iConPropuesta {
                     catPer.altaCategoria(cate.getNombre(), null);
                 }
 
+            } else {
+                if (cate.getPadre().equals("Categorias") != true) {
+                    categoria catP = (categoria) categorias.get(cate.getPadre());
+                    categoria categ = new categoria(catP, cate.getNombre());
+                    categorias.put(cate.getNombre(), categ);
+                    catPer.altaCategoria(cate.getNombre(), cate.getPadre());
+                } else {
+                    categoria categ = new categoria(null, cate.getNombre());
+                    categorias.put(cate.getNombre(), categ);
+                    catPer.altaCategoria(cate.getNombre(), null);
+                }
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -562,23 +572,22 @@ public class ContPropuesta implements iConPropuesta {
 
         agregarEstadoAPropuesta(estado, titulo, dtf, dth); //estado titulo fecha hora
     }
-    
-    
+
 ////////////////////PROCEDIMIENTO estado Automatico-----------------
-public void propAutomaticas(){
-    try {
-        this.propCambioEstadoAuto.clear();
-    cUsuario.getPropuestas(propCambioEstadoAuto);
-        for(int i =0;i<propCambioEstadoAuto.size();i++){
-            propuesta p = (propuesta)propCambioEstadoAuto.get(i);
-            filtraPropuestas(p);
+    public void propAutomaticas() {
+        try {
+            this.propCambioEstadoAuto.clear();
+            cUsuario.getPropuestas(propCambioEstadoAuto);
+            for (int i = 0; i < propCambioEstadoAuto.size(); i++) {
+                propuesta p = (propuesta) propCambioEstadoAuto.get(i);
+                filtraPropuestas(p);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
-    } catch (Exception e) {
-        System.err.println(e.getMessage());
+
     }
 
-}
-    
     /**
      *
      * Funcion que recibe una propuesta y verifica el estado, la fecha y la hora
@@ -593,20 +602,18 @@ public void propAutomaticas(){
 
         if (comparaEstado(p.getEstadoActual())) {
             if (verificaFecha(p) == 0) {
-               if (verificaHora(p) == -1) {
-                cambiaPropEstadoAuto(p);
-            }
-            if (verificaHora(p) == 0) {
-                cambiaPropEstadoAuto(p);
-            }
+                if (verificaHora(p) == -1) {
+                    cambiaPropEstadoAuto(p);
+                }
+                if (verificaHora(p) == 0) {
+                    cambiaPropEstadoAuto(p);
+                }
             }
             if (verificaFecha(p) == -1) {
                 cambiaPropEstadoAuto(p);
             }
         }
     }
-
- 
 
     /*
  *cambiaPropEstadoAuto recibe una propuesta y verifica si el estado es Publicada o En Financiacion

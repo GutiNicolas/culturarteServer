@@ -57,7 +57,7 @@ public class Alta_perfil extends javax.swing.JFrame {
         jdc_fechaNac.setMinSelectableDate(min);
         jP_contra.setText(null);
         jP_contraVS.setText(null);
-
+        
     }
 
     /**
@@ -331,15 +331,15 @@ public class Alta_perfil extends javax.swing.JFrame {
 
 // funciones
     private boolean controlDatos() throws Exception {
-
+        
         if (jT_nick.getText() == null) {
             JOptionPane.showMessageDialog(null, "Nickname vacio");
             jT_nick.selectAll();
             jT_nick.requestFocus();
             return false;
         }
-        if(contUsu.existeUsuario(jT_nick.getText())){
-        JOptionPane.showMessageDialog(null, "Ya existe un otro usuario con este nickname");
+        if (contUsu.existeUsuario(jT_nick.getText())) {
+            JOptionPane.showMessageDialog(null, "Ya existe un otro usuario con este nickname");
             jT_nick.selectAll();
             jT_nick.requestFocus();
             return false;
@@ -356,8 +356,6 @@ public class Alta_perfil extends javax.swing.JFrame {
             jP_contraVS.requestFocus();
             return false;
         }
-      
-       
         
         if (jP_contra.getText().equals(jP_contraVS.getText()) != true) {
             JOptionPane.showMessageDialog(null, "Contraseñas diferentes!");
@@ -389,8 +387,8 @@ public class Alta_perfil extends javax.swing.JFrame {
             jT_email.requestFocus();
             return false;
         }
-        if(contUsu.existeMail(jT_email.getText())){
-        JOptionPane.showMessageDialog(null, "Ya existe otro usuario registrado con este mail");
+        if (contUsu.existeMail(jT_email.getText())) {
+            JOptionPane.showMessageDialog(null, "Ya existe otro usuario registrado con este mail");
             jT_email.selectAll();
             jT_email.requestFocus();
             return false;
@@ -402,13 +400,13 @@ public class Alta_perfil extends javax.swing.JFrame {
         }
         return true;
     }
-
+    
     private boolean fechaok() {
         int dia = 0, mes = 0, anio = 0;
         dia = jdc_fechaNac.getDate().getDay();
         mes = jdc_fechaNac.getDate().getMonth();
         anio = jdc_fechaNac.getDate().getYear();
-
+        
         int Cdia = 01, cMes = 01, Canio = 1945;
         if (dia == Cdia) {
             if (mes == cMes) {
@@ -419,31 +417,31 @@ public class Alta_perfil extends javax.swing.JFrame {
         }
         return false;
     }
-
+    
     private dtFecha getFechajdc() {
         dtFecha fecha;
         fecha = new dtFecha(Integer.toString(jdc_fechaNac.getDate().getDay()), Integer.toString(jdc_fechaNac.getDate().getMonth()), Integer.toString(jdc_fechaNac.getDate().getYear()));
         return fecha;
     }
-
+    
     private boolean compruebaEmail(String email) {
         // Patrón para validar el email
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher mather = pattern.matcher(email);
-
+        
         return mather.find();
     }
-
+    
     private void limpiarTxt() {
-        jT_nick.setText(" ");
-        jT_nombre.setText(" ");
-        jT_apellido.setText(" ");
-        jT_email.setText(" ");
+        jT_nick.setText(null);
+        jT_nombre.setText(null);
+        jT_apellido.setText(null);
+        jT_email.setText(null);
         jdc_fechaNac.setCalendar(null);
-        jT_direccion.setText(" ");
-        jT_web.setText(" ");
-        jtp_biografia.setText(" ");
+        jT_direccion.setText(null);
+        jT_web.setText(null);
+        jtp_biografia.setText(null);
         jrb_colaborador.setSelected(false);
         jrb_proponente.setSelected(false);
         jT_direccion.disable();
@@ -451,31 +449,31 @@ public class Alta_perfil extends javax.swing.JFrame {
         jtp_biografia.disable();
         jb_aceptar.disable();
         jL_imagenP.setIcon(null);
-        jP_contra.setText(" ");
-        jP_contraVS.setText(" ");
-
+        jP_contra.setText(null);
+        jP_contraVS.setText(null);
+        jb_aceptar.setEnabled(false);
     }
-
+    
     private boolean altaPerfil() {
-
+        
         try {
-
+            
             if (controlDatos() == true) {
-              
-                    if (usuTipo == false) {
-
-                        dtColaborador dtCola = new dtColaborador((jT_nombre.getText()), jT_apellido.getText(), jT_nick.getText(),
-                                imagenRuta, jT_email.getText(), getFechajdc(), jP_contra.getText());
-                        contUsu.agregarUsu(dtCola);
-                        return true;
-                    }
-
-                    if (usuTipo == true) {
-                        dtProponente dtprop = new dtProponente(jT_nombre.getText(), jT_apellido.getText(), jT_nick.getText(), imagenRuta, jT_email.getText(), getFechajdc(), jT_direccion.getText(), jtp_biografia.getText(), jT_web.getText(), jP_contra.getText());
-                        contUsu.agregarUsu(dtprop);
-                        return true;
-                    }
-
+                
+                if (usuTipo == false) {
+                    
+                    dtColaborador dtCola = new dtColaborador((jT_nombre.getText()), jT_apellido.getText(), jT_nick.getText(),
+                            imagenRuta, jT_email.getText(), getFechajdc(), jP_contra.getText());
+                    contUsu.agregarUsu(dtCola);
+                    return true;
+                }
+                
+                if (usuTipo == true) {
+                    dtProponente dtprop = new dtProponente(jT_nombre.getText(), jT_apellido.getText(), jT_nick.getText(), imagenRuta, jT_email.getText(), getFechajdc(), jT_direccion.getText(), jtp_biografia.getText(), jT_web.getText(), jP_contra.getText());
+                    contUsu.agregarUsu(dtprop);
+                    return true;
+                }
+                
             } else {
                 return false;
             }
@@ -483,9 +481,9 @@ public class Alta_perfil extends javax.swing.JFrame {
             System.err.println(ex.getMessage());
         }
         return false;
-
+        
     }
-
+    
     private void selecImagen() {
         FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");
         navegadorArchivos.setFileFilter(filtroImagen);
@@ -501,7 +499,7 @@ public class Alta_perfil extends javax.swing.JFrame {
         //BufferedImage img= nuevoIcono;
         salvarImagen(foto);
     }
-
+    
     private void salvarImagen(Image imagen) {
         BufferedImage img = (BufferedImage) imagen;
         File outputfile = new File("/home/juan/ProgAplicaciones2018/progAplicaciones/imagenesPerfil" + jT_nick.getText() + ".png");
@@ -510,8 +508,8 @@ public class Alta_perfil extends javax.swing.JFrame {
             ImageIO.write(img, "png", outputfile);
         } catch (IOException ex) {
             Logger.getLogger(Alta_perfil.class.getName()).log(Level.SEVERE, null, ex);
-
+            
         }
-
+        
     }
 }

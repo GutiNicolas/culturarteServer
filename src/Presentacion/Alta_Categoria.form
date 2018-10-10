@@ -117,6 +117,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jt_hijo">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jt_hijoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jb_aceptar">
       <Properties>

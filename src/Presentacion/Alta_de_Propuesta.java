@@ -73,7 +73,7 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
         btnexplorar.setText("Explorar");
         btndardealta.setText("Dar de Alta");
         btncancelar.setText("Cancelar");
-        
+        ICP.propAutomaticas();
        
     }
 

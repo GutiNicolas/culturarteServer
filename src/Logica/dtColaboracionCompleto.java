@@ -24,7 +24,8 @@ public class dtColaboracionCompleto {
         this.hora=dth;
         this.monto=m;
         this.retorno=r;
-        this.comentario=comen;
+        if(comen!=null){
+        this.comentario=comen;}
     }
 
     public String getNickname() {
