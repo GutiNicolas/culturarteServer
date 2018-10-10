@@ -186,10 +186,14 @@ public class Evaluar_Prop extends javax.swing.JFrame {
     }
 
     private void limpiar() {
-        jT_propuesta.setText("Propuesta");
         propuestas.clear();
+        propuestas = (ArrayList<dtPropuestasBD>) contP.getdtPropIngr();
         llenaGrilla(propuestas);
+        jT_propuesta.setText("Propuesta");
 
+        jR_cancelada.setSelected(false);
+        jR_publicada.setSelected(false);
+        btn_aceptar.setEnabled(false);
     }
 
     public static void main(String args[]) {
