@@ -1304,6 +1304,40 @@ public void getPropuestas(ArrayList<propuesta>prop){
         return lst;
     }
     
+    public List<String> listarpropuestascolaboradaspor(String nick) {
+        List<String> retorno = new ArrayList<>();
+        if (this.usuarios.get(nick) instanceof colaborador) {
+            colaborador c = (colaborador) this.usuarios.get(nick);
+            if (c != null) {
+                for (String key : c.colaboracionesUsuario.keySet()) {
+                    colProp cp = c.colaboracionesUsuario.get(key);
+                    propuesta p = cp.getPropColaborada();
+                    if (p.getEstadoActual().equals("Financiada")) {
+                        if (cp.getComentario().isEmpty() || cp.getComentario() == null || cp.getComentario().equals("null")) {
+                            retorno.add(key);
+                        }
+                    }
+                }
+            }
+        }
+        return retorno;
+    }
+    
+    public void agregarcomentarioapropuesta(String nick,String titulo,String comentario){
+        if(this.usuarios.get(nick) instanceof colaborador){
+            colaborador c=(colaborador) this.usuarios.get(nick);
+            if(c!=null){
+                colProp cp=c.colaboracionesUsuario.get(titulo);
+                if(cp!=null){
+                    if(cp.getComentario().isEmpty() || cp.getComentario() == null || cp.getComentario().equals("null")){
+                        cp.setComentario(comentario);
+                        colabPer.agregarcomentario(titulo, nick, comentario);
+                    }
+                }
+            }
+        }
+    }
+    
     
 }
 
