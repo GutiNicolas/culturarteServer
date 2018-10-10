@@ -829,12 +829,12 @@ public class ContUsuario implements iConUsuario {
             colaborador c = (colaborador) this.usuarios.get(colab);
             if (c != null) {
                 if (p != null && c.colaborasconpropuesta(titulo) == false) {
-                    Calendar cal = Calendar.getInstance();
-                    Date da = cal.getTime();
-                    da.setYear(2018);
-                    dtFecha dtf = new dtFecha(Integer.toString(da.getDay()), Integer.toString(da.getMonth()), Integer.toString(da.getYear()));
-                    dtHora dth = new dtHora(da.getHours(), da.getMinutes());
-                    colProp cp = new colProp(dtf, dth, monto, retorno, p, comentario);
+   //                 Calendar cal = Calendar.getInstance();
+   //                 Date da = cal.getTime();
+   //                 da.setYear(2018);
+                    dtFecha dtf = util.getFecha();
+                    dtHora dth = util.getHora();
+                    colProp cp = new colProp(util.getFecha(), util.getHora(), monto, retorno, p, comentario);
                     c.colaboracionesUsuario.put(p.getTitulo(), cp);
                     boolean h=colabPer.registrarColaboracion(colab, titulo, dtf.getFecha(), dth.getHora(), Integer.toString(monto), retorno, comentario);                   
                         
