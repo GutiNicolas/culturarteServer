@@ -72,6 +72,21 @@ public class colaboracionesPersistencia {
         dtHora dth = new dtHora(Integer.parseInt(h[0]), Integer.parseInt(h[1]));
         return dth;
     }
+    
+    public void agregarcomentarioaprop(String nick,String titulo,String comentario){
+        try {
+
+            String sql = "UPDATE `cultuRarte`.`Propuesta` SET `comentario`='"+comentario+"' WHERE `titulo`='"+titulo+"' AND `nickusuario`='"+nick+"'";
+            Connection conn = conexion.getConexion();
+            Statement st = conn.createStatement();
+            st.executeUpdate(sql);
+            
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+
+        }
+    }
 
     public void cargarColaboraciones(ArrayList<dtColaboracionCompleto> dtcolaboraciones) {
         try {

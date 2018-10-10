@@ -22,6 +22,7 @@ import Persistencia.usuariosPersistencia;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -1302,6 +1303,40 @@ public void getPropuestas(ArrayList<propuesta>prop){
             }
         }
         return lst;
+    }
+
+    public List<String> listarpropuestascolaboradaspor(String string) {
+        List<String> retorno= new ArrayList<>();
+         if(this.usuarios.get(string) instanceof colaborador){
+             colaborador c=(colaborador) this.usuarios.get(string);
+             for(String key: c.colaboracionesUsuario.keySet()){
+                 propuesta p=this.damePropuesta(key);
+                 if(p.getEstadoActual().equals("Financiada")){
+                     colProp cp=c.colaboracionesUsuario.get(key);
+                     if(cp.getComentario().isEmpty() || cp.getComentario().equals("null") || cp.getComentario()==null){
+                         retorno.add(key);
+                     }
+                 }
+             }
+         }
+         return retorno;
+    }
+
+    public void agregarcomentarioapropuesta(String string, String titulo, String comentario) {
+        if(this.usuarios.get(string) instanceof colaborador){
+            colaborador c=(colaborador) this.usuarios.get(string);
+            if(c.colaboracionesUsuario.containsKey(titulo)){
+               colProp cp=c.colaboracionesUsuario.get(titulo);
+               propuesta p=cp.getPropColaborada();
+               if(p.getEstadoActual().equals("Financiada")){
+                   if(cp.getComentario().isEmpty() || cp.getComentario().equals("null") || cp.getComentario()==null){
+                       cp.setComentario(comentario);
+                       colabPer.agregarcomentarioaprop(string, titulo, comentario);
+                   }
+               }
+            }
+            
+        }
     }
     
     
