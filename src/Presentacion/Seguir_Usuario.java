@@ -214,7 +214,7 @@ public class Seguir_Usuario extends javax.swing.JInternalFrame{
 
     private void txtbuscar2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscar2KeyPressed
         // TODO add your handling code here:
-        List<String> lu=ICU.listarusuarios(txtbuscar.getText());
+        List<String> lu=ICU.listarusuarios(txtbuscar2.getText());
         DefaultTableModel modelo=(DefaultTableModel) tableseguidor.getModel();
         modelo.setRowCount(0);
         Iterator it=lu.iterator();
