@@ -41,3 +41,8 @@ nbproject/private/private.properties
 *./private.properties
 *.build/
 *.build/*
+.DS_Store
+*.DS_Store
+/.DS_Store
+./DS_Store
+*DS_Store
