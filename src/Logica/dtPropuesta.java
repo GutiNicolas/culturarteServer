@@ -6,6 +6,7 @@
 package Logica;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -41,6 +42,17 @@ public class dtPropuesta {
     public dtPropuesta(String titulo, String proponente) {
         this.titulo = titulo;
         this.proponente = proponente;
+    }
+    
+    public boolean colabora(String nick){
+        boolean ret=false;
+        Iterator it=this.colaboradores.iterator();
+        while(it.hasNext()){
+            String c=(String) it.next();
+            if(c.equals(nick))
+                ret=true;
+        }
+        return ret;
     }
     
     

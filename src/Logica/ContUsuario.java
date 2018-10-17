@@ -58,12 +58,7 @@ public class ContUsuario implements iConUsuario {
     }
     
     public boolean existeUsuario(String nickName) {
-        
-        if (usuarios.containsKey(nickName) == true) {
-            return true;
-        }
-      
-        return false;
+      return this.usuarios.containsKey(nickName);
         
     }
     public boolean existeMail(String mail){
@@ -1337,6 +1332,31 @@ public void getPropuestas(ArrayList<propuesta>prop){
             }
             
         }
+    }
+
+    public dtUsuario usuarioLoginApp(String usu) {
+          dtUsuario retorno = null;
+        if (usu.contains("@") == false) { //Busqueda por Nick
+            if (this.usuarios.containsKey(usu)) {
+                if (this.usuarios.get(usu) instanceof colaborador) {
+                    colaborador c = (colaborador) this.usuarios.get(usu);
+                    retorno = c.getColaborador();
+                    retorno.setRol("Colaborador");
+                } 
+            }
+        }
+        if (usu.contains("@") == true) { //Busqueda por Correo
+            for (String key : this.usuarios.keySet()) {
+                if (this.usuarios.get(key) instanceof colaborador) {
+                    colaborador c = (colaborador) this.usuarios.get(usu);
+                    if (c.getEmail().equals(usu)) {
+                        retorno = c.getColaborador();
+                        retorno.setRol("Colaborador");
+                    }
+                } 
+            }
+        }
+        return retorno;      
     }
     
     
