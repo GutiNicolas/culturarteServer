@@ -21,8 +21,11 @@ import java.util.logging.Logger;
 import Persistencia.usuariosPersistencia;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -1357,6 +1360,44 @@ public void getPropuestas(ArrayList<propuesta>prop){
             }
         }
         return retorno;      
+    }
+    
+    /**
+     * Funcion que devuelve el ranking calculado de usuarios con mayor puntaje
+     * @return List dtUsuario 
+     */
+    public List<dtUsuario> ranking(){
+        List<dtUsuario> rank=new ArrayList<>();
+        for(String key: this.usuarios.keySet()){
+            usuario u=this.usuarios.get(key);
+            if(contarseguidores(key)>0){
+                rank.add(new dtUsuario(u.getNombre(),u.getApellido(),u.getNickname(),contarseguidores(key)));
+            }
+        }
+        
+        dtUsuario aux=null;
+        for(int i=0;i<rank.size();i++){
+            for(int j=i+1;j<rank.size();j++){
+                if(rank.get(i).getPuntaje() < rank.get(j).getPuntaje()){
+                    aux= rank.get(i);
+                    rank.set(i, rank.get(j));
+                    rank.set(j, aux);
+                }
+            }
+        }
+        
+        return rank;                 
+    }
+    
+    public int contarseguidores(String nick){
+        int cant=0;
+        for(String key: this.usuarios.keySet()){
+            usuario u=this.usuarios.get(key);
+            if(u.seguidos.containsKey(nick)){
+                cant++;
+            }
+        }
+        return cant;
     }
     
     
