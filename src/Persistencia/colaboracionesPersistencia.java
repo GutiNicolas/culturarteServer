@@ -76,7 +76,7 @@ public class colaboracionesPersistencia {
     public void agregarcomentarioaprop(String nick,String titulo,String comentario){
         try {
 
-            String sql = "UPDATE `cultuRarte`.`Propuesta` SET `comentario`='"+comentario+"' WHERE `titulo`='"+titulo+"' AND `nickusuario`='"+nick+"'";
+            String sql = "UPDATE `cultuRarte`.`Colaboraciones` SET `comentario`='"+comentario+"' WHERE `tituloprop`='"+titulo+"' AND `nickusuario`='"+nick+"'";
             Connection conn = conexion.getConexion();
             Statement st = conn.createStatement();
             st.executeUpdate(sql);

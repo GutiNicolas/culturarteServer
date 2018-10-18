@@ -1311,7 +1311,7 @@ public void getPropuestas(ArrayList<propuesta>prop){
                  propuesta p=this.damePropuesta(key);
                  if(p.getEstadoActual().equals("Financiada")){
                      colProp cp=c.colaboracionesUsuario.get(key);
-                     if(cp.getComentario().isEmpty() || cp.getComentario().equals("null") || cp.getComentario()==null){
+                     if(cp.getComentario()==null){
                          retorno.add(key);
                      }
                  }
@@ -1327,7 +1327,7 @@ public void getPropuestas(ArrayList<propuesta>prop){
                colProp cp=c.colaboracionesUsuario.get(titulo);
                propuesta p=cp.getPropColaborada();
                if(p.getEstadoActual().equals("Financiada")){
-                   if(cp.getComentario().isEmpty() || cp.getComentario().equals("null") || cp.getComentario()==null){
+                   if(cp.getComentario()==null){
                        cp.setComentario(comentario);
                        colabPer.agregarcomentarioaprop(string, titulo, comentario);
                    }
