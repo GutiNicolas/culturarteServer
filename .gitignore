@@ -56,4 +56,5 @@ build/*
 .build/*
 ./build/*
 /build/*
+*.class
 
