@@ -17,6 +17,13 @@ import java.util.List;
 import java.util.Map;
 import Persistencia.usuariosPersistencia;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,7 +64,7 @@ public class ContUsuario implements iConUsuario {
         }
 
         return false;
-
+        
     }
 
     public boolean existeMail(String mail) {
@@ -1195,10 +1202,75 @@ public class ContUsuario implements iConUsuario {
                         colabPer.agregarcomentarioaprop(string, titulo, comentario);
                     }
                 }
+            }}}
+    
+    
+    public dtUsuario usuarioLoginApp(String usu) {
+          dtUsuario retorno = null;
+        if (usu.contains("@") == false) { //Busqueda por Nick
+            if (this.usuarios.containsKey(usu)) {
+                if (this.usuarios.get(usu) instanceof colaborador) {
+                    colaborador c = (colaborador) this.usuarios.get(usu);
+                    retorno = c.getColaborador();
+                    retorno.setRol("Colaborador");
+                } 
             }
-
         }
+        if (usu.contains("@") == true) { //Busqueda por Correo
+            for (String key : this.usuarios.keySet()) {
+                if (this.usuarios.get(key) instanceof colaborador) {
+                    colaborador c = (colaborador) this.usuarios.get(usu);
+                    if (c.getEmail().equals(usu)) {
+                        retorno = c.getColaborador();
+                        retorno.setRol("Colaborador");
+                    }
+                } 
+            }
+        }
+        return retorno;      
     }
+    
+    /**
+     * Funcion que devuelve el ranking calculado de usuarios con mayor puntaje
+     * @return List dtUsuario 
+     */
+    public List<dtUsuario> ranking(){
+        List<dtUsuario> rank=new ArrayList<>();
+        for(String key: this.usuarios.keySet()){
+            usuario u=this.usuarios.get(key);
+            if(contarseguidores(key)>0){
+                rank.add(new dtUsuario(u.getNombre(),u.getApellido(),u.getNickname(),contarseguidores(key)));
+            }
+        }
+        
+        dtUsuario aux=null;
+        for(int i=0;i<rank.size();i++){
+            for(int j=i+1;j<rank.size();j++){
+                if(rank.get(i).getPuntaje() < rank.get(j).getPuntaje()){
+                    aux= rank.get(i);
+                    rank.set(i, rank.get(j));
+                    rank.set(j, aux);
+                }
+            }
+        }
+        
+        return rank;                 
+    }
+    
+    public int contarseguidores(String nick){
+        int cant=0;
+        for(String key: this.usuarios.keySet()){
+            usuario u=this.usuarios.get(key);
+            if(u.seguidos.containsKey(nick)){
+                cant++;
+            }
+        }
+        return cant;
+    }
+    
+    
+
+
 
     public ArrayList<dtColaborador> getUsuariosColaboradores(String pp) {
         ArrayList<dtColaborador> colaboradores = new ArrayList<>();

@@ -218,7 +218,7 @@ public class proponente extends usuario {
         List<String> retorno = new ArrayList();
         for(String key: this.propuestasUsuario.keySet()){
             propuesta p=this.propuestasUsuario.get(key);
-            if(p.getEstadoActual().equals("Ingresada")==false){
+            if(p.getEstadoActual().equals("Ingresada")==false && p.getEstadoActual().equals("Desactivada")==false){
                 retorno.add(key);
             }
         }

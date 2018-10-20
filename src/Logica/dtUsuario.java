@@ -14,6 +14,7 @@ public class dtUsuario {
     private String nombre, apellido, nickname, imagen, email,pass;
     private dtFecha fechaNac;
     private String rol;
+    private int puntaje;
 
     public dtUsuario(String nombre, String apellido, String nickname, String imagen, String email, dtFecha fechaNac,String pass) {
         this.nombre = nombre;
@@ -23,6 +24,16 @@ public class dtUsuario {
         this.email = email;
         this.fechaNac = fechaNac;
         this.pass=pass;
+    }
+    
+    /**
+     * Constructor que almacena el puntaje del usuario para el Ranking Web
+     */
+    public dtUsuario(String nombre, String apellido, String nickname, int puntaje){
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.nickname=nickname;
+        this.puntaje=puntaje;
     }
 
     /**
@@ -80,6 +91,10 @@ public class dtUsuario {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
     }
 
     
