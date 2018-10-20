@@ -79,9 +79,24 @@ public class estadoPropuestaPersistencia {
             return null;
         }
     }
+
     /**
      *
      * Actualiza en la bd los estados
      */
+    public boolean updateFinanciacion(String fecha, String prop, String estado) {
+        try {
+        String sql = "UPDATE `estadoPropuesta` SET `fechaFinal`='" + fecha + "' WHERE `propuesta`='" + prop + "' AND`estado`='" + estado + "'";
+        Connection conn = conexion.getConexion();
+        Statement st = conn.createStatement();
+        st.executeUpdate(sql);
+        return true;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return false;
+            
+        }
+       
+    }
 
 }

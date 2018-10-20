@@ -16,22 +16,24 @@ public class propEstado {
     private dtFecha fechaIni, fechaFin;
     private dtHora hora;
     private estado estado;
+    private dtPropuestaEstado midt;
     utilidades util = utilidades.getInstance();
 //METODOS//
 
     /**
-     * constructor propEstado recibe 4 parametros 2 dtFecha 1dtHora 1 estado
-     * si fechaf == null se auto setea una fecha generada con 30 dias de diferencia 
-     *si fechaf != null setea la fecha que viene by jp
+     * constructor propEstado recibe 4 parametros 2 dtFecha 1dtHora 1 estado si
+     * fechaf == null se auto setea una fecha generada con 30 dias de diferencia
+     * si fechaf != null setea la fecha que viene by jp
      */
     public propEstado(dtFecha fecha, dtHora hora, estado estado, dtFecha fechaf) {
         this.fechaIni = fecha;
         this.hora = hora;
         this.estado = estado;
-        if(fechaf!=null){
-        this.fechaFin = fechaf;}
-        if(fechaf==null){
-        this.fechaFin=(dtFecha)fechaFinCalculo(fecha);
+        if (fechaf != null) {
+            this.fechaFin = fechaf;
+        }
+        if (fechaf == null) {
+            this.fechaFin = (dtFecha) fechaFinCalculo(fecha);
         }
     }
 
@@ -84,6 +86,26 @@ public class propEstado {
      */
     public void setFechaFin(dtFecha fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public void setTituloP(String titulo) {
+
+        dtPropuestaEstado pEDT = new dtPropuestaEstado(titulo, estado.getNombre(), fechaIni.getFecha(), hora.getHora(), fechaFin.getFecha());
+        this.setMidt(pEDT);
+    }
+
+    /**
+     * @return the midt
+     */
+    public dtPropuestaEstado getMidt() {
+        return midt;
+    }
+
+    /**
+     * @param midt the midt to set
+     */
+    public void setMidt(dtPropuestaEstado midt) {
+        this.midt = midt;
     }
 
 }

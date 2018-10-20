@@ -9,8 +9,6 @@ import Logica.ContUsuario;
 import Logica.dtColaborador;
 import Logica.dtFecha;
 import Logica.dtProponente;
-import Logica.dtUsuario;
-import com.toedter.calendar.IDateEditor;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;

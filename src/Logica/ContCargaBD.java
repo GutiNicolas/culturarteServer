@@ -6,9 +6,6 @@
 package Logica;
 
 import Persistencia.BDCulturarte;
-import Persistencia.estadoPersistencia;
-import Persistencia.propuestasPersistencia;
-import Persistencia.usuariosPersistencia;
 import java.util.ArrayList;
 
 /**

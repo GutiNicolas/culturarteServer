@@ -11,7 +11,7 @@ import Logica.ContPropuesta;
 import Logica.ContUsuario;
 import Logica.culturarteFabrica;
 import javax.swing.JOptionPane;
-
+import WebServices.*;
 /**
  *
  * @author juan
@@ -23,7 +23,8 @@ culturarteFabrica fabrica=culturarteFabrica.getInstance();
     ContPropuesta contPropuesta = ContPropuesta.getInstance();
     ContColaboracion contColaboracion= ContColaboracion.getInstance();
     ContCargaBD contCarga = ContCargaBD.getInstance();
-    
+    WebServiceContUsusario WSContU = new WebServiceContUsusario();
+    WebServiceContPropuesta WSContP = new WebServiceContPropuesta();
     @Override
     public void setVisible(boolean b) {
         super.setVisible(b); //To change body of generated methods, choose Tools | Templates.
@@ -37,9 +38,13 @@ culturarteFabrica fabrica=culturarteFabrica.getInstance();
      * Creates new form Principal
      */
     public Principal() {
+        
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setVisible(true);
+        WSContU.publicar();
+        WSContP.publicar();
+        
         contUsuario.cargarUsuarios();
        
         contPropuesta.cargarPropuestas();

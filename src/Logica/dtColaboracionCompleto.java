@@ -10,24 +10,77 @@ package Logica;
  * @author nicolasgutierrez
  */
 public class dtColaboracionCompleto {
-    
-    String nickname, titulo, retorno;
+
+    private String nickname, titulo, retorno;
     int monto;
-    dtFecha fecha;
-    dtHora hora;
+    private dtFecha fecha;
+    private dtHora hora;
     private String comentario;
-    
+    private String estado;
+    private String proponente;
+
+    /**
+     *constructor de dtColaboracionCompleto
+     */
     public dtColaboracionCompleto(String n, String t, dtFecha dtf, dtHora dth, int m, String r, String comen) {
-        this.nickname=n;
-        this.titulo=t;
-        this.fecha=dtf;
-        this.hora=dth;
-        this.monto=m;
-        this.retorno=r;
-        if(comen!=null){
-        this.comentario=comen;}
+        this.nickname = n;
+        this.titulo = t;
+        this.fecha = dtf;
+        this.hora = dth;
+        this.monto = m;
+        this.retorno = r;
+        if (comen != null) {
+            this.comentario = comen;
+        }
+    }
+    /**
+     *constructor de dtCola
+     */
+    public dtColaboracionCompleto(String titulo, String estado, String proponente, int monto_recaudado){
+    this.titulo=titulo;
+    this.estado = estado;
+    this.proponente=proponente;
+    this.monto= monto_recaudado;
+    }
+    
+    /**
+     *constructor de dtColaboraciones
+     */
+     public dtColaboracionCompleto(String nickname, String idPropuesta, dtFecha fecha) {
+        this.nickname = nickname;
+        this.titulo= idPropuesta;
+        this.fecha = fecha;
     }
 
+    /**
+     *constructor de dtColaboraciones
+     */
+    public dtColaboracionCompleto(String nickname, String idPropuesta) {
+        this.nickname = nickname;
+        this.titulo = idPropuesta;
+    }
+    
+    /**
+     *Constructor de dtColProp
+     */
+  public dtColaboracionCompleto(String nickname, String retorno, dtFecha fecha, dtHora hora, int montoColaborado,String comen) {
+        this.nickname = nickname;
+        this.retorno = retorno;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.monto = montoColaborado;
+        this.comentario=comen;
+    }
+   /**
+     *Constructor de dtColProp
+     */
+    public dtColaboracionCompleto(String nickname, dtFecha fecha, dtHora hora, int montoColaborado, String titulo) {
+        this.nickname = nickname;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.monto = montoColaborado;
+        this.titulo = titulo;
+    }
     public String getNickname() {
         return nickname;
     }
@@ -57,6 +110,20 @@ public class dtColaboracionCompleto {
      */
     public String getComentario() {
         return comentario;
+    }
+
+    /**
+     * @return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @return the proponente
+     */
+    public String getProponente() {
+        return proponente;
     }
 
 }

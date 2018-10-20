@@ -10,8 +10,10 @@ package Logica;
  * @author nicolasgutierrez
  */
 public class dtPropuestaEstado {
-   private String titulo, estado;
-   private String fecha, hora;
+
+    private String titulo, estado;
+    private String fecha, hora;
+    private String fechaFin;
 
     public dtPropuestaEstado(String titulo, String estado, String fecha, String hora, String fechaFin) {
         this.titulo = titulo;
@@ -20,29 +22,28 @@ public class dtPropuestaEstado {
         this.hora = hora;
         this.fechaFin = fechaFin;
     }
-    private String fechaFin;
-    
-   /* 
+
+    /* 
     public dtPropuestaEstado(String titulo, String estado, String fecha, String hora){
         this.estado=estado;
         this.titulo=titulo;
         this.fecha=fecha;
         this.hora=hora;
     }
-    */
-    public String getEstado(){
+     */
+    public String getEstado() {
         return this.estado;
     }
-    
-    public String getTitulo(){
+
+    public String getTitulo() {
         return this.titulo;
     }
-    
-    public String getFecha(){
+
+    public String getFecha() {
         return this.fecha;
     }
-    
-    public String getHora(){
+
+    public String getHora() {
         return this.hora;
     }
 

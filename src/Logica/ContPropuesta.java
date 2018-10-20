@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -40,12 +42,15 @@ public class ContPropuesta implements iConPropuesta {
     ArrayList<propuesta> propCambioEstadoAuto = new ArrayList<>();
     ArrayList<dtEstadosPropuestas> arregloDtEstProp = new ArrayList<>();
     utilidades util = utilidades.getInstance();
+    ArrayList< dtCategoria> cat = new ArrayList<>();
+    ArrayList<String> estadosString = new ArrayList<>();
 
     private void cargaridEstado(ArrayList<dtEstado> nomEstados) {
         try {
             for (int i = 0; i < nomEstados.size(); i++) {
                 dtEstado est = (dtEstado) nomEstados.get(i);
                 idEstado.put(est.getNombre(), est.getNumero());
+                estadosString.add(est.getNombre());
             }
             contCarga.setearEstado(nomEstados);
             util.setearidEstado(nomEstados);
@@ -132,14 +137,15 @@ public class ContPropuesta implements iConPropuesta {
     @Override
     //revisado jp---cambio atributos que se pasan al constructor/testear!
     public void datosPropuesta(dtPropuesta dtp) {
-        estado esta = (estado) estados.get(dtp.getEstado());
-        categoria cat = (categoria) getCategorias().get(dtp.getCategoria());
-        propuesta p = new propuesta(dtp.getTitulo(), dtp.getDescripcion(), dtp.getImagen(), dtp.getLugar(), dtp.getFechaRealizacion(), dtp.getFechapublicada(), dtp.getPrecioentrada(), dtp.getMontorequerido(), dtp.getRetorno(), esta, cat);
-        cUsuario.linkearpropuesta(p, dtp.getProponente());
-
-        dtPropuestasBD dtpbd = new dtPropuestasBD(dtp.getTitulo(), dtp.getProponente(), dtp.getDescripcion(), dtp.getImagen(), dtp.getLugar(), dtp.getCategoria(), dtp.getRetorno(), dtp.getFechaRealizacion(), dtp.getFechapublicada(), dtp.getPrecioentrada(), dtp.getMontorequerido());
         try {
-            propuestasPersistencia.altaPropuesta(dtpbd);
+            estado esta = (estado) estados.get(dtp.getEstado());
+            categoria cat = (categoria) getCategorias().get(dtp.getCategoria());
+            propuesta p = new propuesta(dtp.getTitulo(), dtp.getDescripcion(), dtp.getImagen(), dtp.getLugar(), dtp.getFechaRealizacion(), dtp.getFechapublicada(), dtp.getPrecioentrada(), dtp.getMontorequerido(), dtp.getRetorno(), esta, cat);
+            cUsuario.linkearpropuesta(p, dtp.getProponente());
+            dtPropuestaEstado dtPropE = p.getDtPropEstadoActual();
+            estPropPer.agregarPropEstado(dtPropE.getTitulo(), dtPropE.getEstado(), dtPropE.getFecha(), dtPropE.getHora(), dtPropE.getFechaFin());
+            dtPropuestasBD dtpbd = new dtPropuestasBD(dtp.getTitulo(), dtp.getProponente(), dtp.getDescripcion(), dtp.getImagen(), dtp.getLugar(), dtp.getCategoria(), dtp.getRetorno(), dtp.getFechaRealizacion(), dtp.getFechapublicada(), dtp.getPrecioentrada(), dtp.getMontorequerido());
+            propPer.altaPropuesta(dtpbd);
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
@@ -187,7 +193,7 @@ public class ContPropuesta implements iConPropuesta {
 
     @Override
     public List<String> listartodasPropuestas(String titulo) {
-        return ContUsuario.getInstance().listartodaslaspropuestas(titulo);
+        return cUsuario.listartodaslaspropuestas(titulo);
     }
     // public ArrayList<dtCategoria> getdtCategorias(){}
 
@@ -343,19 +349,6 @@ public class ContPropuesta implements iConPropuesta {
         cUsuario.borrarPropuestas(lista);
     }
 
-    private void cargarestadosaBD() {
-        for (String key : this.estados.keySet()) {
-            estadoPersistencia.agregarestado(key);
-        }
-    }
-
-    private void cargarcategoriasaBD() throws Exception {
-        for (String key : this.getCategorias().keySet()) {
-            categoria c = this.getCategorias().get(key);
-            catPer.altaCategoria(c.getNombre(), c.getPadre().getNombre());
-        }
-    }
-
     public List<String> listarCategorias(String text) {
         List<String> retorno = new ArrayList<>();
         for (String key : this.getCategorias().keySet()) {
@@ -383,11 +376,6 @@ public class ContPropuesta implements iConPropuesta {
     @Override
     public void actualizardatospropuesta(dtPropuesta dtp, String e, dtFecha dtf, dtHora dth) throws Exception {
         cUsuario.actualizardatospropuesta(dtp, this.getEstado(e), this.getIdEstado(e), dtf, dth);
-    }
-
-    @Override
-    public List<String> listarPropuestasPorEstado(String estado) {
-        return cUsuario.listarPropuestasPorEstado(estado);
     }
 
     public List<String> listarCategoriasBeta() {
@@ -448,11 +436,6 @@ public class ContPropuesta implements iConPropuesta {
      */
     public Map<String, categoria> getCategorias() {
         return this.categorias;
-    }
-
-    @Override
-    public void levantarBDdesdeMemoria() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -731,5 +714,156 @@ public class ContPropuesta implements iConPropuesta {
             return false;
         }
         return true;
+    }
+    //////////////////////EXTENDER FINANCIACION A PROPUESTA/////////////////////
+
+    /**
+     * Funcion que extiente el estado financiacion de una propuesta 30 dias mas
+     * Retorna un mensaje armado
+     */
+    public String extenderFinanciacionProp(String tituloP) {
+        String respuesta = null;
+        ArrayList<propuesta> propExt = new ArrayList<>();
+        cUsuario.getPropuestas(propExt);
+        for (int i = 0; i < propExt.size(); i++) {
+            propuesta p = (propuesta) propExt.get(i);
+            if (p.getTitulo().equals(tituloP)) {
+                System.err.println("prop encontrada");
+                if (p.enFinanciacion()) {
+                    System.err.println("prop en financiacion");
+                    propEstado pE = (propEstado) p.getPropEstadoActual();
+                    dtFecha dtf = pE.getFechaFin();
+                    String fecha = (String) util.getFechaInc(dtf.getFecha(), null, 30);
+                    pE.setFechaFin((dtFecha) util.construirFecha(fecha));
+                    estPropPer.updateFinanciacion(fecha, tituloP, p.getEstadoActual());
+                    respuesta = "Financiacion de Propuesta: " + tituloP + " extendida con exito!";
+                    System.out.println("prop extendida");
+                } else {
+                    respuesta = "Propuesta: " + tituloP + " no esta en estado de financiacion!";
+                }
+            }
+        }
+        return respuesta;
+    }
+
+//////////////////jtree categorias modelo para el jtree
+    private void cargadtCategorias() {
+        try {
+            cat.clear();
+            cat = (ArrayList< dtCategoria>) getdtCategorias();
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    private DefaultMutableTreeNode crearNodo(String nomNodo) {
+        System.out.println(nomNodo);
+        DefaultMutableTreeNode nuevo = new DefaultMutableTreeNode(nomNodo);
+        return nuevo;
+    }
+
+    private void armarNodos(Map<String, DefaultMutableTreeNode> nodos) {
+        try {
+
+            for (int i = 0; i < cat.size(); i++) {
+
+                dtCategoria ca = (dtCategoria) cat.get(i);
+                System.out.println(ca.getNombre());
+                nodos.put(ca.getNombre(), crearNodo(ca.getNombre()));
+
+            }
+
+        } catch (Exception e) {
+
+            System.err.println(e.getMessage());
+        }
+
+    }
+
+    private DefaultTreeModel armarPadres(Map<String, DefaultMutableTreeNode> nodos) {
+        DefaultMutableTreeNode raiz = crearNodo("Categorias");
+        DefaultTreeModel modelo = new DefaultTreeModel(raiz);
+        try {
+
+            for (int i = 0; i < cat.size(); i++) {
+                dtCategoria categoriaNodo = cat.get(i);
+                String padre = categoriaNodo.getPadre();
+                if (padre == null) {
+                    DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) nodos.get(categoriaNodo.getNombre());
+                    modelo.insertNodeInto(nodo, raiz, 0);
+                }
+            }
+
+        } catch (Exception e) {
+
+            System.err.println(e.getMessage());
+        }
+        return modelo;
+    }
+
+    private void armarHijos(Map<String, DefaultMutableTreeNode> nodos, DefaultTreeModel modelo) {
+        try {
+
+            for (int i = 0; i < cat.size(); i++) {
+                dtCategoria catNodo = cat.get(i);
+                if (catNodo.getPadre() != null) {
+                    DefaultMutableTreeNode padre = nodos.get(catNodo.getPadre());
+                    DefaultMutableTreeNode hijo = nodos.get(catNodo.getNombre());
+                    modelo.insertNodeInto(hijo, padre, 0);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+    }
+
+    public DefaultTreeModel modeloJT3Categorias() {
+        DefaultTreeModel modelo = null;
+        try {
+            cargadtCategorias();
+            Map<String, DefaultMutableTreeNode> nodos = new HashMap<>();
+            armarNodos(nodos);
+            modelo = armarPadres(nodos);
+            armarHijos(nodos, modelo);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return modelo;
+    }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////funciones carga tablas CU: consulta de Prop x Estado    
+    public ArrayList<String> getEstadosString() {
+        return this.estadosString;
+
+    }
+
+    public ArrayList<dtPropuesta> getPropuestasxEstado(String stado) {
+        ArrayList<dtPropuesta> prop = new ArrayList<>();
+        ArrayList<propuesta> propArray = new ArrayList<>();
+        cUsuario.getPropuestas(propArray);
+        for (int i = 0; i < propArray.size(); i++) {
+            propuesta p = (propuesta) propArray.get(i);
+            String pEs = p.getEstadoActual();
+            if (pEs.equals(stado)) {
+                prop.add((dtPropuesta) p.getDtPropuesta());
+            }
+
+        }
+
+        return prop;
+    }
+
+    public ArrayList<String> getColaboradoresString(String prop) {
+        ArrayList<String> listaCola = new ArrayList<>();
+        ArrayList<dtColaborador> dtCola = (ArrayList<dtColaborador>) cUsuario.getUsuariosColaboradores(prop);
+        Iterator it = dtCola.iterator();
+        while (it.hasNext()) {
+            dtColaborador dtc = (dtColaborador) it.next();
+            listaCola.add((String) dtc.getNickname());
+        }
+        return listaCola;
     }
 }

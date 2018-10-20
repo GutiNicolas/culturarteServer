@@ -21,6 +21,7 @@ public class ContColaboracion implements iConColaboracion {
     private ContUsuario cUsuario = ContUsuario.getInstance();
     private colaboracionesPersistencia colPer = new colaboracionesPersistencia();
     private ContCargaBD contCarga = ContCargaBD.getInstance();
+
     public static ContColaboracion getInstance() {
         if (instance == null) {
             instance = new ContColaboracion();
@@ -34,60 +35,10 @@ public class ContColaboracion implements iConColaboracion {
     }
 
     @Override
-    public List<String> tipoRetorno() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void seleccionarTipoRet(String tipoRet) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<String> listaEstados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<String> listarCategorias() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void nuevaCategoria(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void altaCategoria() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<String> listarTipoRetorno() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void seleccionarTipoYMontoColaborador(String tipoRetorno, int montoColaboracion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public dtColabAProp seleccionarColaboración(String idPropuesta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<dtColaboraciones> listarColaboraciones() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public dtColProp seleccionarColaboracion(String nickusuario, String titulo) {
         colProp cp = (colProp) this.cUsuario.seleccionarColaboracion(nickusuario, titulo);
         this.colaboracion = cp;
-        dtColProp dtcp = new dtColProp(nickusuario, cp.getRetorno(), cp.getFecha(), cp.getHora(), cp.getMontocolaborado(),cp.getComentario());
+        dtColProp dtcp = new dtColProp(nickusuario, cp.getRetorno(), cp.getFecha(), cp.getHora(), cp.getMontocolaborado(), cp.getComentario());
         return dtcp;
     }
 
@@ -98,14 +49,15 @@ public class ContColaboracion implements iConColaboracion {
 
     public void cargarColaboraciones() {
         ArrayList<dtColaboracionCompleto> dtColaComp = new ArrayList<>();
-   //////////////     
+        //////////////     
         try {
             contCarga.levantarBDcolPer();
             colPer.cargarColaboraciones(dtColaComp);
             for (int i = 0; i < dtColaComp.size(); i++) {
                 dtColaboracionCompleto dt = (dtColaboracionCompleto) dtColaComp.get(i);
                 contCarga.agregardtcolaboraciones(dt);
-                colProp cp = new colProp(dt.getFecha(), dt.getHora(), dt.getMonto(), dt.getRetorno(), null,dt.getComentario());
+                pago pago = null;////verificar
+                colProp cp = new colProp(dt.getFecha(), dt.getHora(), dt.getMonto(), dt.getRetorno(), null, dt.getComentario(), pago);
                 cUsuario.registrarcolaboracion(dt.getNickname(), dt.getTitulo(), cp);
 
             }
@@ -120,8 +72,6 @@ public class ContColaboracion implements iConColaboracion {
         cUsuario.borrarColaboraciones();
     }
 
-   
-
     @Override
     public List<dtCola> listarcolaboracionesdelcolaborador(String nickcolaborador) {
         return cUsuario.colaboracionesde(nickcolaborador);
@@ -129,11 +79,46 @@ public class ContColaboracion implements iConColaboracion {
 
     @Override
     public void eliminarcolaboracion(String nickname, String titulo) throws Exception {
-        cUsuario.eliminarcolaboracion(nickname,titulo);
+        cUsuario.eliminarcolaboracion(nickname, titulo);
     }
 
     void borrarColecciones() {
-        this.colaboracion=null;
+        this.colaboracion = null;
+    }
+
+    @Override
+    public boolean registrarColaboracion(dtColaboracionCompleto cola, dtPago pf) {
+
+        String titulo = (String) cola.getTitulo();
+        String colab = (String) cola.getNickname();
+        int monto = (Integer) cola.getMonto();
+        String retorno = (String) cola.getRetorno();
+        String comentario = (String) cola.getComentario();
+        pago pago = null;
+        if(pf!=null){
+        pago = (pago) crearPago(pf);}
+        
+        return cUsuario.registrarColaboracion(titulo, colab, monto, retorno, comentario, pago);
+
+    }
+
+    private pago crearPago(dtPago p) {
+        pago fp = null;
+        if (p instanceof dtTarjetaCredito) {
+            dtTarjetaCredito dttc = (dtTarjetaCredito) p;
+            fp = new tarjetaCredito(dttc.getTipo(), dttc.getNumeroTarjeta(), dttc.getCvc(), dttc.getfVencimiento(), dttc.getTitular());
+        }
+        if (p instanceof dtTransferencia) {
+            dtTransferencia dttf = (dtTransferencia) p;
+            fp = new transferencia(dttf.getBanco(), dttf.getNumeroCuenta(), dttf.getTitular());
+        }
+        if (p instanceof dtPaypal) {
+            dtPaypal dtpp = (dtPaypal) p;
+            fp = new payPal(dtpp.getNumeroPaypal(), dtpp.getTitular());
+        }
+
+        return fp;
+
     }
 
 }

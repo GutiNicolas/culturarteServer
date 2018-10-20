@@ -7,10 +7,12 @@ package Presentacion;
 
 import Logica.ContPropuesta;
 import Logica.ContUsuario;
+import Logica.dtContieneArray;
 import Logica.dtPropuesta;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Vector;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,27 +22,34 @@ import javax.swing.table.DefaultTableModel;
 public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame {
 
     ContUsuario contUsu = ContUsuario.getInstance();
-    ContPropuesta contProp= ContPropuesta.getInstance();
+    ContPropuesta contProp = ContPropuesta.getInstance();
+    ArrayList<dtContieneArray> arregloContiene = new ArrayList<>();
+    ArrayList<dtPropuesta> contienProp = new ArrayList<>();
+    Vector datos = new Vector();
+
     /**
      * Creates new form Consulta_de_Propuesta_por_Estado
      */
     public Consulta_de_Propuesta_por_Estado() {
         initComponents();
         contProp.propAutomaticas();
+        cargaEstados();
         this.setSize(844, 580);
-        
         jLabel1.setText("Estados");
-        jButton2.setText("Cargar");
         jLabel6.setText("Propuestas en estado");
-        labelestado.setText("Seleccione un estado");
         jLabel2.setText("Imagen");
-        jLabel3.setText("Estado");
-        txtestado.setText("Seleccione una propuesta");
+        lableEstadk.setText("Estado");
+        txtmontotoal.setEditable(false);
         jLabel5.setText("Monto total");
         jLabel4.setText("Colaboradores");
         jButton1.setText("Cancelar");
-        
-        
+        datos.add("Titulo");
+        datos.add("Descripcion");
+        datos.add("Lugar");
+        datos.add("Fecha");
+        datos.add("Precio Entrada");
+        datos.add("Monto requerido");
+        txtmontotoal.setText("0");
     }
 
     /**
@@ -52,14 +61,11 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablepropuestas = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablepropuesta = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtestado = new javax.swing.JTextField();
+        lableEstadk = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablacolaboradores = new javax.swing.JTable();
@@ -70,32 +76,15 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
         jButton1 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tableestados = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        labelestado = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jtxt_buscar = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tablepropuestas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
-            },
-            new String [] {
-                "Titulo"
-            }
-        ));
-        tablepropuestas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablepropuestasMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tablepropuestas);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 130, 250));
-
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 36, -1, 20));
+        jLabel1.setText("Estado");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, 20));
 
         tablepropuesta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,16 +97,23 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
                 "Titulo", "Descripcion", "Lugar", "Fecha", "Precio entrada", "Monto requerido"
             }
         ));
+        tablepropuesta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablepropuestaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablepropuesta);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 67, 610, 97));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 810, 180));
 
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 181, -1, -1));
+        jLabel2.setText("Imagen");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, -1));
 
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 181, -1, -1));
-        getContentPane().add(txtestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 176, 206, -1));
+        lableEstadk.setText("Estado");
+        getContentPane().add(lableEstadk, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
 
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 210, -1, -1));
+        jLabel4.setText("Colaboradores");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, -1, -1));
 
         tablacolaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,14 +128,19 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
         ));
         jScrollPane3.setViewportView(tablacolaboradores);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, 247, 168));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 120, 168));
 
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 320, -1, -1));
-        getContentPane().add(txtmontotoal, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 342, 89, -1));
-        getContentPane().add(txtimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 208, 100, 100));
+        jLabel5.setText("Monto total");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, -1, -1));
+        getContentPane().add(txtmontotoal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, 89, -1));
 
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 130, -1));
+        txtimagen.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 0)));
+        getContentPane().add(txtimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 160, 130));
 
+        jLabel6.setText("Propuestas");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 130, -1));
+
+        jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -165,16 +166,26 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
         });
         jScrollPane4.setViewportView(tableestados);
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 130, 150));
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 170, 150));
 
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 80, -1));
+        ));
+        jScrollPane5.setViewportView(jTable1);
 
-        getContentPane().add(labelestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 130, -1));
+        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 250, 150));
+        getContentPane().add(jtxt_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 150, -1));
+
+        jLabel3.setText("Propuesta:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 90, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -184,95 +195,140 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-         List<String> estados= contProp.listarEstados();
-        DefaultTableModel modelo2=(DefaultTableModel) tableestados.getModel();
-        modelo2.setRowCount(0);
-        for(int x=0;x<estados.size();x++){
-            String e=estados.get(x);
-            Object[] dat2={e};
-            modelo2.addRow(dat2);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void tableestadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableestadosMouseClicked
         // TODO add your handling code here:
-        vaciarTablas();
-        int row=tableestados.rowAtPoint(evt.getPoint());
-        int col=tableestados.columnAtPoint(evt.getPoint());
-        
-        List<String> propuestas= contProp.listarPropuestasPorEstado((String)tableestados.getValueAt(row, col));
-        labelestado.setText((String)tableestados.getValueAt(row, col));
-        DefaultTableModel modelo2=(DefaultTableModel) tablepropuestas.getModel();
-        modelo2.setRowCount(0);
-        for(int x=0;x<propuestas.size();x++){
-            String e=propuestas.get(x);
-            Object[] dat2={e};
-            modelo2.addRow(dat2);
-        }
+        int row = tableestados.rowAtPoint(evt.getPoint());
+        int col = tableestados.columnAtPoint(evt.getPoint());
+        System.out.println("fila" + row);
+        System.out.println("columna" + col);
+        llenaGrillaPorEstado((String) tableestados.getValueAt(row, 0));
+        txtmontotoal.setText("0");
+        lableEstadk.setText((String) tableestados.getValueAt(row, 0));
+
     }//GEN-LAST:event_tableestadosMouseClicked
 
-    private void tablepropuestasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablepropuestasMouseClicked
-        try {
-            // TODO add your handling code here:
-            int row=tablepropuestas.rowAtPoint(evt.getPoint());
-            int col=tablepropuestas.columnAtPoint(evt.getPoint());           
-            dtPropuesta dtp=contProp.mostrarInfoPropuesta((String)tablepropuestas.getValueAt(row, col));
-            
-        DefaultTableModel model=(DefaultTableModel) tablepropuesta.getModel();
-        model.setRowCount(0);
-        Object[] dato={dtp.getTitulo(),dtp.getDescripcion(),dtp.getLugar(),dtp.getFechaRealizacion().getFecha(),dtp.getPrecioentrada(),dtp.getMontorequerido()};
-        txtestado.setText(dtp.getEstado());
-        txtmontotoal.setText(Integer.toString(dtp.getMontoTotal()));
-        model.addRow(dato);
-        DefaultTableModel model2=(DefaultTableModel) tablacolaboradores.getModel();
-        model2.setRowCount(0);
-        List<String> colabs=dtp.detColaboradores();
-        for (int i=0;i<colabs.size();i++){
-            String c=colabs.get(i);
-            Object[] dat={c};
-            model2.addRow(dat);      
-        }            
-            
-        } catch (Exception ex) {
-            Logger.getLogger(Consulta_de_Propuesta_por_Estado.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }//GEN-LAST:event_tablepropuestasMouseClicked
+    private void tablepropuestaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablepropuestaMouseClicked
+        int row = tablepropuesta.rowAtPoint(evt.getPoint());
+        int col = tablepropuesta.columnAtPoint(evt.getPoint());
+        cargaColaboradores((String) tablepropuesta.getValueAt(row, 0));
+        cargaMonto((String) tablepropuesta.getValueAt(row, 0));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablepropuestaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JLabel labelestado;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jtxt_buscar;
+    private javax.swing.JLabel lableEstadk;
     private javax.swing.JTable tablacolaboradores;
     private javax.swing.JTable tableestados;
     private javax.swing.JTable tablepropuesta;
-    private javax.swing.JTable tablepropuestas;
-    private javax.swing.JTextField txtestado;
     private javax.swing.JLabel txtimagen;
     private javax.swing.JTextField txtmontotoal;
     // End of variables declaration//GEN-END:variables
 
-public void vaciarTablas(){
-    DefaultTableModel modelo=(DefaultTableModel) tablepropuesta.getModel();
-    modelo.setRowCount(0);
-       DefaultTableModel modelo2=(DefaultTableModel) tablacolaboradores.getModel();
-    modelo2.setRowCount(0);
-    
-    txtestado.setText("");
-    txtmontotoal.setText("");
-}
-    
+    /**
+     *
+     * funcion que recibe un vector con el nombre de la cabecera un arreglo de
+     * string y un jtable
+     */
+    private void llegaGrillaString(Vector v, ArrayList<String> e, JTable jt) {
+        DefaultTableModel modelo;
+
+        modelo = new DefaultTableModel(v, e.size());
+        for (int i = 0; i < e.size(); i++) {
+            String es = (String) e.get(i);
+            modelo.setValueAt(es, i, 0);
+            //modelo.setValueAt(p.getNickproponente(), i, 1);
+        }
+        jt.setModel(modelo);
+    }
+
+    private void cargaEstados() {
+        ArrayList<String> estado = (ArrayList<String>) contProp.getEstadosString();
+        estado.remove("Desactivada");
+        Vector v = new Vector();
+        v.add("Estado");
+        llegaGrillaString(v, estado, tableestados);
+        arregloContiene = (ArrayList<dtContieneArray>) crearArreglos(estado);
+    }
+
+    private ArrayList<dtContieneArray> crearArreglos(ArrayList<String> estado) {
+        ArrayList<dtContieneArray> nuevoArreglo = new ArrayList<>();
+        for (int i = 0; i < estado.size(); i++) {
+            nuevoArreglo.add((dtContieneArray) getArrayProp((String) estado.get(i)));
+        }
+        return nuevoArreglo;
+    }
+
+    private dtContieneArray getArrayProp(String estado) {
+
+        dtContieneArray contiene = new dtContieneArray((ArrayList<dtPropuesta>) contProp.getPropuestasxEstado(estado), estado);
+
+        return contiene;
+    }
+
+    private void llenaGrillaPorEstado(String estado) {
+        DefaultTableModel modelo = null;
+        int cont = 0;
+        for (int i = 0; i < arregloContiene.size(); i++) {
+            dtContieneArray dtcA = arregloContiene.get(i);
+            if (dtcA.getNombreArray().equals(estado)) {
+                modelo = new DefaultTableModel(datos, dtcA.getMyArreglo().size());
+                armarModelo(modelo, dtcA);
+            }
+        }
+
+        tablepropuesta.setModel(modelo);
+        DefaultTableModel model = (DefaultTableModel) tablacolaboradores.getModel();
+        model.setRowCount(0);
+        tablacolaboradores.setModel(model);
+    }
+
+    private void armarModelo(DefaultTableModel modelo, dtContieneArray dtC) {
+        ArrayList<dtPropuesta> arregloProp = (ArrayList<dtPropuesta>) dtC.getMyArreglo();
+        dtPropuesta prop;
+        for (int i = 0; i < arregloProp.size(); i++) {
+            prop = (dtPropuesta) arregloProp.get(i);
+            modelo.setValueAt(prop.getTitulo(), i, 0);
+            modelo.setValueAt(prop.getDescripcion(), i, 1);
+            modelo.setValueAt(prop.getLugar(), i, 2);
+            modelo.setValueAt(prop.getFechaRealizacion().getFecha(), i, 3);
+            modelo.setValueAt(prop.getPrecioentrada(), i, 4);
+            modelo.setValueAt(prop.getMontorequerido(), i, 5);
+
+        }
+    }
+
+    private void cargaColaboradores(String propTitulo) {
+        ArrayList<String> cola = null;
+        cola = (ArrayList<String>) contProp.getColaboradoresString(propTitulo);
+        llenaGrillaCola(cola);
+    }
+
+    private void llenaGrillaCola(ArrayList<String> cola) {
+        Vector v = new Vector();
+        v.add("Colaboradores");
+        DefaultTableModel modelo = new DefaultTableModel(v, cola.size());
+        for (int i = 0; i < cola.size(); i++) {
+            modelo.setValueAt((String) cola.get(i), i, 0);
+        }
+        tablacolaboradores.setModel(modelo);
+    }
+
+    private void cargaMonto(String p) {
+        int m = (Integer) contUsu.getMontoColaborado(p);
+        txtmontotoal.setText(Integer.toString(m));
+    }
 }

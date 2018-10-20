@@ -5,18 +5,20 @@
  */
 package Logica;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Esteban Menendez
  */
 public class dtPropuestaComp {
 
-    private String titulo, descripcion, imagen, lugar, fechaPublicada, estado,categoria;
-    dtFecha fechaRealizacion;
-    int precioEntrada;  
-    int montoRequerido;
-    float montoRecaudado;
-    //Lista usuarios;
+    private String titulo, descripcion, imagen, lugar, fechaPublicada, estado, categoria;
+    private dtFecha fechaRealizacion;
+    private int precioEntrada;
+    private int montoRequerido;
+    private float montoRecaudado;
+   
 
 //CONSTRUCTOR//
     public dtPropuestaComp(String titulo, String descripcion, String imagen, String lugar, String fechaPublicada, String estado, String categoria, dtFecha fechaRealizacion, int precioEntrada, int montoRequerido, float montoRecaudado) {
@@ -31,6 +33,7 @@ public class dtPropuestaComp {
         this.precioEntrada = precioEntrada;
         this.montoRequerido = montoRequerido;
         this.montoRecaudado = montoRecaudado;
+       
     }
 
 //GETTERS//
@@ -122,6 +125,5 @@ public class dtPropuestaComp {
     public void setMontoRecaudado(float montoRecaudado) {
         this.montoRecaudado = montoRecaudado;
     }
-    
 
 }

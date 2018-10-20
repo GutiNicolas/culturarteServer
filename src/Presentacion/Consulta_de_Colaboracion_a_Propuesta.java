@@ -83,8 +83,10 @@ public class Consulta_de_Colaboracion_a_Propuesta extends javax.swing.JInternalF
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 98, 120, 410));
 
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+        jLabel1.setText("Colaboradores");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
+        jLabel4.setText("Colaboraciones realizadas");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, -1, -1));
 
         tablacolaboraciones.setModel(new javax.swing.table.DefaultTableModel(
@@ -105,8 +107,9 @@ public class Consulta_de_Colaboracion_a_Propuesta extends javax.swing.JInternalF
         });
         jScrollPane2.setViewportView(tablacolaboraciones);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 88, 390, 125));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 88, 490, 125));
 
+        jLabel5.setText("Informacion de la colaboracion");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 225, -1, -1));
 
         tablainfocol.setModel(new javax.swing.table.DefaultTableModel(
@@ -122,7 +125,7 @@ public class Consulta_de_Colaboracion_a_Propuesta extends javax.swing.JInternalF
         ));
         jScrollPane3.setViewportView(tablainfocol);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 247, 390, 220));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 247, 490, 220));
 
         txtbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,14 +139,16 @@ public class Consulta_de_Colaboracion_a_Propuesta extends javax.swing.JInternalF
         });
         getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 110, -1));
 
-        getContentPane().add(labelnick, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, -1, 20));
+        labelnick.setText("Seleccione un colaborador");
+        getContentPane().add(labelnick, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, -1, 20));
 
+        jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 490, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 500, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

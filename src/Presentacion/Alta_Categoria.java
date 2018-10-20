@@ -276,6 +276,24 @@ public class Alta_Categoria extends javax.swing.JFrame {
         return nuevo;
     }
 
+    private void armarNodos(Map<String, DefaultMutableTreeNode> nodos) {
+        try {
+
+            for (int i = 0; i < cat.size(); i++) {
+
+                dtCategoria ca = (dtCategoria) cat.get(i);
+                System.out.println(ca.getNombre());
+                nodos.put(ca.getNombre(), crearNodo(ca.getNombre()));
+
+            }
+
+        } catch (Exception e) {
+
+            System.err.println(e.getMessage());
+        }
+
+    }
+
     private DefaultTreeModel armarPadres(Map<String, DefaultMutableTreeNode> nodos) {
         DefaultMutableTreeNode raiz = crearNodo("Categorias");
         DefaultTreeModel modelo = new DefaultTreeModel(raiz);
@@ -309,24 +327,6 @@ public class Alta_Categoria extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-
-    }
-
-    private void armarNodos(Map<String, DefaultMutableTreeNode> nodos) {
-        try {
-
-            for (int i = 0; i < cat.size(); i++) {
-
-                dtCategoria ca = (dtCategoria) cat.get(i);
-                System.out.println(ca.getNombre());
-                nodos.put(ca.getNombre(), crearNodo(ca.getNombre()));
-
-            }
-
-        } catch (Exception e) {
-
             System.err.println(e.getMessage());
         }
 

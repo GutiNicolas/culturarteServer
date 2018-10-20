@@ -84,6 +84,7 @@ public class Consulta_de_Propuesta extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 95, 130, -1));
 
+        jLabel1.setText("Propuestas");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 33, -1, -1));
 
         tablepropuesta.setModel(new javax.swing.table.DefaultTableModel(
@@ -104,12 +105,15 @@ public class Consulta_de_Propuesta extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 55, 540, 97));
 
+        jLabel2.setText("Imagen");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 169, -1, -1));
         getContentPane().add(txtimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 196, 100, 100));
 
+        jLabel3.setText("Estado");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(308, 169, -1, -1));
-        getContentPane().add(txtestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 164, 206, -1));
+        getContentPane().add(txtestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 206, -1));
 
+        jLabel4.setText("Colaboradores");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, -1, -1));
 
         tablacolaboradores.setModel(new javax.swing.table.DefaultTableModel(
@@ -127,6 +131,7 @@ public class Consulta_de_Propuesta extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, 247, 168));
 
+        jLabel5.setText("Monto total");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 308, -1, -1));
 
         txtbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -137,6 +142,7 @@ public class Consulta_de_Propuesta extends javax.swing.JInternalFrame {
         getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 55, 130, -1));
         getContentPane().add(txtmontotoal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 330, 89, -1));
 
+        jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

@@ -5,12 +5,6 @@
  */
 package Logica;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -48,6 +42,7 @@ public class propuesta {
             dtHora dth = new dtHora(da.getHours(), da.getMinutes());*/
             dtHora dth = (dtHora) util.getHora();
             propEstado e = new propEstado(fechapublicada, dth, est, null);
+            e.setTituloP(titulo);
             this.estados.put(1, e);
         }
     }
@@ -81,6 +76,7 @@ public class propuesta {
 
     public void setEstado(propEstado estprop, int orden) {
         try {
+            estprop.setTituloP(titulo);
             estados.put(orden, estprop);
 
         } catch (Exception e) {
@@ -328,4 +324,27 @@ public class propuesta {
 
     }
 
+    /**
+     * Retorna true si el estado actual es en financiacion
+     *
+     */
+    public boolean enFinanciacion() {
+        return getEstadoActual().equals("En financiacion");
+    }
+
+    /**
+     *
+     * funcion que retorna un dtPropuestaEstado con el propuestaestado actual
+     */
+    public dtPropuestaEstado getDtPropEstadoActual() {
+
+        dtPropuestaEstado dtpropActual = getPropEstadoActual().getMidt();
+        return dtpropActual;
+    }
+
+    public dtPropuesta getDtPropuesta() {
+        String estado = getEstadoActual();
+        dtPropuesta dtp = new dtPropuesta(this.titulo, this.descripcion, this.imagen, this.lugar, estado, null, null, this.fecharealizacion, this.fechapublicada, this.precioEntrada, this.montoRequerido, 0, this.retorno);
+        return dtp;
+    }
 }

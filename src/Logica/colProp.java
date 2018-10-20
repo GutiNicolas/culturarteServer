@@ -10,43 +10,47 @@ package Logica;
  * @author Esteban Menendez
  */
 public class colProp {
+
     private propuesta propColaborada;
     private dtFecha fecha;
     private dtHora hora;
     private int montocolaborado;
     private String retorno;
     private String comentario;
-
+    private pago formaPago;
 
     //METODOS//
-    
-    public void sosColProp(String idPropuesta){
+    public boolean sosColProp(String idPropuesta) {
+        String prop = (String) this.propColaborada.getTitulo();
+        return prop.equals(idPropuesta);
     }
-    
-    public dtColaborador getColProp(){
-    dtColaborador dtcol=null;
-    return dtcol;
+
+    public dtColaborador getColProp() {
+        dtColaborador dtcol = null;
+        return dtcol;
     }
-    
-    public void altaColaboracionEnPropuesta(String idPropuesta){
+
+    public void altaColaboracionEnPropuesta(String idPropuesta) {
     }
-    public propuesta getPropColaborada(){  
-    return this.propColaborada;
-}
+
+    public propuesta getPropColaborada() {
+        return this.propColaborada;
+    }
 //CONSTRUCTOR//
 
-    public colProp(dtFecha fecha, dtHora hora, int montocolaborado, String retorno, propuesta prop, String comen) {
+    public colProp(dtFecha fecha, dtHora hora, int montocolaborado, String retorno, propuesta prop, String comen, pago fp) {
         this.fecha = fecha;
         this.hora = hora;
         this.montocolaborado = montocolaborado;
         this.retorno = retorno;
-        this.propColaborada=prop;
-        if(comen!=null){
-        this.comentario=comen;
+        this.propColaborada = prop;
+        if (comen != null) {
+            this.comentario = comen;
         }
-        
+        if(fp!=null){formaPago=fp;}
+
     }
-    
+
     //GETTERS//
     public dtFecha getFecha() {
         return fecha;
@@ -63,8 +67,7 @@ public class colProp {
     public String getRetorno() {
         return retorno;
     }
-    
-    
+
     //SETTERS//
     public void setFecha(dtFecha fecha) {
         this.fecha = fecha;
@@ -83,13 +86,13 @@ public class colProp {
     }
 
     public void setPropuesta(propuesta p) {
-        this.propColaborada=p;
+        this.propColaborada = p;
     }
 
     void eliminate() {
-        this.propColaborada=null;
-        this.fecha=null;
-        this.hora=null;
+        this.propColaborada = null;
+        this.fecha = null;
+        this.hora = null;
     }
 
     /**
@@ -105,5 +108,22 @@ public class colProp {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
- 
+
+    /**
+     * @return the formaPago
+     */
+    public pago getFormaPago() {
+        return formaPago;
+    }
+
+    /**
+     * @param formaPago the formaPago to set
+     */
+    public void setFormaPago(pago formaPago) {
+        this.formaPago = formaPago;
+    }
+    public boolean estaPaga(){
+    
+    return formaPago!=null;
+    }
 }
