@@ -5,11 +5,14 @@
  */
 package Logica;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author Esteban Menendez
  */
-
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtColaborador extends dtUsuario {
     
     public dtColaborador(String nombre, String apellido, String nickname, String imagen, String email, dtFecha fechaNac, String pass) {

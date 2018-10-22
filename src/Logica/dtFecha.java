@@ -6,11 +6,14 @@
 package Logica;
 
 import java.util.Date;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author Esteban Menendez
  */
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtFecha {
 
     private String dia, mes, anio;

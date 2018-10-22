@@ -94,6 +94,7 @@ public class ContColaboracion implements iConColaboracion {
         int monto = (Integer) cola.getMonto();
         String retorno = (String) cola.getRetorno();
         String comentario = (String) cola.getComentario();
+        
         pago pago = null;
         if(pf!=null){
         pago = (pago) crearPago(pf);}
@@ -119,6 +120,21 @@ public class ContColaboracion implements iConColaboracion {
 
         return fp;
 
+    }
+
+    @Override
+    public boolean reagistrarPago(String usuario, String tituloP, dtPago pago) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<String> listarColaboraciones(String nick) {
+        return (List<String>)cUsuario.listarColaboraciones(nick);
+    }
+
+    @Override
+    public List<dtColProp> listarmiscolaboraciones(String nick) {
+  return (List<dtColProp>)cUsuario.listarmiscolaboraciones(nick);
     }
 
 }

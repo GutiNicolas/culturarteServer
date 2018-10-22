@@ -26,6 +26,10 @@ public interface iConColaboracion {
     public abstract void eliminarcolaboracion(String nickname, String titulo) throws Exception;
 
     public abstract boolean registrarColaboracion(dtColaboracionCompleto cola, dtPago pf);
+
+    public abstract boolean reagistrarPago(String usuario, String tituloP, dtPago pago);
+
+    public abstract List<String> listarColaboraciones(String nick);
     
-        
+    public abstract List<dtColProp> listarmiscolaboraciones(String nick);
 }

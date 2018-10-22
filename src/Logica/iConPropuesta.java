@@ -75,6 +75,28 @@ public interface iConPropuesta {
     public abstract void propAutomaticas();
 
     public abstract DefaultTreeModel modeloJT3Categorias();
-    
+
     public abstract ArrayList<dtPropuesta> getPropuestasxEstado(String stado);
+
+    public abstract List<String> listartodaslaspropuestas(String titulo);
+
+    public abstract List<String> listarmispropsfavs(String nickusuario);
+
+    public abstract void agregarpropuestacomofav(String nickusuario, String titulo);
+
+    public abstract List<dtPropuesta> listarpropuestasenlaweb();
+
+    public abstract List<String> listarpropuestasparacancelar(String nickp);
+
+    public abstract List<dtPropuesta> listarpropuestasencategoria(String cat);
+    
+    public abstract List<String> listarpropuestasmenosingresadas(String titulo);
+    
+    public abstract List<String> listarpropuestascolaboradaspor(String string);
+    
+    public abstract void agregarcomentarioapropuesta(String string, String titulo, String comentario);
+    
+    public abstract List<String> mispropuestasaceptadas(String nick);
+    
+    public abstract List<String> mispropuestasaingresadas(String nick);
 }
