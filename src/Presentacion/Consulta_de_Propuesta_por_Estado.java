@@ -8,7 +8,7 @@ package Presentacion;
 import Logica.ContPropuesta;
 import Logica.ContUsuario;
 import Logica.dtContieneArray;
-import Logica.dtPropuesta;
+import Logica.DtPropuesta;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
@@ -24,7 +24,7 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
     ContUsuario contUsu = ContUsuario.getInstance();
     ContPropuesta contProp = ContPropuesta.getInstance();
     ArrayList<dtContieneArray> arregloContiene = new ArrayList<>();
-    ArrayList<dtPropuesta> contienProp = new ArrayList<>();
+    ArrayList<DtPropuesta> contienProp = new ArrayList<>();
     Vector datos = new Vector();
 
     /**
@@ -388,7 +388,7 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
 
     private dtContieneArray getArrayProp(String estado) {
 
-        dtContieneArray contiene = new dtContieneArray((ArrayList<dtPropuesta>) contProp.getPropuestasxEstado(estado), estado);
+        dtContieneArray contiene = new dtContieneArray((ArrayList<DtPropuesta>) contProp.getPropuestasxEstado(estado), estado);
 
         return contiene;
     }
@@ -411,10 +411,10 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
     }
 
     private void armarModelo(DefaultTableModel modelo, dtContieneArray dtC) {
-        ArrayList<dtPropuesta> arregloProp = (ArrayList<dtPropuesta>) dtC.getMyArreglo();
-        dtPropuesta prop;
+        ArrayList<DtPropuesta> arregloProp = (ArrayList<DtPropuesta>) dtC.getMyArreglo();
+        DtPropuesta prop;
         for (int i = 0; i < arregloProp.size(); i++) {
-            prop = (dtPropuesta) arregloProp.get(i);
+            prop = (DtPropuesta) arregloProp.get(i);
             modelo.setValueAt(prop.getTitulo(), i, 0);
             modelo.setValueAt(prop.getDescripcion(), i, 1);
             modelo.setValueAt(prop.getLugar(), i, 2);

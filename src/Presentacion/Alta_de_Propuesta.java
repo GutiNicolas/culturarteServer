@@ -8,7 +8,7 @@ package Presentacion;
 import Logica.ContPropuesta;
 import Logica.ContUsuario;
 import Logica.dtFecha;
-import Logica.dtPropuesta;
+import Logica.DtPropuesta;
 import Logica.utilidades;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -738,7 +738,7 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
                 re = cbporcentaje.getText();
             }
 
-            dtPropuesta dtp = new dtPropuesta(txttitulo1.getText(), txtdescripcion.getText(), imagenRuta, txtlugar.getText(), "Ingresada", txttipoespectaculo.getText(), txtproponente1.getText(), dtfrealizar, dtfpublicada, Integer.parseInt(txtcostoentrada.getText()), Integer.parseInt(txtmontorec.getText()), 0, re);
+            DtPropuesta dtp = new DtPropuesta(txttitulo1.getText(), txtdescripcion.getText(), imagenRuta, txtlugar.getText(), "Ingresada", txttipoespectaculo.getText(), txtproponente1.getText(), dtfrealizar, dtfpublicada, Integer.parseInt(txtcostoentrada.getText()), Integer.parseInt(txtmontorec.getText()), 0, re);
             ICP.datosPropuesta(dtp);
 
             JOptionPane.showMessageDialog(null, "Propuesta agregada con exito");

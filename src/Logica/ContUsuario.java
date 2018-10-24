@@ -148,18 +148,7 @@ public class ContUsuario implements iConUsuario {
 
             contCarga.levantarBDfavoritosPer();
             usuPer.levantarFavoritos(favo);
-            for (int i = 0; i < favo.size(); i++) {
-                dtFavoritos f = (dtFavoritos) favo.get(i);
-                String usu = null, prop = null;
-                usu = f.getUsuario();
-                prop = f.getPropuestaTitulo();
-                usuario u = null;
-                propuesta p = null;
-                u = (usuario) usuarios.get(usu);
-                p = (propuesta) damePropuesta(prop);
-                u.setFavorita(p);
-                contCarga.setearFavoritos(f);
-            }
+            
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -311,17 +300,17 @@ public class ContUsuario implements iConUsuario {
     }
 
     @Override
-    public List<dtPropuesta> listarPropuestas(String idProponente) {
-        List<dtPropuesta> retornar = new ArrayList<dtPropuesta>();
-        List<dtPropuesta> aux = new ArrayList<dtPropuesta>();
+    public List<DtPropuesta> listarPropuestas(String idProponente) {
+        List<DtPropuesta> retornar = new ArrayList<DtPropuesta>();
+        List<DtPropuesta> aux = new ArrayList<DtPropuesta>();
 
         proponente p = (proponente) this.usuarios.get(idProponente);
         aux = p.getTodasPropuestas();
         if (aux.isEmpty() == false) {
             Iterator it = aux.iterator();
             while (it.hasNext()) {
-                dtPropuesta dtp = (dtPropuesta) it.next();
-                dtp.montoactual = this.montopropuesta(dtp.titulo);
+                DtPropuesta Adtp = (DtPropuesta) it.next();
+                DtPropuesta dtp = new DtPropuesta(Adtp, montopropuesta(Adtp.getTitulo()));
                 retornar.add(dtp);
             }
             aux.clear();
@@ -454,8 +443,16 @@ public class ContUsuario implements iConUsuario {
         return ret;
     }
 
-    public dtPropuesta infoPropuesta(String titulo) throws Exception {
-        dtPropuesta dtp = null;
+    /**
+     *
+     * @param titulo
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public DtPropuesta infoPropuesta(String titulo) throws Exception {
+        DtPropuesta dtp = null;
+        System.err.println(usuarios.size());
         for (String key : this.usuarios.keySet()) {
             if (this.usuarios.get(key) instanceof proponente) {
                 proponente p = (proponente) this.usuarios.get(key);
@@ -465,15 +462,14 @@ public class ContUsuario implements iConUsuario {
 
             }
         }
-        dtPropuesta dtprop;
-        dtprop = new dtPropuesta(dtp.getTitulo(), dtp.getDescripcion(), dtp.getImagen(), dtp.getLugar(), dtp.getEstado(), dtp.getCategoria(),
+        DtPropuesta dtprop;
+        dtprop = new DtPropuesta(dtp.getTitulo(), dtp.getDescripcion(), dtp.getImagen(), dtp.getLugar(), dtp.getEstado(), dtp.getCategoria(),
                 dtp.getProponente(), dtp.getFechaRealizacion(), dtp.getFechapublicada(),
                 dtp.getPrecioentrada(), dtp.getMontorequerido(), (Integer) montopropuesta(titulo),
-                dtp.getRetorno(),(List<String>) listarColaboradores(titulo));
+                dtp.getRetorno(), (List<String>) listarColaboradores(titulo));
 
         return dtprop;
 
-       
     }
 
     public int montopropuesta(String idPropuesta) {
@@ -725,7 +721,7 @@ public class ContUsuario implements iConUsuario {
     }
 
     @Override
-    public void actualizardatospropuesta(dtPropuesta dtp, estado e, int orden, dtFecha dtf, dtHora dth) throws Exception {
+    public void actualizardatospropuesta(DtPropuesta dtp, estado e, int orden, dtFecha dtf, dtHora dth) throws Exception {
 
         propuesta p = this.damePropuesta(dtp.getTitulo());
         if (p.getTitulo() == dtp.getTitulo()) {
@@ -1009,13 +1005,13 @@ public class ContUsuario implements iConUsuario {
      *
      * @return
      */
-    public List<dtPropuesta> listarpropuestasenlaweb() {
-        List<dtPropuesta> retorno = new ArrayList<>();
+    public List<DtPropuesta> listarpropuestasenlaweb() {
+        List<DtPropuesta> retorno = new ArrayList<>();
         for (String key : this.usuarios.keySet()) {
             if (this.usuarios.get(key) instanceof proponente) {
                 proponente p = (proponente) this.usuarios.get(key);
                 for (String keyp : p.propuestasUsuario.keySet()) {
-                    dtPropuesta dtp = new dtPropuesta(keyp, key);
+                    DtPropuesta dtp = new DtPropuesta(keyp, key);
                     retorno.add(dtp);
                 }
             }
@@ -1066,8 +1062,8 @@ public class ContUsuario implements iConUsuario {
         return retorno;
     }
 
-    public List<dtPropuesta> listarpropuestasencategoria(String cat) throws Exception {
-        List<dtPropuesta> retorno = new ArrayList<>();
+    public List<DtPropuesta> listarpropuestasencategoria(String cat) throws Exception {
+        List<DtPropuesta> retorno = new ArrayList<>();
         for (String usus : this.usuarios.keySet()) {
             if (this.usuarios.get(usus) instanceof proponente) {
                 proponente p = (proponente) this.usuarios.get(usus);

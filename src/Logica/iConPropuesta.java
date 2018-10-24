@@ -18,27 +18,27 @@ public interface iConPropuesta {
 
     public abstract void cargarPropuestas();
 
-    public abstract List<dtPropuesta> listaPropuestas(String idProponente);
+    public abstract List<DtPropuesta> listaPropuestas(String idProponente);
 
     public abstract dtInfoProp infoPropuesta(String idPropuesta);
 
     public abstract void nuevaPropuesta(String idProponente, String tipoEspectaculo);
 
-    public abstract void datosPropuesta(dtPropuesta dtProp);
+    public abstract void datosPropuesta(DtPropuesta dtProp);
 
     public abstract void altaPropuesta();
 
-    public abstract List<dtPropuesta> listarPropuesta();
+    public abstract List<DtPropuesta> listarPropuesta();
 
-    public abstract dtPropuesta infoProp(String idPropuesta);
+    public abstract DtPropuesta infoProp(String idPropuesta);
 
-    public abstract void modificarPropuesta(dtPropuesta dtProp);
+    public abstract void modificarPropuesta(DtPropuesta dtProp);
 
     public abstract List<dtPropuestaComp> informacionPropuestas(String titulo);
 
     public abstract List<dtPropuestasProponente> listarPropuestasExistentes();
 
-    public abstract dtPropuesta mostrarInfoPropuesta(String idPropuesta) throws Exception;
+    public abstract DtPropuesta mostrarInfoPropuesta(String idPropuesta) throws Exception;
 
     public abstract List<String> listartodasPropuestas(String titulo);
 
@@ -58,7 +58,7 @@ public interface iConPropuesta {
 
     public abstract void agregarEstadoAPropuesta(String e, String titulo, dtFecha dtf, dtHora dth);
 
-    public abstract void actualizardatospropuesta(dtPropuesta dtp, String e, dtFecha dtf, dtHora dth) throws Exception;
+    public abstract void actualizardatospropuesta(DtPropuesta dtp, String e, dtFecha dtf, dtHora dth) throws Exception;
 
     public abstract List<String> listarEstados();
 
@@ -76,7 +76,7 @@ public interface iConPropuesta {
 
     public abstract DefaultTreeModel modeloJT3Categorias();
 
-    public abstract ArrayList<dtPropuesta> getPropuestasxEstado(String stado);
+    public abstract ArrayList<DtPropuesta> getPropuestasxEstado(String stado);
 
     public abstract List<String> listartodaslaspropuestas(String titulo);
 
@@ -84,11 +84,11 @@ public interface iConPropuesta {
 
     public abstract void agregarpropuestacomofav(String nickusuario, String titulo);
 
-    public abstract List<dtPropuesta> listarpropuestasenlaweb();
+    public abstract List<DtPropuesta> listarpropuestasenlaweb();
 
     public abstract List<String> listarpropuestasparacancelar(String nickp);
 
-    public abstract List<dtPropuesta> listarpropuestasencategoria(String cat);
+    public abstract List<DtPropuesta> listarpropuestasencategoria(String cat);
     
     public abstract List<String> listarpropuestasmenosingresadas(String titulo);
     

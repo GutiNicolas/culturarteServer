@@ -8,7 +8,7 @@ package Presentacion;
 import Logica.ContPropuesta;
 import Logica.ContUsuario;
 import Logica.dtProponente;
-import Logica.dtPropuesta;
+import Logica.DtPropuesta;
 import Logica.iConPropuesta;
 import Logica.iConUsuario;
 import java.util.List;
@@ -380,11 +380,11 @@ public class Consulta_de_Perfil_de_Proponente extends javax.swing.JInternalFrame
         Object[] dat={dtp.getNombre(),dtp.getApellido(),dtp.getEmail(),dtp.getFechaNac().getFecha(),dtp.getSitioWeb(),dtp.getBiografia()};
         modelo.addRow(dat);
         
-        List<dtPropuesta> ldtp=ICU.listarPropuestas((String)jTable1.getValueAt(row, col)); //otra forma // jTable1.getValueAt(row, col).toString()
+        List<DtPropuesta> ldtp=ICU.listarPropuestas((String)jTable1.getValueAt(row, col)); //otra forma // jTable1.getValueAt(row, col).toString()
         DefaultTableModel modelo2=(DefaultTableModel) tablepropuestas1.getModel();
         modelo2.setRowCount(0);
         for (int i=0;i<ldtp.size();i++) {
-            dtPropuesta p=(dtPropuesta)ldtp.get(i);
+            DtPropuesta p=(DtPropuesta)ldtp.get(i);
             Object[] dat2={p.getTitulo(),p.getEstado()};
             modelo2.addRow(dat2);
             
@@ -398,7 +398,7 @@ public class Consulta_de_Perfil_de_Proponente extends javax.swing.JInternalFrame
         int row=jTable1.rowAtPoint(evt.getPoint());
         int col=jTable1.columnAtPoint(evt.getPoint());
         String titulo= (String)tablepropuestas1.getValueAt(row, col);
-        dtPropuesta dtp=ICP.infoProp(titulo); //pide el titulo al array
+        DtPropuesta dtp=ICP.infoProp(titulo); //pide el titulo al array
         DefaultTableModel model=(DefaultTableModel) tableinfopropuesta.getModel();
         model.setRowCount(0);
         

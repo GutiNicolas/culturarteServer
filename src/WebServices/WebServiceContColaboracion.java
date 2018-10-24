@@ -6,6 +6,7 @@
 package WebServices;
 
 import Logica.ContColaboracion;
+import Logica.ContUsuario;
 import Logica.dtColaboracionCompleto;
 import Logica.dtContieneArray;
 import Logica.dtPago;
@@ -24,7 +25,7 @@ import javax.xml.ws.WebServiceContext;
  * @author jp
  */
 @WebService(serviceName = "ServicioContColabiracion")
-@SOAPBinding(style = SOAPBinding.Style.RPC, use = SOAPBinding.Use.LITERAL, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
+@SOAPBinding(style = SOAPBinding.Style.RPC)
 public class WebServiceContColaboracion {
 
     @Resource
@@ -57,6 +58,10 @@ public class WebServiceContColaboracion {
     @WebMethod
     public boolean registrarPago(@WebParam(name = "nick") String nick, @WebParam(name = "titulo") String titulo, @WebParam(name = "pago") dtPago pago) {
         return cC.reagistrarPago(nick, titulo, pago);
+    }
+    @WebMethod
+    public String armarRetorno(@WebParam(name="cbe")String cbe,@WebParam(name="cbp")String cbp){
+    return (String)cC.armarretorno(cbe, cbp);
     }
 //////////////////////////////ServletConsultaDePerfil funciones
 

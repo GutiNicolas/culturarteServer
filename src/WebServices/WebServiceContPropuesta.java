@@ -8,7 +8,8 @@ package WebServices;
 import Logica.ContPropuesta;
 import Logica.dtContieneArray;
 import Logica.dtFecha;
-import Logica.dtPropuesta;
+import Logica.dtHora;
+import Logica.DtPropuesta;
 import Logica.utilidades;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ import javax.xml.ws.WebServiceContext;
  * @author jp
  */
 @WebService(serviceName = "ServicioContPropuesta")
-@SOAPBinding(style = SOAPBinding.Style.RPC, use = SOAPBinding.Use.LITERAL, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
+@SOAPBinding(style = SOAPBinding.Style.RPC)
 
 public class WebServiceContPropuesta {
 
@@ -72,6 +73,16 @@ public class WebServiceContPropuesta {
     public dtFecha construirDtFecha(@WebParam(name = "fecha") String fecha) {
         return (dtFecha) util.construirFecha(fecha);
 
+    }
+
+    @WebMethod
+    public dtFecha getFecha() {
+        return (dtFecha) util.getFecha();
+    }
+
+    @WebMethod
+    public dtHora getHora() {
+        return (dtHora) util.getHora();
     }
 
     ///////////////////////////////ServletFavoritos funciones
@@ -166,7 +177,7 @@ public class WebServiceContPropuesta {
      */
     @WebMethod
     public dtContieneArray listarPropuestasWeb() {
-        List<dtPropuesta> listarpropuestasenlaweb = (List<dtPropuesta>) cP.listarpropuestasenlaweb();
+        List<DtPropuesta> listarpropuestasenlaweb = (List<DtPropuesta>) cP.listarpropuestasenlaweb();
         dtContieneArray nuevo = new dtContieneArray((ArrayList) listarpropuestasenlaweb, null);
         return nuevo;
     }
@@ -195,7 +206,7 @@ public class WebServiceContPropuesta {
     }
 
     @WebMethod
-    public void altaPropuesta(@WebParam(name = "dtpropuesta") dtPropuesta dtpropuesta) {
+    public void altaPropuesta(@WebParam(name = "dtpropuesta") DtPropuesta dtpropuesta) {
         cP.datosPropuesta(dtpropuesta);
     }
 

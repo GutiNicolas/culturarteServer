@@ -26,7 +26,7 @@ public interface iConUsuario {
 
     public abstract dtUsuario infoColaborador(String idColaborador);
 
-    public abstract List<dtPropuesta> listarPropuestas(String idColaborador);
+    public abstract List<DtPropuesta> listarPropuestas(String idColaborador);
 
     public abstract List<String> listarColaboradores(String idPropuesta);
 
@@ -52,7 +52,7 @@ public interface iConUsuario {
 
     public abstract boolean registrarColaboracion(String titulo, String colaborador, int monto, String retorno, String comentario, pago fp);
 
-    public abstract void actualizardatospropuesta(dtPropuesta dtp, estado e, int orden, dtFecha dtf, dtHora dth) throws Exception;
+    public abstract void actualizardatospropuesta(DtPropuesta dtp, estado e, int orden, dtFecha dtf, dtHora dth) throws Exception;
 
     public ArrayList<proponente> getProponentes();
 
@@ -67,4 +67,7 @@ public interface iConUsuario {
     public boolean emailValido(String email);
 
     public dtFecha creadtFecha(String fecha);
+    
+    public abstract DtPropuesta infoPropuesta(String titulo) throws Exception ;
+       
 }

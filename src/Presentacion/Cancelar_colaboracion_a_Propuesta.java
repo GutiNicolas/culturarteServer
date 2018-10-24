@@ -293,7 +293,7 @@ private ContPropuesta contP=ContPropuesta.getInstance();
         labeltitulo.setText((String)tablacolaboraciones.getValueAt(row, col));
         dtColProp dtcp=ICC.seleccionarColaboracion(labelnickname.getText(),(String)tablacolaboraciones.getValueAt(row, col));       
         
-            Object[] dat={(String)tablacolaboraciones.getValueAt(row, col),dtcp.getFecha().getFecha(),dtcp.getHora().getHora(),dtcp.getMontoColaborado(),dtcp.getRetorno()};
+            Object[] dat={(String)tablacolaboraciones.getValueAt(row, col),dtcp.getFechaCol().getFecha(),dtcp.getHoraCol().getHora(),dtcp.getMontoColaborado(),dtcp.getRetorno()};
             modelo.addRow(dat);  
     }//GEN-LAST:event_tablacolaboracionesMouseClicked
 

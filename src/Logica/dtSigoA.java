@@ -7,13 +7,19 @@ package Logica;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
  * @author nicolasgutierrez
  */@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtSigoA {
-    private String nickusuario,rol,nombrecompleto;
+     @XmlElement(name="nickUsuario",namespace = "")
+    private String nickusuario;
+     @XmlElement(name="rol",namespace = " ")
+    private String rol;
+     @XmlElement(name="nombreCompleto", namespace = "")
+    private String nombrecompleto;
 
     public String getNombrecompleto() {
         return nombrecompleto;

@@ -7,7 +7,7 @@ package Presentacion;
 
 import Logica.ContPropuesta;
 import Logica.dtProponente;
-import Logica.dtPropuesta;
+import Logica.DtPropuesta;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -263,7 +263,7 @@ public class Consulta_de_Propuesta extends javax.swing.JInternalFrame {
         try{
         int row=tablepropuestas.rowAtPoint(evt.getPoint());
         int col=tablepropuestas.columnAtPoint(evt.getPoint());
-        dtPropuesta dtp=ICP.mostrarInfoPropuesta((String)tablepropuestas.getValueAt(row, col));
+        DtPropuesta dtp=ICP.mostrarInfoPropuesta((String)tablepropuestas.getValueAt(row, col));
         
         DefaultTableModel model=(DefaultTableModel) tablepropuesta.getModel();
         model.setRowCount(0);
