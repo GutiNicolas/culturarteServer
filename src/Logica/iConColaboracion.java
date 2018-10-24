@@ -32,4 +32,6 @@ public interface iConColaboracion {
     public abstract List<String> listarColaboraciones(String nick);
     
     public abstract List<dtColProp> listarmiscolaboraciones(String nick);
+    
+    public abstract String armarretorno(String cbe, String cbp);
 }

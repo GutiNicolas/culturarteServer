@@ -11,7 +11,7 @@ import Logica.dtColaborador;
 import Logica.dtFecha;
 import Logica.dtHora;
 import Logica.dtProponente;
-import Logica.dtPropuesta;
+import Logica.DtPropuesta;
 import Logica.dtUsuario;
 import java.util.Calendar;
 import java.util.Date;
@@ -345,7 +345,7 @@ public class Registrar_Colaboracion_a_Propuesta extends javax.swing.JInternalFra
             
             int row = tpropuestas.rowAtPoint(evt.getPoint());
             int col = tpropuestas.columnAtPoint(evt.getPoint());
-            dtPropuesta dtp;
+            DtPropuesta dtp;
             
             dtp = contUsu.infoPropuesta((String) tpropuestas.getValueAt(row, col));
             

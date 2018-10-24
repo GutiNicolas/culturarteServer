@@ -16,25 +16,30 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class dtContieneArray {
 
-    private ArrayList myArreglo; 
+    private ArrayList myArreglo;
     private String nombreArray;
     private dtProponente prop;
     private dtColaborador cola;
     private dtSigoA sigoA;
     private dtUsuario usu;
-    
-/**
- *Clase que contiene ArrayList para usar en Web 
- * recibe dos parametros el arreglo y un nombre para el arreglo
- * 
+    private dtColProp colp;
+    private dtPago pago;
+    private dtPaypal paypal;
+    private dtTransferencia trans;
+    private dtTarjetaCredito tarCredito;
+
+    /**
+     * Clase que contiene ArrayList para usar en Web recibe dos parametros el
+     * arreglo y un nombre para el arreglo
+     *
      * @param myArreglo
      * @param nombreArray
- */
+     */
     public dtContieneArray(ArrayList myArreglo, String nombreArray) {
 
-        this.myArreglo=myArreglo;
+        this.myArreglo = myArreglo;
         this.nombreArray = nombreArray;
-        
+
     }
 
     /**
@@ -85,4 +90,11 @@ public class dtContieneArray {
     public void setUsu(dtUsuario usu) {
         this.usu = usu;
     }
+
+    /**
+     * @return the colp
+     */
+    /*public dtColProp getColp() {
+        return colp;
+    }*/
 }

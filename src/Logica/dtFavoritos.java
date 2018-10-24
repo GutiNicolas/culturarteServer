@@ -16,12 +16,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 public class dtFavoritos {
     private String usuario;
     private String propuestaTitulo;
-    private dtPropuesta propDt;
+    private DtPropuesta propDt;
     private dtUsuario usuarioDt;
 /**
  *constructor: los parametros a no usar setearlos como null
  */
-    public dtFavoritos(String usuario, String propuestaTitulo, dtPropuesta propDt, dtUsuario usuarioDt) {
+    public dtFavoritos(String usuario, String propuestaTitulo, DtPropuesta propDt, dtUsuario usuarioDt) {
         this.usuario = usuario;
         this.propuestaTitulo = propuestaTitulo;
         this.propDt = propDt;
@@ -45,7 +45,7 @@ public class dtFavoritos {
     /**
      * @return the propDt
      */
-    public dtPropuesta getPropDt() {
+    public DtPropuesta getPropDt() {
         return propDt;
     }
 

@@ -7,36 +7,56 @@ package Logica;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
  * @author Esteban Menendez
- */@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
+ */
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtUsuario {
 
-    private String nombre, apellido, nickname, imagen, email,pass;
-    private dtFecha fechaNac;
-    private String rol;
-    private int puntaje;
+    /**
+     *
+     */
+    @XmlElement(name = "nombre", namespace = "")
+    protected String nombre;
+    @XmlElement(name = "apellido", namespace = "")
+    protected String apellido;
+    @XmlElement(name = "nickname", namespace = "")
+    protected String nickname;
+    @XmlElement(name = "imagen", namespace = "")
+    protected String imagen;
+    @XmlElement(name = "email", namespace = "")
+    protected String email;
+    @XmlElement(name = "pass", namespace = "")
+    protected String pass;
+    @XmlElement(name = "fechaNac", namespace = "")
+    protected dtFecha fechaNac;
+    
+    protected String rol;
+    
+    @XmlElement(name = "puntaje", namespace = "")
+    protected int puntaje;
 
-    public dtUsuario(String nombre, String apellido, String nickname, String imagen, String email, dtFecha fechaNac,String pass) {
+    public dtUsuario(String nombre, String apellido, String nickname, String imagen, String email, dtFecha fechaNac, String pass) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.nickname = nickname;
         this.imagen = imagen;
         this.email = email;
         this.fechaNac = fechaNac;
-        this.pass=pass;
+        this.pass = pass;
     }
-    
+
     /**
      * Constructor que almacena el puntaje del usuario para el Ranking Web
      */
-    public dtUsuario(String nombre, String apellido, String nickname, int puntaje){
-        this.nombre=nombre;
-        this.apellido=apellido;
-        this.nickname=nickname;
-        this.puntaje=puntaje;
+    public dtUsuario(String nombre, String apellido, String nickname, int puntaje) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.nickname = nickname;
+        this.puntaje = puntaje;
     }
 
     /**
@@ -100,5 +120,4 @@ public class dtUsuario {
         return puntaje;
     }
 
-    
 }

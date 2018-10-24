@@ -94,11 +94,12 @@ public class ContColaboracion implements iConColaboracion {
         int monto = (Integer) cola.getMonto();
         String retorno = (String) cola.getRetorno();
         String comentario = (String) cola.getComentario();
-        
+
         pago pago = null;
-        if(pf!=null){
-        pago = (pago) crearPago(pf);}
-        
+        if (pf != null) {
+            pago = (pago) crearPago(pf);
+        }
+
         return cUsuario.registrarColaboracion(titulo, colab, monto, retorno, comentario, pago);
 
     }
@@ -129,12 +130,17 @@ public class ContColaboracion implements iConColaboracion {
 
     @Override
     public List<String> listarColaboraciones(String nick) {
-        return (List<String>)cUsuario.listarColaboraciones(nick);
+        return (List<String>) cUsuario.listarColaboraciones(nick);
     }
 
     @Override
     public List<dtColProp> listarmiscolaboraciones(String nick) {
-  return (List<dtColProp>)cUsuario.listarmiscolaboraciones(nick);
+        return (List<dtColProp>) cUsuario.listarmiscolaboraciones(nick);
+    }
+
+    @Override
+    public String armarretorno(String cbe, String cbp) {
+        return (String) cUsuario.armarretorno(cbe, cbp);
     }
 
 }

@@ -342,9 +342,9 @@ public class propuesta {
         return dtpropActual;
     }
 
-    public dtPropuesta getDtPropuesta() {
+    public DtPropuesta getDtPropuesta() {
         String estado = getEstadoActual();
-        dtPropuesta dtp = new dtPropuesta(this.titulo, this.descripcion, this.imagen, this.lugar, estado, null, null, this.fecharealizacion, this.fechapublicada, this.precioEntrada, this.montoRequerido, 0, this.retorno);
+        DtPropuesta dtp = new DtPropuesta(this.titulo, this.descripcion, this.imagen, this.lugar, estado, null, null, this.fecharealizacion, this.fechapublicada, this.precioEntrada, this.montoRequerido, 0, this.retorno);
         return dtp;
     }
 }

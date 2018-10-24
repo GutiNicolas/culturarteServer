@@ -196,7 +196,7 @@ public class Consulta_de_Colaboracion_a_Propuesta extends javax.swing.JInternalF
         modelo.setRowCount(0);
         dtColProp dtcp=ICC.seleccionarColaboracion(labelnick.getText(),(String)tablacolaboraciones.getValueAt(row, col));       
         
-            Object[] dat={(String)tablacolaboraciones.getValueAt(row, col),dtcp.getMontoColaborado(),dtcp.getFecha().getFecha(),dtcp.getHora().getHora(),dtcp.getRetorno()};
+            Object[] dat={(String)tablacolaboraciones.getValueAt(row, col),dtcp.getMontoColaborado(),dtcp.getFechaCol().getFecha(),dtcp.getHoraCol().getHora(),dtcp.getRetorno()};
             modelo.addRow(dat);
         
     }//GEN-LAST:event_tablacolaboracionesMouseClicked

@@ -3,12 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Persistencia/colaboracionesPersistencia.java</file>
+            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/dtContieneArray.java</file>
+            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/dtColaboracionCompleto.java</file>
+            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/dtPago.java</file>
+            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/dtHora.java</file>
             <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/WebServices/WebServiceContUsusario.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/WebServices/WebServiceContPropuesta.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/iConPropuesta.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/ContUsuario.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/ContPropuesta.java</file>
+            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/dtUsuario.java</file>
+            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/dtProponente.java</file>
+            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/dtColProp.java</file>
+            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/ContColaboracion.java</file>
+            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/dtFecha.java</file>
+            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/dtPropuesta.java</file>
+            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/dtColaborador.java</file>
         </group>
     </open-files>
 </project-private>

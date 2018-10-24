@@ -7,6 +7,8 @@ package Logica;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
@@ -15,78 +17,80 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtColProp {
 
-    private String nickname, retorno;
-    dtFecha fecha;
-    dtHora hora;
-    int montoColaborado;
+    //@XmlElement(name = "nickname", namespace = "")
+    @XmlAttribute
+    private String nick;
+    //@XmlElement(name = "retorno", namespace = "")
+    @XmlAttribute
+    private String retornoCol;
+    @XmlElement(name = "fechaCol", namespace = "")
+    private dtFecha fechaCol;
+    @XmlElement(name = "horaCol", namespace = "")
+    private dtHora horaCol;
+    // @XmlElement(name = "montoColaborado", namespace = "")
+    @XmlAttribute
+    private int montoColaboradoCol;
+    //@XmlElement(name = "comentario", namespace = "")
+    @XmlAttribute
     private String comentario;
-    private String titulo;
-    
+    //@XmlElement(name = "titulop", namespace = "")
+    @XmlAttribute
+    private String titulop;
+
 //CONSTRUCTOR//
-    public dtColProp(String nickname, String retorno, dtFecha fecha, dtHora hora, int montoColaborado,String comen) {
-        this.nickname = nickname;
-        this.retorno = retorno;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.montoColaborado = montoColaborado;
-        this.comentario=comen;
+    public dtColProp(String nickname, String retorno, dtFecha fecha, dtHora hora, int montoColaborado, String comen) {
+        this.nick = nickname;
+        this.retornoCol = retorno;
+        this.fechaCol = fecha;
+        this.horaCol = hora;
+        this.montoColaboradoCol = montoColaborado;
+        this.comentario = comen;
     }
 
     public dtColProp(String nickname, dtFecha fecha, dtHora hora, int montoColaborado, String titulo) {
-        this.nickname = nickname;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.montoColaborado = montoColaborado;
-        this.titulo = titulo;
+        this.nick = nickname;
+        this.fechaCol = fecha;
+        this.horaCol = hora;
+        this.montoColaboradoCol = montoColaborado;
+        this.titulop = titulo;
     }
-    
-    
 
 //GETTERS//
     public String getNickname() {
-        return nickname;
+        return nick;
     }
 
     public String getRetorno() {
-        return retorno;
+        return retornoCol;
     }
 
-    public dtFecha getFecha() {
-        return fecha;
+    public dtFecha getFechaCol() {
+        return fechaCol;
     }
 
-    public dtHora getHora() {
-        return hora;
+    public dtHora getHoraCol() {
+        return horaCol;
     }
 
     public int getMontoColaborado() {
-        return montoColaborado;
+        return montoColaboradoCol;
     }
 
     public String getTitulo() {
-        return titulo;
+        return titulop;
     }
 
-    
 //SETTERS//
     public void setNickname(String nickname) {
-        this.nickname = nickname;
+        this.nick = nickname;
     }
 
     public void setRetorno(String retorno) {
-        this.retorno = retorno;
-    }
-
-    public void setFecha(dtFecha fecha) {
-        this.fecha = fecha;
-    }
-
-    public void setHora(dtHora hora) {
-        this.hora = hora;
+        this.retornoCol = retorno;
     }
 
     public void setMontoColaborado(int montoColaborado) {
-        this.montoColaborado = montoColaborado;
+        this.montoColaboradoCol = montoColaborado;
     }
 
     /**
@@ -97,9 +101,7 @@ public class dtColProp {
     }
 
     public void setTitulo(String titulo) {
-        this.titulo = titulo;
+        this.titulop = titulo;
     }
-    
-    
-    
+
 }

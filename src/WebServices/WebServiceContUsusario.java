@@ -9,7 +9,7 @@ import Logica.ContUsuario;
 import Logica.culturarteFabrica;
 import Logica.dtContieneArray;
 import Logica.dtFecha;
-import Logica.dtPropuesta;
+import Logica.DtPropuesta;
 import Logica.dtUsuario;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +31,16 @@ import javax.xml.ws.WebServiceContext;
 @WebService(serviceName = "ServicioContusuario")
 //@SOAPBinding(style = Style.RPC)
 
-@SOAPBinding(style = SOAPBinding.Style.RPC, use = SOAPBinding.Use.LITERAL, parameterStyle = SOAPBinding.ParameterStyle.WRAPPED)
+@SOAPBinding(style = SOAPBinding.Style.RPC)
 
 public class WebServiceContUsusario {
 
     @Resource
     private WebServiceContext context;
-    ContUsuario cU = new ContUsuario();
     culturarteFabrica fb = culturarteFabrica.getInstance();
+    private ContUsuario cU = (ContUsuario)fb.getIContUsuario();
+    
+    
     private Endpoint endpoint = null;
     private String direccion;
 
@@ -194,14 +196,14 @@ public class WebServiceContUsusario {
     }
 
     @WebMethod
-    public dtUsuario usuarioLogin(@WebParam(name = "nick") String nick) {
+    public dtUsuario usuarioLoginSN(@WebParam(name = "nick") String nick) {
         return (dtUsuario) cU.usuarioLogin(nick);
     }
 
 //////////////////////////////////////////////////////ServletColaboracion funciones
     /**
      * infoPropuesta funcion que recibe un String con el titulo de la propuesta
-     * y retorna una dtPropuesta.
+ y retorna una DtPropuesta.
      *
      * Esta func. hace referencia a infoPropuesta() de ContUsuario(). Si se
      * ṕroduce una excepcion retorna null
@@ -210,13 +212,31 @@ public class WebServiceContUsusario {
      * @return
      */
     @WebMethod
-    public dtPropuesta infoPropuesta(@WebParam(name = "titulo") String titulo) {
+    public DtPropuesta infoPropuesta(@WebParam(name = "titulo") String titulo) {
+       
         try {
-            return cU.infoPropuesta(titulo);
+            DtPropuesta dtp = (DtPropuesta)cU.infoPropuesta(titulo);
+           DtPropuesta retorno = null ;
+           retorno.setTitulop(dtp.getTitulo());
+           retorno.setProponentep(dtp.getProponente());
+           retorno.setDescripcionp(dtp.getDescripcion());
+           retorno.setImagenp(dtp.getImagen());
+           retorno.setLugarp(dtp.getLugar());
+           retorno.setEstadop(dtp.getEstado());
+           retorno.setCategoriap(dtp.getCategoria());
+           retorno.setFechaRealizacionp(dtp.getFechaRealizacion());
+           retorno.setFechapublicadap(dtp.getFechapublicada());
+           retorno.setPrecioentradap(dtp.getPrecioentrada());
+           retorno.setMontorequeridop(dtp.getMontorequerido());
+           retorno.setMontoactualp(dtp.getMontoTotal());
+           retorno.setRetornop(dtp.getRetorno());
+           retorno.setColaboradoresP(dtp.detColaboradores());
+            return retorno;
         } catch (Exception ex) {
-            System.err.println(ex.getMessage());
+            Logger.getLogger(WebServiceContUsusario.class.getName()).log(Level.SEVERE, null, ex);
+       return null; 
         }
-        return null;
+       
     }
 
 /////////////////////////////ServletDejarDeSeguir funciones
@@ -279,5 +299,11 @@ public class WebServiceContUsusario {
         dtContieneArray nuevo = new dtContieneArray((ArrayList) cU.mispropuestasfavoritas(nick), null);
         return nuevo;
     }
+/////////////////////////ServletRanking funciones
     
+    @WebMethod
+    public dtContieneArray ranking(){
+    dtContieneArray nuevo = new dtContieneArray((ArrayList) cU.ranking(), null);
+    return nuevo;
+    }
 }

@@ -7,6 +7,7 @@ package Logica;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
@@ -14,6 +15,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
  */
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtPago {
+
+    @XmlElement(name = "titular", namespace = "")
     private String titular;
 
     public dtPago(String titular) {
@@ -26,5 +29,5 @@ public class dtPago {
     public String getTitular() {
         return titular;
     }
-    
+
 }

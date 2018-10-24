@@ -122,7 +122,7 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     @Override
-    public List<dtPropuesta> listaPropuestas(String idProponente) {
+    public List<DtPropuesta> listaPropuestas(String idProponente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -138,7 +138,7 @@ public class ContPropuesta implements iConPropuesta {
 
     @Override
     //revisado jp---cambio atributos que se pasan al constructor/testear!
-    public void datosPropuesta(dtPropuesta dtp) {
+    public void datosPropuesta(DtPropuesta dtp) {
         try {
             estado esta = (estado) estados.get(dtp.getEstado());
             categoria cat = (categoria) getCategorias().get(dtp.getCategoria());
@@ -159,17 +159,17 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     @Override
-    public List<dtPropuesta> listarPropuesta() {
+    public List<DtPropuesta> listarPropuesta() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public dtPropuesta infoProp(String idPropuesta) {
+    public DtPropuesta infoProp(String idPropuesta) {
         this.cUsuario = ContUsuario.getInstance();
         proponente p = (proponente) this.cUsuario.getUsuarioRecordado();
-        dtPropuesta dtp = p.getPropuestas(idPropuesta);
-        dtPropuesta dtprop;
-        dtprop = new dtPropuesta(dtp.getTitulo(), dtp.getDescripcion(), dtp.getImagen(), dtp.getLugar(), dtp.getEstado(), dtp.getCategoria(),
+        DtPropuesta dtp = p.getPropuestas(idPropuesta);
+        DtPropuesta dtprop;
+        dtprop = new DtPropuesta(dtp.getTitulo(), dtp.getDescripcion(), dtp.getImagen(), dtp.getLugar(), dtp.getEstado(), dtp.getCategoria(),
                 dtp.getProponente(), dtp.getFechaRealizacion(), dtp.getFechapublicada(),
                 dtp.getPrecioentrada(), dtp.getMontorequerido(), (Integer) cUsuario.montopropuesta(idPropuesta),
                 dtp.getRetorno(), (List<String>) cUsuario.listarColaboradores(idPropuesta));
@@ -178,7 +178,7 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     @Override
-    public void modificarPropuesta(dtPropuesta dtProp) {
+    public void modificarPropuesta(DtPropuesta dtProp) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -193,7 +193,7 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     @Override
-    public dtPropuesta mostrarInfoPropuesta(String idPropuesta) throws Exception {
+    public DtPropuesta mostrarInfoPropuesta(String idPropuesta) throws Exception {
         return ContUsuario.getInstance().infoPropuesta(idPropuesta);
     }
 
@@ -380,7 +380,7 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     @Override
-    public void actualizardatospropuesta(dtPropuesta dtp, String e, dtFecha dtf, dtHora dth) throws Exception {
+    public void actualizardatospropuesta(DtPropuesta dtp, String e, dtFecha dtf, dtHora dth) throws Exception {
         cUsuario.actualizardatospropuesta(dtp, this.getEstado(e), this.getIdEstado(e), dtf, dth);
     }
 
@@ -846,15 +846,15 @@ public class ContPropuesta implements iConPropuesta {
 
     }
 
-    public ArrayList<dtPropuesta> getPropuestasxEstado(String stado) {
-        ArrayList<dtPropuesta> prop = new ArrayList<>();
+    public ArrayList<DtPropuesta> getPropuestasxEstado(String stado) {
+        ArrayList<DtPropuesta> prop = new ArrayList<>();
         ArrayList<propuesta> propArray = new ArrayList<>();
         cUsuario.getPropuestas(propArray);
         for (int i = 0; i < propArray.size(); i++) {
             propuesta p = (propuesta) propArray.get(i);
             String pEs = p.getEstadoActual();
             if (pEs.equals(stado)) {
-                prop.add((dtPropuesta) p.getDtPropuesta());
+                prop.add((DtPropuesta) p.getDtPropuesta());
             }
 
         }
@@ -893,8 +893,8 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     @Override
-    public List<dtPropuesta> listarpropuestasenlaweb() {
-        List<dtPropuesta> listarpropuestasenlaweb = (List<dtPropuesta>) cUsuario.listarpropuestasenlaweb();
+    public List<DtPropuesta> listarpropuestasenlaweb() {
+        List<DtPropuesta> listarpropuestasenlaweb = (List<DtPropuesta>) cUsuario.listarpropuestasenlaweb();
         return listarpropuestasenlaweb;
     }
 
@@ -904,9 +904,9 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     @Override
-    public List<dtPropuesta> listarpropuestasencategoria(String cat) {
+    public List<DtPropuesta> listarpropuestasencategoria(String cat) {
         try {
-            return (List<dtPropuesta>)cUsuario.listarpropuestasencategoria(cat);
+            return (List<DtPropuesta>)cUsuario.listarpropuestasencategoria(cat);
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
