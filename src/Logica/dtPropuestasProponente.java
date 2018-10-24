@@ -5,10 +5,14 @@
  */
 package Logica;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author Esteban Menendez
  */
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtPropuestasProponente {
 
     private String titulo, nickname;

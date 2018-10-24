@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -166,9 +168,13 @@ public class ContPropuesta implements iConPropuesta {
         this.cUsuario = ContUsuario.getInstance();
         proponente p = (proponente) this.cUsuario.getUsuarioRecordado();
         dtPropuesta dtp = p.getPropuestas(idPropuesta);
-        dtp.setColaboradores(this.cUsuario.listarColaboradores(idPropuesta));
-        dtp.setMontoTotal(this.cUsuario.montopropuesta(idPropuesta));
-        return dtp;
+        dtPropuesta dtprop;
+        dtprop = new dtPropuesta(dtp.getTitulo(), dtp.getDescripcion(), dtp.getImagen(), dtp.getLugar(), dtp.getEstado(), dtp.getCategoria(),
+                dtp.getProponente(), dtp.getFechaRealizacion(), dtp.getFechapublicada(),
+                dtp.getPrecioentrada(), dtp.getMontorequerido(), (Integer) cUsuario.montopropuesta(idPropuesta),
+                dtp.getRetorno(), (List<String>) cUsuario.listarColaboradores(idPropuesta));
+
+        return dtprop;
     }
 
     @Override
@@ -349,12 +355,12 @@ public class ContPropuesta implements iConPropuesta {
         cUsuario.borrarPropuestas(lista);
     }
 
-    public List<String> listarCategorias(String text) {
+    public List<String> listarCategorias() {
         List<String> retorno = new ArrayList<>();
-        for (String key : this.getCategorias().keySet()) {
-            if (key.contains(text)) {
+        for (String key : getCategorias().keySet()) {
+           
                 retorno.add(key);
-            }
+            
         }
         return retorno;
     }
@@ -866,4 +872,71 @@ public class ContPropuesta implements iConPropuesta {
         }
         return listaCola;
     }
+
+    @Override
+    /**
+     * funcion que recibe un String on el nick del proponente y retorna todas
+     * sus propuestas su viene null o vacio lista todas las propuestas
+     */
+    public List<String> listartodaslaspropuestas(String nombre) {
+        return (List<String>) cUsuario.listartodaslaspropuestas(nombre);
+    }
+
+    @Override
+    public List<String> listarmispropsfavs(String nickusuario) {
+        return (List<String>) cUsuario.listarmispropsfavs(nickusuario);
+    }
+
+    @Override
+    public void agregarpropuestacomofav(String nickusuario, String titulo) {
+        cUsuario.agregarpropuestacomofav(nickusuario, titulo);
+    }
+
+    @Override
+    public List<dtPropuesta> listarpropuestasenlaweb() {
+        List<dtPropuesta> listarpropuestasenlaweb = (List<dtPropuesta>) cUsuario.listarpropuestasenlaweb();
+        return listarpropuestasenlaweb;
+    }
+
+    @Override
+    public List<String> listarpropuestasparacancelar(String nickp) {
+        return (List<String>)cUsuario.listarpropuestasparacancelar(nickp);
+    }
+
+    @Override
+    public List<dtPropuesta> listarpropuestasencategoria(String cat) {
+        try {
+            return (List<dtPropuesta>)cUsuario.listarpropuestasencategoria(cat);
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+    return null;
+    }
+
+    @Override
+    public List<String> listarpropuestasmenosingresadas(String titulo) {
+     return (List<String>)cUsuario.listarpropuestasmenosingresadas(titulo);
+    }
+
+    @Override
+    public List<String> listarpropuestascolaboradaspor(String string) {
+        return (List<String>)cUsuario.listarpropuestascolaboradaspor(string);
+    }
+
+    @Override
+    public void agregarcomentarioapropuesta(String string, String titulo, String comentario) {
+       cUsuario.agregarcomentarioapropuesta(string, titulo, comentario);
+    }
+
+    @Override
+    public List<String> mispropuestasaceptadas(String nick) {
+        return (List<String>)cUsuario.mispropuestasaceptadas(nick);
+    
+    }
+
+    @Override
+    public List<String> mispropuestasaingresadas(String nick) {
+        return (List<String>)cUsuario.mispropuestasaingresadas(nick);
+    }
+
 }

@@ -5,10 +5,14 @@
  */
 package Logica;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *dtContenedor de favoritos puede contener dos dt o dos string 
  * @author juan
  */
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtFavoritos {
     private String usuario;
     private String propuestaTitulo;

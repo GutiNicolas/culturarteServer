@@ -6,16 +6,30 @@
 package Logica;
 
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author juan
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class dtContieneArray {
 
     private ArrayList myArreglo; 
     private String nombreArray;
-
+    private dtProponente prop;
+    private dtColaborador cola;
+    private dtSigoA sigoA;
+    private dtUsuario usu;
+    
+/**
+ *Clase que contiene ArrayList para usar en Web 
+ * recibe dos parametros el arreglo y un nombre para el arreglo
+ * 
+     * @param myArreglo
+     * @param nombreArray
+ */
     public dtContieneArray(ArrayList myArreglo, String nombreArray) {
 
         this.myArreglo=myArreglo;
@@ -35,5 +49,40 @@ public class dtContieneArray {
      */
     public String getNombreArray() {
         return nombreArray;
+    }
+
+    /**
+     * @return the prop
+     */
+    public dtProponente getProp() {
+        return prop;
+    }
+
+    /**
+     * @return the cola
+     */
+    public dtColaborador getCola() {
+        return cola;
+    }
+
+    /**
+     * @return the sigoA
+     */
+    public dtSigoA getSigoA() {
+        return sigoA;
+    }
+
+    /**
+     * @return the usu
+     */
+    public dtUsuario getUsu() {
+        return usu;
+    }
+
+    /**
+     * @param usu the usu to set
+     */
+    public void setUsu(dtUsuario usu) {
+        this.usu = usu;
     }
 }

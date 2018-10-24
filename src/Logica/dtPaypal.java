@@ -5,10 +5,14 @@
  */
 package Logica;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author juan
  */
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtPaypal extends dtPago {
 
     private String numeroPaypal;

@@ -5,10 +5,13 @@
  */
 package Logica;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author nicolasgutierrez
- */
+ */@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtSigoA {
     private String nickusuario,rol,nombrecompleto;
 

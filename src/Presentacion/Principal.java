@@ -12,50 +12,55 @@ import Logica.ContUsuario;
 import Logica.culturarteFabrica;
 import javax.swing.JOptionPane;
 import WebServices.*;
+
 /**
  *
  * @author juan
  */
 public class Principal extends javax.swing.JFrame {
-culturarteFabrica fabrica=culturarteFabrica.getInstance();
+
+    culturarteFabrica fabrica = culturarteFabrica.getInstance();
 //test jp
-    ContUsuario contUsuario=ContUsuario.getInstance();
+    ContUsuario contUsuario = ContUsuario.getInstance();
     ContPropuesta contPropuesta = ContPropuesta.getInstance();
-    ContColaboracion contColaboracion= ContColaboracion.getInstance();
+    ContColaboracion contColaboracion = ContColaboracion.getInstance();
     ContCargaBD contCarga = ContCargaBD.getInstance();
     WebServiceContUsusario WSContU = new WebServiceContUsusario();
     WebServiceContPropuesta WSContP = new WebServiceContPropuesta();
+    WebServiceContColaboracion WSContC = new WebServiceContColaboracion();
+
     @Override
     public void setVisible(boolean b) {
         super.setVisible(b); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
     public void setExtendedState(int state) {
         super.setExtendedState(state); //To change body of generated methods, choose Tools | Templates.
     }
+
     /**
      * Creates new form Principal
      */
     public Principal() {
-        
+
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setVisible(true);
         WSContU.publicar();
         WSContP.publicar();
-        
+        WSContC.publicar();
+
         contUsuario.cargarUsuarios();
-       
+
         contPropuesta.cargarPropuestas();
-       contColaboracion.cargarColaboracion();
-       
+        contColaboracion.cargarColaboracion();
+
         contUsuario.cargarFavoritos();
         contPropuesta.propAutomaticas();
         //fabrica.cargarDesdeBD();
-        
+
         //Mandando fruta
-      /*
+        /*
         jMenu1.add(jMenuItem3);
          jMenu1.add(jMenuItem4);
            jMenu1.add(jMenuItem5);
@@ -268,32 +273,32 @@ culturarteFabrica fabrica=culturarteFabrica.getInstance();
 
     private void jm_seguirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_seguirUsuarioActionPerformed
         // TODO add your handling code here:
-        Seguir_Usuario su= new Seguir_Usuario();
+        Seguir_Usuario su = new Seguir_Usuario();
         //jDesktopPane1.add(su);
-         this.getContentPane().add(su);
+        this.getContentPane().add(su);
         su.show();
-        
+
     }//GEN-LAST:event_jm_seguirUsuarioActionPerformed
 
     private void jm_altaPropuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_altaPropuestaActionPerformed
         // TODO add your handling code here:
-        Alta_de_Propuesta adp= new Alta_de_Propuesta();
+        Alta_de_Propuesta adp = new Alta_de_Propuesta();
         //jDesktopPane1.add(adp);
-         this.getContentPane().add(adp);
+        this.getContentPane().add(adp);
         adp.show();
     }//GEN-LAST:event_jm_altaPropuestaActionPerformed
 
     private void jm_altaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_altaCategoriaActionPerformed
         // TODO add your handling code here:
-        Alta_Categoria adc=new Alta_Categoria();
-       // jDesktopPane1.add(adc);
-    // this.getContentPane().add(adc);
+        Alta_Categoria adc = new Alta_Categoria();
+        // jDesktopPane1.add(adc);
+        // this.getContentPane().add(adc);
         adc.show(true);
     }//GEN-LAST:event_jm_altaCategoriaActionPerformed
 
     private void jm_altaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_altaPerfilActionPerformed
-        Alta_perfil altaP= new Alta_perfil();
-        
+        Alta_perfil altaP = new Alta_perfil();
+
         altaP.show();
 
         // TODO add your handling code here:
@@ -301,89 +306,91 @@ culturarteFabrica fabrica=culturarteFabrica.getInstance();
 
     private void jm_dejarSeguirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_dejarSeguirActionPerformed
         // TODO add your handling code here:
-        Dejar_de_Seguir_Usuario dd= new Dejar_de_Seguir_Usuario();
-      //  jDesktopPane1.add(dd);
-       this.getContentPane().add(dd);
+        Dejar_de_Seguir_Usuario dd = new Dejar_de_Seguir_Usuario();
+        //  jDesktopPane1.add(dd);
+        this.getContentPane().add(dd);
         dd.show();
     }//GEN-LAST:event_jm_dejarSeguirActionPerformed
 
     private void jm_consultaColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_consultaColaboradorActionPerformed
         // TODO add your handling code here:
-        Consulta_de_Perfil_de_Colaborador cc=new Consulta_de_Perfil_de_Colaborador();
-       // jDesktopPane1.add(cc);
-       this.getContentPane().add(cc);
+        Consulta_de_Perfil_de_Colaborador cc = new Consulta_de_Perfil_de_Colaborador();
+        // jDesktopPane1.add(cc);
+        this.getContentPane().add(cc);
         cc.show();
     }//GEN-LAST:event_jm_consultaColaboradorActionPerformed
 
     private void jm_consultaProponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_consultaProponenteActionPerformed
         // TODO add your handling code here:
-        Consulta_de_Perfil_de_Proponente cp= new Consulta_de_Perfil_de_Proponente();
+        Consulta_de_Perfil_de_Proponente cp = new Consulta_de_Perfil_de_Proponente();
         //jDesktopPane1.add(cp);
-         this.getContentPane().add(cp);
+        this.getContentPane().add(cp);
         cp.show();
     }//GEN-LAST:event_jm_consultaProponenteActionPerformed
 
     private void jm_consultaPropuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_consultaPropuestaActionPerformed
         // TODO add your handling code here:
-        Consulta_de_Propuesta cdp= new Consulta_de_Propuesta();
-      //  jDesktopPane1.add(cdp);
-       this.getContentPane().add(cdp);
+        Consulta_de_Propuesta cdp = new Consulta_de_Propuesta();
+        //  jDesktopPane1.add(cdp);
+        this.getContentPane().add(cdp);
         cdp.show();
     }//GEN-LAST:event_jm_consultaPropuestaActionPerformed
 
     private void jm_consultaPropuestaEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_consultaPropuestaEstadoActionPerformed
         // TODO add your handling code here:
-        Consulta_de_Propuesta_por_Estado cdppe= new Consulta_de_Propuesta_por_Estado();
-       // jDesktopPane1.add(cdppe);
+        Consulta_de_Propuesta_por_Estado cdppe = new Consulta_de_Propuesta_por_Estado();
+        // jDesktopPane1.add(cdppe);
         this.getContentPane().add(cdppe);
         cdppe.show();
     }//GEN-LAST:event_jm_consultaPropuestaEstadoActionPerformed
 
     private void jm_modificarPropuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_modificarPropuestaActionPerformed
         // TODO add your handling code here:
-        Modificar_datos_de_Propuesta mddp= new Modificar_datos_de_Propuesta();
-       // jDesktopPane1.add(mddp);
+        Modificar_datos_de_Propuesta mddp = new Modificar_datos_de_Propuesta();
+        // jDesktopPane1.add(mddp);
         this.getContentPane().add(mddp);
         mddp.show();
-               
+
     }//GEN-LAST:event_jm_modificarPropuestaActionPerformed
 
     private void jm_colaborarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_colaborarActionPerformed
         // TODO add your handling code here:
-        Registrar_Colaboracion_a_Propuesta rcap= new Registrar_Colaboracion_a_Propuesta();
-       // jDesktopPane1.add(rcap);
+        Registrar_Colaboracion_a_Propuesta rcap = new Registrar_Colaboracion_a_Propuesta();
+        // jDesktopPane1.add(rcap);
         this.getContentPane().add(rcap);
         rcap.show();
     }//GEN-LAST:event_jm_colaborarActionPerformed
 
     private void jm_cancelarColaboracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_cancelarColaboracionActionPerformed
         // TODO add your handling code here:
-        Cancelar_colaboracion_a_Propuesta ccap= new Cancelar_colaboracion_a_Propuesta();
-       // jDesktopPane1.add(ccap);
+        Cancelar_colaboracion_a_Propuesta ccap = new Cancelar_colaboracion_a_Propuesta();
+        // jDesktopPane1.add(ccap);
         this.getContentPane().add(ccap);
         ccap.show();
     }//GEN-LAST:event_jm_cancelarColaboracionActionPerformed
 
     private void jm_consultaColaboracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_consultaColaboracionActionPerformed
         // TODO add your handling code here:
-        Consulta_de_Colaboracion_a_Propuesta cdcap= new Consulta_de_Colaboracion_a_Propuesta();
-       // jDesktopPane1.add(cdcap);
+        Consulta_de_Colaboracion_a_Propuesta cdcap = new Consulta_de_Colaboracion_a_Propuesta();
+        // jDesktopPane1.add(cdcap);
         this.getContentPane().add(cdcap);
         cdcap.show();
     }//GEN-LAST:event_jm_consultaColaboracionActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
 
-        contCarga.limpiarCargar();
+        /*contCarga.limpiarCargar();
 
         fabrica.borrartodo();
         System.out.println("Borro todo");
         contUsuario.cargarUsuarios();
         contPropuesta.cargarPropuestas();
-        contColaboracion.cargarColaboracion();       
-contUsuario.cargarFavoritos();
-contPropuesta.propAutomaticas();
-        JOptionPane.showMessageDialog(null, "Datos de prueba cargados con exito");
+        contColaboracion.cargarColaboracion();
+        contUsuario.cargarFavoritos();
+        contPropuesta.propAutomaticas();*/
+        if (fabrica.datosDePrueba()) {
+            JOptionPane.showMessageDialog(null, "Datos de prueba cargados con exito");
+        }
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jm_configuracionGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_configuracionGeneralActionPerformed
@@ -391,9 +398,9 @@ contPropuesta.propAutomaticas();
     }//GEN-LAST:event_jm_configuracionGeneralActionPerformed
 
     private void jM_Evaluar_propActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jM_Evaluar_propActionPerformed
- Evaluar_Prop evp=new Evaluar_Prop();
-        
- evp.show();
+        Evaluar_Prop evp = new Evaluar_Prop();
+
+        evp.show();
         // TODO add your handling code here:
     }//GEN-LAST:event_jM_Evaluar_propActionPerformed
 

@@ -10,61 +10,58 @@ package Logica;
  * @author nicolasgutierrez
  */
 public class culturarteFabrica {
-    
-    private static culturarteFabrica instance;
-    
-            ContColaboracion ic= ContColaboracion.getInstance();
-            ContUsuario iu= ContUsuario.getInstance();
-           ContPropuesta ip= ContPropuesta.getInstance();
-          
-           
-    public static culturarteFabrica getInstance() {
-        if(instance==null){
-            instance= new culturarteFabrica();
-        }
-            return instance;
-    }
-    
-        private culturarteFabrica(){
-            
-        }
-        
-        public void cargarDatosdePrueba(){
-            borrartodo();
-          //  levantarBDdesdeMemoria();
-        }
-        
-            
-        public iConColaboracion getIContColaboracion(){
-            iConColaboracion icc= ContColaboracion.getInstance();
-            return icc;
-        }
-        
-        public iConUsuario getIContUsuario(){
-            iConUsuario icu= ContUsuario.getInstance();
-            return icu;
-        }
-        
-        public iConPropuesta getIContPropuesta(){
-            iConPropuesta icp= ContPropuesta.getInstance();
-            return icp;
-        }
-        
-        public void borrartodo(){            
-            
-            ic.borrartodocColaboraciones();
-            ip.borrartodocPropuesta();
-            iu.borrartodocUsuario();
-            ic.borrarColecciones();
-            ip.borrarColecciones();
-            iu.borrarColecciones();
-            ContCargaBD.getInstance().borrarColecciones();
-            
-        }
 
-  
-    
-    public void cargarinicio(){
+    private static culturarteFabrica instance;
+
+    ContColaboracion ic = ContColaboracion.getInstance();
+    ContUsuario iu = ContUsuario.getInstance();
+    ContPropuesta ip = ContPropuesta.getInstance();
+    ContCargaBD cCBD = ContCargaBD.getInstance();
+
+    public static culturarteFabrica getInstance() {
+        if (instance == null) {
+            instance = new culturarteFabrica();
+        }
+        return instance;
+    }
+
+    private culturarteFabrica() {
+
+    }
+
+    public void cargarDatosdePrueba() {
+        borrartodo();
+        //  levantarBDdesdeMemoria();
+    }
+
+    public iConColaboracion getIContColaboracion() {
+        iConColaboracion icc = ContColaboracion.getInstance();
+        return icc;
+    }
+
+    public iConUsuario getIContUsuario() {
+        iConUsuario icu = ContUsuario.getInstance();
+        return icu;
+    }
+
+    public iConPropuesta getIContPropuesta() {
+        iConPropuesta icp = ContPropuesta.getInstance();
+        return icp;
+    }
+
+    public void borrartodo() {
+        cCBD.limpiarCargar();
+        ic.borrartodocColaboraciones();
+        ip.borrartodocPropuesta();
+        iu.borrartodocUsuario();
+        ic.borrarColecciones();
+        ip.borrarColecciones();
+        iu.borrarColecciones();
+        cCBD.borrarColecciones();
+
+    }
+
+    public void cargarinicio() {
         iu.cargarUsuarios();
         ip.cargarPropuestas();
         ic.cargarColaboracion();
@@ -75,14 +72,14 @@ public class culturarteFabrica {
     public String funcionprueba() {
         return "exito";
     }
+public boolean datosDePrueba(){
 
-    
-    
-  
-
-    
-
-
-    
-    
+    try {
+        borrartodo();
+        cargarinicio();
+        return true;
+    } catch (Exception e) {
+    return false;
+    }
+}
 }

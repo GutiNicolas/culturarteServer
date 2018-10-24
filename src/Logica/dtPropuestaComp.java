@@ -6,11 +6,14 @@
 package Logica;
 
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author Esteban Menendez
  */
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtPropuestaComp {
 
     private String titulo, descripcion, imagen, lugar, fechaPublicada, estado, categoria;

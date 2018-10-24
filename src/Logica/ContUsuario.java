@@ -64,7 +64,7 @@ public class ContUsuario implements iConUsuario {
         }
 
         return false;
-        
+
     }
 
     public boolean existeMail(String mail) {
@@ -461,20 +461,19 @@ public class ContUsuario implements iConUsuario {
                 proponente p = (proponente) this.usuarios.get(key);
                 if (p.propuestasUsuario.containsKey(titulo)) {
                     dtp = p.getPropuestas(titulo);
-                    dtp.montoactual = this.montopropuesta(dtp.titulo);
-
                 }
 
             }
         }
+        dtPropuesta dtprop;
+        dtprop = new dtPropuesta(dtp.getTitulo(), dtp.getDescripcion(), dtp.getImagen(), dtp.getLugar(), dtp.getEstado(), dtp.getCategoria(),
+                dtp.getProponente(), dtp.getFechaRealizacion(), dtp.getFechapublicada(),
+                dtp.getPrecioentrada(), dtp.getMontorequerido(), (Integer) montopropuesta(titulo),
+                dtp.getRetorno(),(List<String>) listarColaboradores(titulo));
 
-        if (dtp.getTitulo().equals(titulo)) {
-            dtp.setColaboradores(this.listarColaboradores(titulo));
-            dtp.setMontoTotal(this.montopropuesta(titulo));
-            return dtp;
-        } else {
-            throw new Exception("Propuesta no encontrada");
-        }
+        return dtprop;
+
+       
     }
 
     public int montopropuesta(String idPropuesta) {
@@ -707,8 +706,8 @@ public class ContUsuario implements iConUsuario {
                 if (p != null && c.colaborasconpropuesta(titulo) == false) {
                     dtFecha dtf = (dtFecha) util.getFecha();
                     dtHora dth = (dtHora) util.getHora();
-                    
-                    colProp cp = new colProp(dtf, dth, monto, retorno, p, comentario,pago);
+
+                    colProp cp = new colProp(dtf, dth, monto, retorno, p, comentario, pago);
                     c.colaboracionesUsuario.put(p.getTitulo(), cp);
                     boolean h = colabPer.registrarColaboracion(colab, titulo, dtf.getFecha(), dth.getHora(), Integer.toString(monto), retorno, comentario);
 
@@ -1057,8 +1056,12 @@ public class ContUsuario implements iConUsuario {
     public List<String> listarmispropsfavs(String nickusuario) {
         List<String> retorno = new ArrayList<>();
         usuario u = this.usuarios.get(nickusuario);
-        for (String key : u.favoritas.keySet()) {
-            retorno.add(key);
+        if (u != null) {
+
+            for (String key : u.favoritas.keySet()) {
+                retorno.add(key);
+            }
+            return retorno;
         }
         return retorno;
     }
@@ -1202,18 +1205,19 @@ public class ContUsuario implements iConUsuario {
                         colabPer.agregarcomentarioaprop(string, titulo, comentario);
                     }
                 }
-            }}}
-    
-    
+            }
+        }
+    }
+
     public dtUsuario usuarioLoginApp(String usu) {
-          dtUsuario retorno = null;
+        dtUsuario retorno = null;
         if (usu.contains("@") == false) { //Busqueda por Nick
             if (this.usuarios.containsKey(usu)) {
                 if (this.usuarios.get(usu) instanceof colaborador) {
                     colaborador c = (colaborador) this.usuarios.get(usu);
                     retorno = c.getColaborador();
                     retorno.setRol("Colaborador");
-                } 
+                }
             }
         }
         if (usu.contains("@") == true) { //Busqueda por Correo
@@ -1224,53 +1228,50 @@ public class ContUsuario implements iConUsuario {
                         retorno = c.getColaborador();
                         retorno.setRol("Colaborador");
                     }
-                } 
+                }
             }
         }
-        return retorno;      
+        return retorno;
     }
-    
+
     /**
      * Funcion que devuelve el ranking calculado de usuarios con mayor puntaje
-     * @return List dtUsuario 
+     *
+     * @return List dtUsuario
      */
-    public List<dtUsuario> ranking(){
-        List<dtUsuario> rank=new ArrayList<>();
-        for(String key: this.usuarios.keySet()){
-            usuario u=this.usuarios.get(key);
-            if(contarseguidores(key)>0){
-                rank.add(new dtUsuario(u.getNombre(),u.getApellido(),u.getNickname(),contarseguidores(key)));
+    public List<dtUsuario> ranking() {
+        List<dtUsuario> rank = new ArrayList<>();
+        for (String key : this.usuarios.keySet()) {
+            usuario u = this.usuarios.get(key);
+            if (contarseguidores(key) > 0) {
+                rank.add(new dtUsuario(u.getNombre(), u.getApellido(), u.getNickname(), contarseguidores(key)));
             }
         }
-        
-        dtUsuario aux=null;
-        for(int i=0;i<rank.size();i++){
-            for(int j=i+1;j<rank.size();j++){
-                if(rank.get(i).getPuntaje() < rank.get(j).getPuntaje()){
-                    aux= rank.get(i);
+
+        dtUsuario aux = null;
+        for (int i = 0; i < rank.size(); i++) {
+            for (int j = i + 1; j < rank.size(); j++) {
+                if (rank.get(i).getPuntaje() < rank.get(j).getPuntaje()) {
+                    aux = rank.get(i);
                     rank.set(i, rank.get(j));
                     rank.set(j, aux);
                 }
             }
         }
-        
-        return rank;                 
+
+        return rank;
     }
-    
-    public int contarseguidores(String nick){
-        int cant=0;
-        for(String key: this.usuarios.keySet()){
-            usuario u=this.usuarios.get(key);
-            if(u.seguidos.containsKey(nick)){
+
+    public int contarseguidores(String nick) {
+        int cant = 0;
+        for (String key : this.usuarios.keySet()) {
+            usuario u = this.usuarios.get(key);
+            if (u.seguidos.containsKey(nick)) {
                 cant++;
             }
         }
         return cant;
     }
-    
-    
-
-
 
     public ArrayList<dtColaborador> getUsuariosColaboradores(String pp) {
         ArrayList<dtColaborador> colaboradores = new ArrayList<>();

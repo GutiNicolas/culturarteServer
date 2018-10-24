@@ -5,10 +5,13 @@
  */
 package Logica;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author Esteban Menendez
- */
+ */@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtUsuario {
 
     private String nombre, apellido, nickname, imagen, email,pass;

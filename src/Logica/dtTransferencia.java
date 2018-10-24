@@ -5,10 +5,13 @@
  */
 package Logica;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  *
  * @author juan
- */
+ */@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtTransferencia extends dtPago {
 
     private String banco;
