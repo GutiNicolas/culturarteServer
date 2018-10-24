@@ -80,3 +80,4 @@ build/*
 ./build/*
 /build/*
 *.class
+build/*
