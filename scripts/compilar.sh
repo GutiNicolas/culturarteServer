@@ -1,0 +1,2 @@
+javac -cp "../src/mysql-connector-java-5.1.47.jar:../src/jcalendar-1.4.jar" --add-modules java.xml.ws -d ../build/WSServidorSA ../src/Logica/* ../src/WebServices/* ../src/Presentacion/*.java ../src/Persistencia/*
+jar cvfm ../bin/WSServidorSA.jar ../src/Manifest.txt -C ../build/WSServidorSA/ .
