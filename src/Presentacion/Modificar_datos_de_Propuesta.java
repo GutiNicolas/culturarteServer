@@ -9,7 +9,7 @@ import Logica.ContPropuesta;
 import Logica.ContUsuario;
 import Logica.dtFecha;
 import Logica.dtHora;
-import Logica.DtPropuesta;
+import Logica.dtPropuesta;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -466,7 +466,7 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
         try {
             int row = jTable1.rowAtPoint(evt.getPoint());
             int col = jTable1.columnAtPoint(evt.getPoint());
-            DtPropuesta dtp;
+            dtPropuesta dtp;
             
             dtp = contUsu.infoPropuesta((String) jTable1.getValueAt(row, col));
             txtdescripcion.setText(dtp.getDescripcion());
@@ -495,7 +495,7 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
        //     dtFecha dtf = new dtFecha(txtdiadia.getText(), txtmesmes.getText(), txtanioanio.getText());
          //   String[] fp = labelfechacreacion.getText().split("/");
       //      dtFecha dtfp = new dtFecha(fp[0], fp[1], fp[2]);
-     //       DtPropuesta dtp = new DtPropuesta(labeltitulo.getText(), txtdescripcion.getText(), imagenRuta, txtlugar.getText(), txtestado.getText(), labelcategoria.getText(), labelproponente.getText(), dtf, dtfp, Integer.parseInt(txtprecioetrada.getText()), Integer.parseInt(txtmontorequerido.getText()), 0, labelretorno.getText());
+     //       dtPropuesta dtp = new dtPropuesta(labeltitulo.getText(), txtdescripcion.getText(), imagenRuta, txtlugar.getText(), txtestado.getText(), labelcategoria.getText(), labelproponente.getText(), dtf, dtfp, Integer.parseInt(txtprecioetrada.getText()), Integer.parseInt(txtmontorequerido.getText()), 0, labelretorno.getText());
             
             Calendar cal = Calendar.getInstance();
             Date da = cal.getTime();

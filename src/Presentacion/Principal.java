@@ -46,19 +46,20 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setVisible(true);
-        WSContU.publicar();
-        WSContP.publicar();
-        WSContC.publicar();
+        try {
+            WSContU.publicar();
+            WSContP.publicar();
+            WSContC.publicar();
+            contUsuario.cargarUsuarios();
+            contPropuesta.cargarPropuestas();
+            contColaboracion.cargarColaboracion();
+            contUsuario.cargarFavoritos();
+            contPropuesta.propAutomaticas();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
 
-        contUsuario.cargarUsuarios();
-
-        contPropuesta.cargarPropuestas();
-        contColaboracion.cargarColaboracion();
-
-        contUsuario.cargarFavoritos();
-        contPropuesta.propAutomaticas();
         //fabrica.cargarDesdeBD();
-
         //Mandando fruta
         /*
         jMenu1.add(jMenuItem3);

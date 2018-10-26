@@ -5,9 +5,15 @@
  */
 package Logica;
 
+import Logica.DtUsuarioWeb;
+import Logica.dtPago;
+import Logica.dtSigoA;
 import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlList;
 
 /**
  *
@@ -16,17 +22,23 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class dtContieneArray {
 
-    private ArrayList myArreglo;
+    @XmlElement(name = "myarreglo", namespace = "")
+    private ArrayList<String> myArreglo;
+    @XmlElement(name = "nombreArray", namespace = "")
     private String nombreArray;
-    private dtProponente prop;
-    private dtColaborador cola;
-    private dtSigoA sigoA;
-    private dtUsuario usu;
-    private dtColProp colp;
-    private dtPago pago;
-    private dtPaypal paypal;
-    private dtTransferencia trans;
-    private dtTarjetaCredito tarCredito;
+   
+
+
+    public dtContieneArray(ArrayList myArreglo, String nombreArray) {
+        this.myArreglo = myArreglo;
+        this.nombreArray = nombreArray;
+    }
+
+   
+
+    
+
+  
 
     /**
      * Clase que contiene ArrayList para usar en Web recibe dos parametros el
@@ -35,11 +47,7 @@ public class dtContieneArray {
      * @param myArreglo
      * @param nombreArray
      */
-    public dtContieneArray(ArrayList myArreglo, String nombreArray) {
-
-        this.myArreglo = myArreglo;
-        this.nombreArray = nombreArray;
-
+    public dtContieneArray() {
     }
 
     /**
@@ -57,44 +65,21 @@ public class dtContieneArray {
     }
 
     /**
-     * @return the prop
+     * @param myArreglo the myArreglo to set
      */
-    public dtProponente getProp() {
-        return prop;
+    public void setMyArreglo(ArrayList myArreglo) {
+        this.myArreglo = myArreglo;
     }
 
     /**
-     * @return the cola
+     * @param nombreArray the nombreArray to set
      */
-    public dtColaborador getCola() {
-        return cola;
+    public void setNombreArray(String nombreArray) {
+        this.nombreArray = nombreArray;
     }
 
     /**
-     * @return the sigoA
+     * @return the usuarios
      */
-    public dtSigoA getSigoA() {
-        return sigoA;
-    }
-
-    /**
-     * @return the usu
-     */
-    public dtUsuario getUsu() {
-        return usu;
-    }
-
-    /**
-     * @param usu the usu to set
-     */
-    public void setUsu(dtUsuario usu) {
-        this.usu = usu;
-    }
-
-    /**
-     * @return the colp
-     */
-    /*public dtColProp getColp() {
-        return colp;
-    }*/
+   
 }

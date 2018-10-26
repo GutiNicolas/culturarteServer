@@ -5,22 +5,22 @@
  */
 package WebServices;
 
-import Logica.ContUsuario;
-import Logica.culturarteFabrica;
 import Logica.dtContieneArray;
-import Logica.dtFecha;
-import Logica.DtPropuesta;
-import Logica.dtUsuario;
+import Logica.DtUsuarioWeb;
+import Logica.DtFechaWeb;
+import Logica.ContUsuario;
+import Logica.DtPropuestaWeb;
+import Logica.DtSigoAWeb;
+import Logica.DtarregloDtSigoAWEB;
+import Logica.DtarregloDtUsuWeb;
+import Logica.culturarteFabrica;
+import Logica.utilidades;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
-import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 import javax.xml.ws.WebServiceContext;
 
@@ -34,20 +34,20 @@ import javax.xml.ws.WebServiceContext;
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 
 public class WebServiceContUsusario {
-
+    
     @Resource
     private WebServiceContext context;
     culturarteFabrica fb = culturarteFabrica.getInstance();
-    private ContUsuario cU = (ContUsuario)fb.getIContUsuario();
-    
+    private ContUsuario cU = ContUsuario.getInstance();
+    private utilidades util = utilidades.getInstance();
     
     private Endpoint endpoint = null;
     private String direccion;
-
+    
     public WebServiceContUsusario() {
         this.direccion = "http://localhost:8580/ServicioU";
     }
-
+    
     @WebMethod
     public String hola() {
         return "hola";
@@ -57,7 +57,7 @@ public class WebServiceContUsusario {
     public void publicar() {
         try {
             endpoint = Endpoint.publish(direccion, this);
-
+            
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -67,10 +67,10 @@ public class WebServiceContUsusario {
     @WebMethod
     public boolean cargarDatosPrueba() {
         try {
-
+            
             fb.cargarDatosdePrueba();
             return true;
-
+            
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return false;
@@ -105,9 +105,10 @@ public class WebServiceContUsusario {
      * @return
      */
     @WebMethod
-    public dtFecha crearDtFecha(@WebParam(name = "fecha") String fecha) {
-        return (dtFecha) cU.creadtFecha(fecha);
-
+    public DtFechaWeb crearDtFecha(@WebParam(name = "fecha") String fecha) {
+        
+        return cU.crearFecha(fecha);
+        
     }
 
     /**
@@ -118,10 +119,11 @@ public class WebServiceContUsusario {
      * @throws java.lang.Exception
      */
     @WebMethod
-    public void agregarUsu(@WebParam(name = "usuario") dtUsuario usu) throws Exception {
+    public void agregarUsu(@WebParam(name = "usuario") DtUsuarioWeb usu) throws Exception {
         try {
-            cU.agregarUsu(usu);
-
+            
+            cU.agregarUsuWeb(usu);
+            
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
@@ -137,8 +139,9 @@ public class WebServiceContUsusario {
      */
     @WebMethod
     public dtContieneArray listarUsuarios(@WebParam(name = "nick") String nick) {
-        List<String> lista = (List<String>) cU.listarusuarios(nick);
-        dtContieneArray nuevo = new dtContieneArray((ArrayList) lista, null);
+        
+        dtContieneArray nuevo = new dtContieneArray((ArrayList<String>) cU.listarusuarios(nick), null);
+        
         return nuevo;
     }
 
@@ -152,7 +155,9 @@ public class WebServiceContUsusario {
      */
     @WebMethod
     public dtContieneArray cargarLosSeguidosPor(@WebParam(name = "nick") String nick) {
-        dtContieneArray nuevo = new dtContieneArray((ArrayList) cU.cargarlosseguidospor(nick), null);
+        
+        dtContieneArray nuevo = new dtContieneArray((ArrayList<String>) cU.cargarlosseguidospor(nick), null);
+        
         return nuevo;
     }
 
@@ -168,9 +173,9 @@ public class WebServiceContUsusario {
     @WebMethod
     public void seguir(@WebParam(name = "nickusuario") String nickusuario, @WebParam(name = "nickUsuSeguir") String usuSeguir) throws Exception {
         try {
-
+            
             cU.seguir(nickusuario, usuSeguir);
-
+            
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -187,23 +192,23 @@ public class WebServiceContUsusario {
      */
     @WebMethod
     //dtUsuario usuarioLogin(String usu)
-    public dtUsuario usuarioLogin(@WebParam(name = "nickUsuario") String usu, @WebParam(name = "pass") String Pass) {
-        dtUsuario nuevo = (dtUsuario) cU.usuarioLogin(usu);
+    public DtUsuarioWeb usuarioLogin(@WebParam(name = "nickUsuario") String usu, @WebParam(name = "pass") String Pass) {
+        DtUsuarioWeb nuevo = cU.usuarioLoginW(usu);
         if (nuevo.getPass().equals(Pass)) {
             return nuevo;
         }
         return null;
     }
-
+    
     @WebMethod
-    public dtUsuario usuarioLoginSN(@WebParam(name = "nick") String nick) {
-        return (dtUsuario) cU.usuarioLogin(nick);
+    public DtUsuarioWeb usuarioLoginSN(@WebParam(name = "nick") String nick) {
+        return (DtUsuarioWeb) cU.usuarioLoginW(nick);
     }
 
 //////////////////////////////////////////////////////ServletColaboracion funciones
     /**
      * infoPropuesta funcion que recibe un String con el titulo de la propuesta
- y retorna una DtPropuesta.
+     * y retorna una dtPropuesta.
      *
      * Esta func. hace referencia a infoPropuesta() de ContUsuario(). Si se
      * ṕroduce una excepcion retorna null
@@ -212,31 +217,10 @@ public class WebServiceContUsusario {
      * @return
      */
     @WebMethod
-    public DtPropuesta infoPropuesta(@WebParam(name = "titulo") String titulo) {
-       
-        try {
-            DtPropuesta dtp = (DtPropuesta)cU.infoPropuesta(titulo);
-           DtPropuesta retorno = null ;
-           retorno.setTitulop(dtp.getTitulo());
-           retorno.setProponentep(dtp.getProponente());
-           retorno.setDescripcionp(dtp.getDescripcion());
-           retorno.setImagenp(dtp.getImagen());
-           retorno.setLugarp(dtp.getLugar());
-           retorno.setEstadop(dtp.getEstado());
-           retorno.setCategoriap(dtp.getCategoria());
-           retorno.setFechaRealizacionp(dtp.getFechaRealizacion());
-           retorno.setFechapublicadap(dtp.getFechapublicada());
-           retorno.setPrecioentradap(dtp.getPrecioentrada());
-           retorno.setMontorequeridop(dtp.getMontorequerido());
-           retorno.setMontoactualp(dtp.getMontoTotal());
-           retorno.setRetornop(dtp.getRetorno());
-           retorno.setColaboradoresP(dtp.detColaboradores());
-            return retorno;
-        } catch (Exception ex) {
-            Logger.getLogger(WebServiceContUsusario.class.getName()).log(Level.SEVERE, null, ex);
-       return null; 
-        }
-       
+    public DtPropuestaWeb infoPropuesta(@WebParam(name = "titulo") String titulo) {
+        
+        return (DtPropuestaWeb)cU.infoPropuestaWeb(titulo);
+        
     }
 
 /////////////////////////////ServletDejarDeSeguir funciones
@@ -250,7 +234,7 @@ public class WebServiceContUsusario {
      */
     @WebMethod
     public dtContieneArray cargarLosSegPor(@WebParam(name = "nick") String nick) {
-        dtContieneArray nuevo = new dtContieneArray((ArrayList) cU.cargarlosseguidospor(nick), null);
+        dtContieneArray nuevo = new dtContieneArray((ArrayList<String>) cU.cargarlosseguidospor(nick), null);
         return nuevo;
     }
 
@@ -271,28 +255,32 @@ public class WebServiceContUsusario {
 
     @WebMethod
 // public List<dtUsuario> listarusuariosweb
-    public dtContieneArray listarUsuariosWeb(@WebParam(name = "nick") String nick) {
-        dtContieneArray nuevo = new dtContieneArray((ArrayList) cU.listarusuariosweb(nick), null);
+    public DtarregloDtUsuWeb listarUsuariosWeb(@WebParam(name = "nick") String nick) {
+        DtarregloDtUsuWeb nuevo = new DtarregloDtUsuWeb();
+        nuevo.setUsuariosLista((ArrayList<DtUsuarioWeb>) cU.listarusuariosweb(nick));
+        
         return nuevo;
     }
-
+    
     @WebMethod
-    public dtUsuario infoUsuarioGeneral(@WebParam(name = "nick") String nick) {
-        return (dtUsuario) cU.infoUsuarioGeneral(nick);
+    public DtUsuarioWeb infoUsuarioGeneral(@WebParam(name = "nick") String nick) {
+        return (DtUsuarioWeb) cU.infoUsuarioGeneral(nick);
     }
-
+    
     @WebMethod
-    public dtContieneArray listarMisSeguidores(@WebParam(name = "nick") String nick) {
-        dtContieneArray nuevo = new dtContieneArray((ArrayList) cU.listarmisseguidores(nick), null);
+    public DtarregloDtUsuWeb listarMisSeguidores(@WebParam(name = "nick") String nick) {
+        DtarregloDtUsuWeb nuevo = new DtarregloDtUsuWeb();
+        nuevo.setUsuariosLista((ArrayList<DtUsuarioWeb>) cU.listarmisseguidores(nick));
         return nuevo;
     }
-
+    
     @WebMethod
-    public dtContieneArray listarMisSeguidos(@WebParam(name = "nick") String nick) {
-        dtContieneArray nuevo = new dtContieneArray((ArrayList) cU.listarmisseguidos(nick), null);
+    public DtarregloDtSigoAWEB listarMisSeguidos(@WebParam(name = "nick") String nick) {
+        DtarregloDtSigoAWEB nuevo = new DtarregloDtSigoAWEB();
+        nuevo.setArregloSigoA((ArrayList<DtSigoAWeb>) cU.listarmisseguidos(nick));
         return nuevo;
     }
-
+    
     @WebMethod
     // public List<String> mispropuestasfavoritas(String nick) 
     public dtContieneArray misPropFav(@WebParam(name = "nick") String nick) {
@@ -300,10 +288,11 @@ public class WebServiceContUsusario {
         return nuevo;
     }
 /////////////////////////ServletRanking funciones
-    
+
     @WebMethod
-    public dtContieneArray ranking(){
-    dtContieneArray nuevo = new dtContieneArray((ArrayList) cU.ranking(), null);
-    return nuevo;
+    public DtarregloDtUsuWeb ranking() {
+        DtarregloDtUsuWeb nuevo = new DtarregloDtUsuWeb();
+        nuevo.setUsuariosLista((ArrayList<DtUsuarioWeb>) cU.ranking());
+        return nuevo;
     }
 }

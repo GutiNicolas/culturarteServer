@@ -87,20 +87,19 @@ public class ContColaboracion implements iConColaboracion {
     }
 
     @Override
-    public boolean registrarColaboracion(dtColaboracionCompleto cola, dtPago pf) {
+    public boolean registrarColaboracion(DtColaboracionCompWeb cola, dtPago pf) {
 
-        String titulo = (String) cola.getTitulo();
-        String colab = (String) cola.getNickname();
-        int monto = (Integer) cola.getMonto();
-        String retorno = (String) cola.getRetorno();
-        String comentario = (String) cola.getComentario();
+        String titulo = (String) cola.getTituloP();
+        String colab = (String) cola.getNick();
+        int monto = (Integer) cola.getMontoC();
+        String retorno = (String) cola.getRetornoP();
 
         pago pago = null;
         if (pf != null) {
             pago = (pago) crearPago(pf);
         }
 
-        return cUsuario.registrarColaboracion(titulo, colab, monto, retorno, comentario, pago);
+        return cUsuario.registrarColaboracion(titulo, colab, monto, retorno, null, pago);
 
     }
 
@@ -124,7 +123,7 @@ public class ContColaboracion implements iConColaboracion {
     }
 
     @Override
-    public boolean reagistrarPago(String usuario, String tituloP, dtPago pago) {
+    public boolean registrarPagoWeb(String usuario, String tituloP, DtPagoWeb pago) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -134,8 +133,29 @@ public class ContColaboracion implements iConColaboracion {
     }
 
     @Override
-    public List<dtColProp> listarmiscolaboraciones(String nick) {
-        return (List<dtColProp>) cUsuario.listarmiscolaboraciones(nick);
+    public DtarregloDtColCompWeb listarmiscolaboracionesWeb(String nick) {
+        List<dtColProp> listCol = new ArrayList<>();
+                listCol=cUsuario.listarmiscolaboraciones(nick);
+        DtarregloDtColCompWeb nuevo = new DtarregloDtColCompWeb();
+        ArrayList<DtColaboracionCompWeb>arrColWeb= new ArrayList<>();
+        try {
+            for(int i =0; i<listCol.size();i++){
+            arrColWeb.add((DtColaboracionCompWeb)invertirDtColProp((dtColProp)listCol.get(i)));
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return nuevo;
+    }
+
+    private DtColaboracionCompWeb invertirDtColProp(dtColProp colP) {//nick fecha hora monto propuesta
+        DtColaboracionCompWeb nuevo = new DtColaboracionCompWeb();
+        nuevo.setTituloP(colP.getTitulo());
+        nuevo.setNick(colP.getNickname());
+        nuevo.setFechaC((String)colP.getFechaCol().getFecha());
+        nuevo.setHoraC(colP.getHoraCol().getHora());
+        nuevo.setMontoC(colP.getMontoColaborado());
+        return nuevo;
     }
 
     @Override

@@ -18,40 +18,42 @@ import javax.xml.bind.annotation.XmlElementRef;
  *
  * @author Esteban Menendez
  */
-@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class DtPropuesta {
 
-    @XmlElement(name = "titulo", namespace = "")
+public class dtPropuesta {
+
+   
     private String titulo;
-    @XmlElement(name = "descripcion", namespace = "")
+    
     private String descripcion;
-    @XmlElement(name = "imagen", namespace = "")
+    
     private String imagen;
-    @XmlElement(name = "lugar", namespace = "")
+    
     private String lugar;
-    @XmlElement(name = "estado", namespace = "")
+ 
     private String estado;
-    @XmlElement(name = "categoria", namespace = "")
+    
     private String categoria;
-    @XmlElement(name = "proponente", namespace = "")
+  
     private String proponente;
-    @XmlElement(name = "retorno", namespace = "")
+    
     private String retorno;
-    @XmlElement(name = "fechaRealizacion", namespace = "")
+    
     private dtFecha fechaRealizacion;
-    @XmlElement(name = "fechaPublicada", namespace = "")
+    
     private dtFecha fechapublicada;
-    @XmlElement(name = "precioentrada", namespace = "")
+ 
     private int precioentrada;
-    @XmlElement(name = "montorequerido", namespace = "")
+    
     private int montorequerido;
-    @XmlElement(name = "montoactual", namespace = "")
+    
     private int montoactual;
-    @XmlElement(name = "colaboradores", namespace = "")
+    
     private List<String> colaboradores;
 
 //CONSTRUCTOR//
-    public DtPropuesta(DtPropuesta dt, int monto) {
+    
+    
+    public dtPropuesta(dtPropuesta dt, int monto) {
         this.titulo = dt.getTitulo();
         this.descripcion = dt.getDescripcion();
         this.imagen = dt.getImagen();
@@ -68,7 +70,7 @@ public class DtPropuesta {
         this.colaboradores = (ArrayList) dt.detColaboradores();
     }
 
-    public DtPropuesta(String titulo, String descripcion, String imagen, String lugar, String estado, String categoria, String proponente, dtFecha fechaRealizacion, dtFecha fechapublicada, int precioentrada, int montorequerido, int montoactual, String retorno) {
+    public dtPropuesta(String titulo, String descripcion, String imagen, String lugar, String estado, String categoria, String proponente, dtFecha fechaRealizacion, dtFecha fechapublicada, int precioentrada, int montorequerido, int montoactual, String retorno) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.imagen = imagen;
@@ -85,7 +87,7 @@ public class DtPropuesta {
         this.colaboradores = new ArrayList<String>();
     }
 
-    public DtPropuesta(String titulo, String descripcion, String imagen, String lugar, String estado, String categoria, String proponente, dtFecha fechaRealizacion, dtFecha fechapublicada, int precioentrada, int montorequerido, int montoactual, String retorno, List<String> colaboradores) {
+    /*public dtPropuesta(String titulo, String descripcion, String imagen, String lugar, String estado, String categoria, String proponente, dtFecha fechaRealizacion, dtFecha fechapublicada, int precioentrada, int montorequerido, int montoactual, String retorno, List<String> colaboradores) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.imagen = imagen;
@@ -100,9 +102,9 @@ public class DtPropuesta {
         this.montorequerido = montorequerido;
         this.montoactual = montoactual;
         this.colaboradores = colaboradores;
-    }
+    }*/
 
-    public DtPropuesta(String titulo, String proponente) {
+    public dtPropuesta(String titulo, String proponente) {
         this.titulo = titulo;
         this.proponente = proponente;
     }
@@ -178,102 +180,7 @@ public class DtPropuesta {
     public String getRetorno() {
         return retorno;
     }
-
-    /**
-     * @param titulo the titulo to set
-     */
-    public void setTitulop(String titulo) {
-        this.titulo = titulo;
-    }
-
-    /**
-     * @param descripcion the descripcion to set
-     */
-    public void setDescripcionp(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    /**
-     * @param imagen the imagen to set
-     */
-    public void setImagenp(String imagen) {
-        this.imagen = imagen;
-    }
-
-    /**
-     * @param lugar the lugar to set
-     */
-    public void setLugarp(String lugar) {
-        this.lugar = lugar;
-    }
-
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstadop(String estado) {
-        this.estado = estado;
-    }
-
-    /**
-     * @param categoria the categoria to set
-     */
-    public void setCategoriap(String categoria) {
-        this.categoria = categoria;
-    }
-
-    /**
-     * @param proponente the proponente to set
-     */
-    public void setProponentep(String proponente) {
-        this.proponente = proponente;
-    }
-
-    /**
-     * @param retorno the retorno to set
-     */
-    public void setRetornop(String retorno) {
-        this.retorno = retorno;
-    }
-
-    /**
-     * @param fechaRealizacion the fechaRealizacion to set
-     */
-    public void setFechaRealizacionp(dtFecha fechaRealizacion) {
-        this.fechaRealizacion = fechaRealizacion;
-    }
-
-    /**
-     * @param fechapublicada the fechapublicada to set
-     */
-    public void setFechapublicadap(dtFecha fechapublicada) {
-        this.fechapublicada = fechapublicada;
-    }
-
-    /**
-     * @param precioentrada the precioentrada to set
-     */
-    public void setPrecioentradap(int precioentrada) {
-        this.precioentrada = precioentrada;
-    }
-
-    /**
-     * @param montorequerido the montorequerido to set
-     */
-    public void setMontorequeridop(int montorequerido) {
-        this.montorequerido = montorequerido;
-    }
-
-    /**
-     * @param montoactual the montoactual to set
-     */
-    public void setMontoactualp(int montoactual) {
-        this.montoactual = montoactual;
-    }
-
-    /**
-     * @param colaboradores the colaboradores to set
-     */
-    public void setColaboradoresP(List<String> colaboradores) {
-        this.colaboradores = colaboradores;
-    }
+public void addColaboradores(List<String> cola){
+this.colaboradores= (List<String>) cola;
+}
 }

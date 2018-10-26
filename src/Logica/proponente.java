@@ -107,22 +107,22 @@ public class proponente extends usuario {
     }
 
     //METODOS//
-    public DtPropuesta getPropuestas(String idPropuesta) {
+    public dtPropuesta getPropuestas(String idPropuesta) {
         propuesta p = (propuesta) this.propuestasUsuario.get(idPropuesta);
 
-        DtPropuesta prop = new DtPropuesta(p.getTitulo(), p.getDescripcion(), p.getImagen(), p.getLugar(), p.getEstadoActual(), p.getCategoria(), this.getNickname(), p.getFecharealizacion(), p.getFechapublicada(), p.getPrecioEntrada(), p.getMontoRequerido(), 0, p.getRetorno());
+        dtPropuesta prop = new dtPropuesta(p.getTitulo(), p.getDescripcion(), p.getImagen(), p.getLugar(), p.getEstadoActual(), p.getCategoria(), this.getNickname(), p.getFecharealizacion(), p.getFechapublicada(), p.getPrecioEntrada(), p.getMontoRequerido(), 0, p.getRetorno());
         return prop;
 
     }
 
-    public List<DtPropuesta> getTodasPropuestas() {
-        List<DtPropuesta> retornar = new ArrayList<DtPropuesta>();
+    public List<dtPropuesta> getTodasPropuestas() {
+        List<dtPropuesta> retornar = new ArrayList<dtPropuesta>();
         if (this.propuestasUsuario.isEmpty() == false) {
             Iterator it = this.propuestasUsuario.keySet().iterator();
             while (it.hasNext()) {
                 String key = (String) it.next();
                 propuesta p = this.propuestasUsuario.get(key);
-                DtPropuesta dtp = new DtPropuesta(p.getTitulo(), p.getDescripcion(), p.getImagen(), p.getLugar(), p.getEstadoActual(), p.getCategoria(), this.getNickname(), p.getFecharealizacion(), p.getFechapublicada(), p.getPrecioEntrada(), p.getMontoRequerido(), 0, p.getRetorno());
+                dtPropuesta dtp = new dtPropuesta(p.getTitulo(), p.getDescripcion(), p.getImagen(), p.getLugar(), p.getEstadoActual(), p.getCategoria(), this.getNickname(), p.getFecharealizacion(), p.getFechapublicada(), p.getPrecioEntrada(), p.getMontoRequerido(), 0, p.getRetorno());
                 retornar.add(dtp);
             }
         }

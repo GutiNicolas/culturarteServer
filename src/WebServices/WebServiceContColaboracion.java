@@ -6,17 +6,16 @@
 package WebServices;
 
 import Logica.ContColaboracion;
-import Logica.ContUsuario;
-import Logica.dtColaboracionCompleto;
+import Logica.DtColaboracionCompWeb;
+import Logica.DtPagoWeb;
+import Logica.DtarregloDtColCompWeb;
 import Logica.dtContieneArray;
-import Logica.dtPago;
 import java.util.ArrayList;
 import javax.annotation.Resource;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
-import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 import javax.xml.ws.WebServiceContext;
 
@@ -45,20 +44,29 @@ public class WebServiceContColaboracion {
 
     //@WebMethod(exclude = true)
     public void publicar() {
-        endpoint = Endpoint.publish(direccion, this);
+        try {
+               endpoint = Endpoint.publish(direccion, this);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 ///////////////////ServletColaboracion funciones
 
     @WebMethod
     public void registrarColaboracion(@WebParam(name = "tituloProp") String titulo, @WebParam(name = "nick") String nick, @WebParam(name = "monto") int monto, @WebParam(name = "retorno") String retorno) {
-        dtColaboracionCompleto cola = new dtColaboracionCompleto(nick, titulo, null, null, monto, retorno, null);
-        cC.registrarColaboracion(cola, null);
+        DtColaboracionCompWeb nuevo = new DtColaboracionCompWeb();
+        nuevo.setTituloP(titulo);
+        nuevo.setNick(nick);
+        nuevo.setMontoC(monto);
+        nuevo.setRetornoP(retorno);
+        cC.registrarColaboracion(nuevo, null);
     }
 
     @WebMethod
-    public boolean registrarPago(@WebParam(name = "nick") String nick, @WebParam(name = "titulo") String titulo, @WebParam(name = "pago") dtPago pago) {
-        return cC.reagistrarPago(nick, titulo, pago);
+    public boolean registrarPago(@WebParam(name = "nick") String nick, @WebParam(name = "titulo") String titulo, @WebParam(name = "pago") DtPagoWeb pago) {
+        return cC.registrarPagoWeb(nick, titulo, pago);
     }
+ 
     @WebMethod
     public String armarRetorno(@WebParam(name="cbe")String cbe,@WebParam(name="cbp")String cbp){
     return (String)cC.armarretorno(cbe, cbp);
@@ -74,8 +82,8 @@ public class WebServiceContColaboracion {
     
     //public List<dtColProp> listarmiscolaboraciones(String nick)
     @WebMethod 
-    public dtContieneArray listarMisColaboraciones(@WebParam(name="nick")String nick){
-    dtContieneArray nuevo = new dtContieneArray((ArrayList) cC.listarmiscolaboraciones(nick), null);
-    return nuevo;
+    public DtarregloDtColCompWeb listarMisColaboraciones(@WebParam(name="nick")String nick){
+   
+    return (DtarregloDtColCompWeb)cC.listarmiscolaboracionesWeb(nick);
     }
 }

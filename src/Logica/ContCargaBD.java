@@ -130,7 +130,7 @@ public class ContCargaBD implements iContCargaBD {
                 dtCategoria dtcat = dtcate.get(i);
                 for (int p = 0; p < catPer.size(); p++) {
                     dtCategoria control = catPer.get(p);
-                    System.err.println(dtcat.getNombre() + "  " + control.getNombre());
+                    System.out.println(dtcat.getNombre() + " - " + control.getNombre());
                     if (comparaCadenas(dtcat.getNombre(), control.getNombre())) {
                         categoriasPer.add(dtcat);
 
@@ -167,6 +167,7 @@ public class ContCargaBD implements iContCargaBD {
 
     public void setearEstadoPropuesta(dtEstadosPropuestas estProp) {
         try {
+            System.out.println("setearEstadoPropuesta incio...");
             for (int i = 0; i < estaPropPer.size(); i++) {
                 dtEstadosPropuestas dtcontrol = (dtEstadosPropuestas) estaPropPer.get(i);
                 String estado = null, titulo = null;
@@ -181,6 +182,7 @@ public class ContCargaBD implements iContCargaBD {
                     }
                 }
             }
+            System.out.println("setearEstadoPropuesta fin...");
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
