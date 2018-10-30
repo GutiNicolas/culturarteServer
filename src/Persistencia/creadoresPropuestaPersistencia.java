@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class creadoresPropuestaPersistencia {
     
-    static ConexionDB conexion = new ConexionDB();
+   static ConexionDB conexion = ConexionDB.getInstance();
     
     public static boolean agregarCreador(String proponente, String titulo) {
         try {

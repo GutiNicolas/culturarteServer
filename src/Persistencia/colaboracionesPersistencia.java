@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class colaboracionesPersistencia {
 
-    static ConexionDB conexion = new ConexionDB();
+    static ConexionDB conexion = ConexionDB.getInstance();
 
     public boolean registrarColaboracion(String colaborador, String titulo, String fecha, String hora, String monto, String retorno, String comentario) {
         try {

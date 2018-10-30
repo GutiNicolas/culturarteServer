@@ -78,4 +78,7 @@ public interface iConUsuario {
     
     public abstract DtUsuarioWeb usuarioLoginW(String nick);
     
+    public abstract DtUsuarioWeb usuarioLoginA(String nick);
+    
+    
 }

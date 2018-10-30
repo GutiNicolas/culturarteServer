@@ -42,19 +42,33 @@ public class WebServiceContPropuesta {
         this.direccion = "http://localhost:8680/ServicioP";
     }
 
+    public WebServiceContPropuesta(String direccion) {
+        this.direccion = direccion;
+    }
+
     @WebMethod
     public String hola() {
         return "hola";
     }
 
-    //@WebMethod(exclude = true)
+    public boolean despublicar() {
+        try {
+            endpoint.stop();
+            return true;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+
+    }
+
     public void publicar() {
         try {
-             endpoint = Endpoint.publish(direccion, this);
+            endpoint = Endpoint.publish(direccion, this);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-       
+
     }
 ///////////////////funciones generales
 
@@ -227,7 +241,7 @@ public class WebServiceContPropuesta {
     @WebMethod
     public DtarregloDtPropWeb listarPropEnCategoria(@WebParam(name = "categorioa") String cat) {
         DtarregloDtPropWeb nuevo = new DtarregloDtPropWeb();
-        nuevo.setArregloProp((ArrayList<DtPropuestaWeb>)cP.listarpropuestasencategoriaWeb(cat));
+        nuevo.setArregloProp((ArrayList<DtPropuestaWeb>) cP.listarpropuestasencategoriaWeb(cat));
         return nuevo;
     }
 

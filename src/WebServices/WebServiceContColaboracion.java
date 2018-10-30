@@ -34,7 +34,11 @@ public class WebServiceContColaboracion {
     ContColaboracion cC = ContColaboracion.getInstance();
 
     public WebServiceContColaboracion() {
-        this.direccion = "http://localhost:8780/ServicioC";
+
+    }
+
+    public WebServiceContColaboracion(String direccion) {
+        this.direccion = direccion;
     }
 
     @WebMethod
@@ -42,10 +46,20 @@ public class WebServiceContColaboracion {
         return "hola";
     }
 
-    //@WebMethod(exclude = true)
+    public boolean despublicar() {
+        try {
+            endpoint.stop();
+            return true;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+
+    }
+
     public void publicar() {
         try {
-               endpoint = Endpoint.publish(direccion, this);
+            endpoint = Endpoint.publish(direccion, this);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -66,10 +80,10 @@ public class WebServiceContColaboracion {
     public boolean registrarPago(@WebParam(name = "nick") String nick, @WebParam(name = "titulo") String titulo, @WebParam(name = "pago") DtPagoWeb pago) {
         return cC.registrarPagoWeb(nick, titulo, pago);
     }
- 
+
     @WebMethod
-    public String armarRetorno(@WebParam(name="cbe")String cbe,@WebParam(name="cbp")String cbp){
-    return (String)cC.armarretorno(cbe, cbp);
+    public String armarRetorno(@WebParam(name = "cbe") String cbe, @WebParam(name = "cbp") String cbp) {
+        return (String) cC.armarretorno(cbe, cbp);
     }
 //////////////////////////////ServletConsultaDePerfil funciones
 
@@ -79,11 +93,11 @@ public class WebServiceContColaboracion {
         dtContieneArray nuevo = new dtContieneArray((ArrayList) cC.listarColaboraciones(nick), null);
         return nuevo;
     }
-    
+
     //public List<dtColProp> listarmiscolaboraciones(String nick)
-    @WebMethod 
-    public DtarregloDtColCompWeb listarMisColaboraciones(@WebParam(name="nick")String nick){
-   
-    return (DtarregloDtColCompWeb)cC.listarmiscolaboracionesWeb(nick);
+    @WebMethod
+    public DtarregloDtColCompWeb listarMisColaboraciones(@WebParam(name = "nick") String nick) {
+
+        return (DtarregloDtColCompWeb) cC.listarmiscolaboracionesWeb(nick);
     }
 }

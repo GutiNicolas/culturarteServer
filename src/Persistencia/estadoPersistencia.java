@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class estadoPersistencia {
 
-    static ConexionDB conexion = new ConexionDB();
+    static ConexionDB conexion = ConexionDB.getInstance();
     utilidades util = new utilidades();
 //    ContCargaBD contCarga = ContCargaBD.getInstance();
 

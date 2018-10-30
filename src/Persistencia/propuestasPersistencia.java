@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public class propuestasPersistencia {
 
-    static ConexionDB conexion = new ConexionDB();
+   static ConexionDB conexion = ConexionDB.getInstance();
     utilidades util = new utilidades();
 
     public void altaPropuesta(dtPropuestasBD dtp) throws SQLException {

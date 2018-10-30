@@ -16,46 +16,29 @@ import java.util.logging.Logger;
  * @author apias
  */
 public class ConexionDB {
-    private  final String host="localhost";
-    private  final String port="3306";
-    private  final String db="cultuRarte";
-    private  final String user="administrador";
-    private  final String pass="1234";
+    private  String host;//="localhost"
+    private  String port;//="3306"
+    private  String db;//="cultuRarte"
+    private  String user;//="administrador"
+    private  String pass;//= "1234"
     private static Connection conexion=null;
-    private Connection con = null;
-
-
 
     
-//    public Connection getConn(){
-//        try {
-//            con = DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/"+db, user, pass);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ConexionDB.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return con;
-//    }
-    
-    public static Connection getConexionConfigurada(String h, String p, String db, String u, String pas) {
-        if (conexion == null) {
-            try {              
-                         
-                Driver driver=new com.mysql.jdbc.Driver();
-                DriverManager.registerDriver(driver);
-                conexion = DriverManager.getConnection("jdbc:mysql://"+h+":"+p+"/"+db, u, pas);
-                } catch (SQLException ex) {
-                System.err.println(ex.getMessage());}
+    private static ConexionDB instance;
+
+    public static ConexionDB getInstance() {
+           if (instance == null) {
+            instance = new ConexionDB();
         }
-        return conexion;
+        return instance;
     }
-    
     
     public Connection getConexion() {
         if (conexion == null) {
             try {              
                 Driver driver=new com.mysql.jdbc.Driver();
                 DriverManager.registerDriver(driver);                
-                conexion = DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/"+db, user, pass);
+                conexion = DriverManager.getConnection("jdbc:mysql://"+getHost()+":"+getPort()+"/"+getDb(), getUser(), getPass());
                 } catch (SQLException ex) {
                 System.err.println(ex.getMessage());
             }
@@ -87,6 +70,78 @@ public class ConexionDB {
             }
         }        
     }
+
+    /**
+     * @return the host
+     */
+    public String getHost() {
+        return host;
+    }
+
+    /**
+     * @param host the host to set
+     */
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    /**
+     * @return the port
+     */
+    public String getPort() {
+        return port;
+    }
+
+    /**
+     * @param port the port to set
+     */
+    public void setPort(String port) {
+        this.port = port;
+    }
+
+    /**
+     * @return the db
+     */
+    public String getDb() {
+        return db;
+    }
+
+    /**
+     * @param db the db to set
+     */
+    public void setDb(String db) {
+        this.db = db;
+    }
+
+    /**
+     * @return the user
+     */
+    public String getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    /**
+     * @return the pass
+     */
+    public String getPass() {
+        return pass;
+    }
+
+    /**
+     * @param pass the pass to set
+     */
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+   
     
     
     

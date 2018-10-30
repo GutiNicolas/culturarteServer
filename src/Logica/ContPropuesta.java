@@ -17,8 +17,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -31,14 +29,14 @@ public class ContPropuesta implements iConPropuesta {
     private ArrayList<String> listaImagenes = new ArrayList<>();
     private static ContPropuesta instance;
     private ContUsuario cUsuario = ContUsuario.getInstance();
-    private Map<String, categoria> categorias = new HashMap<String, categoria>();
-    private Map<String, estado> estados = new HashMap<String, estado>();
+    private Map<String, categoria> categorias = new HashMap<>();
+    private Map<String, estado> estados = new HashMap<>();
     categoriaPersistencia catPer = new categoriaPersistencia();
     estadoPersistencia estPer = new estadoPersistencia();
     propuestasPersistencia propPer = new propuestasPersistencia();
     estadoPropuestaPersistencia estPropPer = new estadoPropuestaPersistencia();
     ArrayList<propuesta> propuestas = new ArrayList<>();
-    private Map<String, Integer> idEstado = new HashMap<String, Integer>();
+    private Map<String, Integer> idEstado = new HashMap<>();
     private ContCargaBD contCarga = ContCargaBD.getInstance();
     ArrayList<propuesta> propFiltradaING = new ArrayList<>();
     ArrayList<propuesta> propCambioEstadoAuto = new ArrayList<>();
@@ -46,6 +44,8 @@ public class ContPropuesta implements iConPropuesta {
     utilidades util = utilidades.getInstance();
     ArrayList< dtCategoria> cat = new ArrayList<>();
     ArrayList<String> estadosString = new ArrayList<>();
+    private String imagenDestino="/home/juan/ProgAplicaciones2018/Servidor/Imagenes_mover/imagenesProp/";
+    private String imagenInicio="/home/juan/ProgAplicaciones2018/Servidor/imagenesProp/";
 
     private void cargaridEstado(ArrayList<dtEstado> nomEstados) {
         try {
@@ -71,16 +71,14 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     public boolean moverImagenesProp() {
-        //"/home/juan/ProgAplicaciones2018/progAplicaciones/Imagenes_mover/imagenesProp/"
-        int tam = listaImagenes.size();
 
         try {
             for (int i = 0; i < listaImagenes.size(); i++) {
                 String inicio = null;
                 String destino = null;
                 String imagen = listaImagenes.get(i);
-                inicio = "/home/juan/ProgAplicaciones2018/Servidor/Imagenes_mover/imagenesProp/" + imagen;
-                destino = "/home/juan/ProgAplicaciones2018/Servidor/imagenesProp/" + imagen;
+                inicio = imagenInicio + imagen;
+                destino = imagenDestino + imagen;
                 System.out.println(destino);
                 util.copiarArchivo(inicio, destino);
             }
@@ -93,7 +91,7 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     public void sacarRutaImagen(dtPropuestasBD prop) {
-        if (prop.getImagen() != null&&prop.getImagen().equals("null")!=true&&prop.getImagen().equals("")) {
+        if (prop.getImagen() != null && prop.getImagen().equals("null") != true && prop.getImagen().equals("")) {
             String imagen = prop.getImagen();
             listaImagenes.add(imagen);
         }
@@ -1011,6 +1009,34 @@ public class ContPropuesta implements iConPropuesta {
         retorno.setAnio(aux.getAnio());
         retorno.setFecha(aux.getFecha());
         return retorno;
+    }
+
+    /**
+     * @return the imagenDestino
+     */
+    public String getImagenDestino() {
+        return imagenDestino;
+    }
+
+    /**
+     * @param imagenDestino the imagenDestino to set
+     */
+    public void setImagenDestino(String imagenDestino) {
+        this.imagenDestino = imagenDestino;
+    }
+
+    /**
+     * @return the imagenInicio
+     */
+    public String getImagenInicio() {
+        return imagenInicio;
+    }
+
+    /**
+     * @param imagenInicio the imagenInicio to set
+     */
+    public void setImagenInicio(String imagenInicio) {
+        this.imagenInicio = imagenInicio;
     }
 
 }

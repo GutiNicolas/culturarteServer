@@ -5,21 +5,41 @@
  */
 package Presentacion;
 
+import Logica.ContCargaBD;
+import Logica.culturarteFabrica;
 import Persistencia.ConexionDB;
+import java.io.IOException;
 import java.sql.Connection;
-
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author juan
  */
 public class Configuracion_Culturarte extends javax.swing.JFrame {
+    
+    JFileChooser jF = new JFileChooser();
+    JFileChooser jFProp = new JFileChooser();
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("Properties", "properties", "TXT", "txt");
+    String rutaUini, rutaUdes, rutaPini, rutaPdes;
+    HashMap<String, String> configProperties = new HashMap<>();
+    ContCargaBD contCarga = ContCargaBD.getInstance();
+    culturarteFabrica cF = culturarteFabrica.getInstance();
 
     /**
      * Creates new form Configuracion_Culturarte
      */
     public Configuracion_Culturarte() {
         initComponents();
+        cargarPropLogica();
+        bloquearTxt();
+        jF.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
     }
 
     /**
@@ -30,264 +50,272 @@ public class Configuracion_Culturarte extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        txtrutaperfil = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtrutapropuesta = new javax.swing.JTextField();
-        btnaceptarperfil = new javax.swing.JButton();
-        btnaceptarprop = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        txtrutacargadedatos = new javax.swing.JTextField();
-        btnaceptarcarga = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        txthost = new javax.swing.JTextField();
-        txtpuerto = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtbd = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txtuser = new javax.swing.JTextField();
-        txtpass = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        btnaceptar = new javax.swing.JButton();
-        btncancelar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        txt_wscname = new javax.swing.JTextField();
+        txt_wscip = new javax.swing.JTextField();
+        txt_wscpuerto = new javax.swing.JTextField();
+        txt_wspname = new javax.swing.JTextField();
+        txt_wspip = new javax.swing.JTextField();
+        txt_wsppuerto = new javax.swing.JTextField();
+        txt_wsuname = new javax.swing.JTextField();
+        txt_wsuip = new javax.swing.JTextField();
+        txt_wsupuerto = new javax.swing.JTextField();
+        txt_database = new javax.swing.JTextField();
+        txt_puertodb = new javax.swing.JTextField();
+        txt_userdb = new javax.swing.JTextField();
+        txt_passwdb = new javax.swing.JTextField();
+        txt_hostdb = new javax.swing.JTextField();
+        txt_imgUsuIni = new javax.swing.JTextField();
+        txt_imgUsuDes = new javax.swing.JTextField();
+        txt_imgPropIni = new javax.swing.JTextField();
+        txt_imgPropDes = new javax.swing.JTextField();
+        btn_imgUsuIni = new javax.swing.JButton();
+        btn_imgUsuDes = new javax.swing.JButton();
+        btn_imgPropIni = new javax.swing.JButton();
+        btn_imgPropDes = new javax.swing.JButton();
+        btn_editar = new javax.swing.JButton();
+        btn_aceptar = new javax.swing.JButton();
+        btn_cancelar = new javax.swing.JButton();
+        btn_propWeb = new javax.swing.JButton();
+        btn_levantarP = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 6, 0, 0);
-        jPanel2.add(jLabel2, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 12;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 201;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 5, 0, 0);
-        jPanel2.add(txtrutaperfil, gridBagConstraints);
+        jLabel10.setText("wscname");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 6, 0, 0);
-        jPanel2.add(jLabel3, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 12;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 201;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 5, 0, 0);
-        jPanel2.add(txtrutapropuesta, gridBagConstraints);
+        jLabel1.setText("wscip");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        btnaceptarperfil.addActionListener(new java.awt.event.ActionListener() {
+        jLabel11.setText("wscpuerto");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
+        jLabel12.setText("paswdb");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
+
+        jLabel13.setText("userdb");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
+
+        jLabel14.setText("imgusudes");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, -1));
+
+        jLabel15.setText("hostdb");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
+
+        jLabel16.setText("imgpropdes");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, -1));
+
+        jLabel17.setText("puertodb");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+
+        jLabel18.setText("wsupuerto");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+
+        jLabel19.setText("wspname");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+
+        jLabel20.setText("wspip");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+
+        jLabel21.setText("wsppuerto");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        jLabel22.setText("imgusuini");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+
+        jLabel25.setText("imgpropini");
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, -1));
+
+        jLabel26.setText("database");
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
+
+        jLabel27.setText("wsuname");
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+
+        jLabel28.setText("wsuip");
+        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+        jPanel1.add(txt_wscname, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 110, -1));
+        jPanel1.add(txt_wscip, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 110, -1));
+        jPanel1.add(txt_wscpuerto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 110, -1));
+        jPanel1.add(txt_wspname, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 110, -1));
+        jPanel1.add(txt_wspip, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 110, -1));
+        jPanel1.add(txt_wsppuerto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 110, -1));
+        jPanel1.add(txt_wsuname, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 110, -1));
+        jPanel1.add(txt_wsuip, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 110, -1));
+
+        txt_wsupuerto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnaceptarperfilActionPerformed(evt);
+                txt_wsupuertoActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 36;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 14;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 32, 0, 14);
-        jPanel2.add(btnaceptarperfil, gridBagConstraints);
+        jPanel1.add(txt_wsupuerto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 110, -1));
+        jPanel1.add(txt_database, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 110, -1));
+        jPanel1.add(txt_puertodb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 110, -1));
+        jPanel1.add(txt_userdb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 110, -1));
+        jPanel1.add(txt_passwdb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 110, -1));
+        jPanel1.add(txt_hostdb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 110, -1));
+        jPanel1.add(txt_imgUsuIni, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 110, -1));
+        jPanel1.add(txt_imgUsuDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 110, -1));
+        jPanel1.add(txt_imgPropIni, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 110, -1));
+        jPanel1.add(txt_imgPropDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 110, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 36;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 14;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 32, 0, 14);
-        jPanel2.add(btnaceptarprop, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 6, 0, 0);
-        jPanel2.add(jLabel4, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 12;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 201;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 5, 0, 0);
-        jPanel2.add(txtrutacargadedatos, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 36;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 14;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 32, 0, 14);
-        jPanel2.add(btnaceptarcarga, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 6, 0, 0);
-        jPanel2.add(jLabel5, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 11;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 172;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 29, 0, 0);
-        jPanel2.add(txthost, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 11;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 162;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 39, 0, 0);
-        jPanel2.add(txtpuerto, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 6, 0, 0);
-        jPanel2.add(jLabel6, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 6, 0, 0);
-        jPanel2.add(jLabel7, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.gridwidth = 10;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 146;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 27, 0, 0);
-        jPanel2.add(txtbd, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 6, 0, 0);
-        jPanel2.add(jLabel8, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 10;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 146;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 27, 0, 0);
-        jPanel2.add(txtuser, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 17;
-        gridBagConstraints.gridwidth = 10;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 146;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 27, 0, 0);
-        jPanel2.add(txtpass, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 17;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 6, 0, 0);
-        jPanel2.add(jLabel9, gridBagConstraints);
-
-        btnaceptar.addActionListener(new java.awt.event.ActionListener() {
+        btn_imgUsuIni.setText("Buscar");
+        btn_imgUsuIni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnaceptarActionPerformed(evt);
+                btn_imgUsuIniActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 23;
-        gridBagConstraints.gridy = 17;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 21, 92, 0);
-        jPanel2.add(btnaceptar, gridBagConstraints);
+        jPanel1.add(btn_imgUsuIni, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 24;
-        gridBagConstraints.gridy = 17;
-        gridBagConstraints.gridwidth = 13;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 43, 92, 0);
-        jPanel2.add(btncancelar, gridBagConstraints);
+        btn_imgUsuDes.setText("Buscar");
+        btn_imgUsuDes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_imgUsuDesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_imgUsuDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 19, 0, 18);
-        getContentPane().add(jPanel2, gridBagConstraints);
+        btn_imgPropIni.setText("Buscar");
+        btn_imgPropIni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_imgPropIniActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_imgPropIni, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
+
+        btn_imgPropDes.setText("Buscar");
+        btn_imgPropDes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_imgPropDesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_imgPropDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, -1, -1));
+
+        btn_editar.setText("Editar");
+        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, -1));
+
+        btn_aceptar.setText("Aceptar");
+        btn_aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_aceptarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, -1, -1));
+
+        btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 400, -1, -1));
+
+        btn_propWeb.setText("Generar Properties Web");
+        btn_propWeb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_propWebActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_propWeb, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, -1, -1));
+
+        btn_levantarP.setText("Cargar Archivo");
+        btn_levantarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_levantarPActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_levantarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
+
+        getContentPane().add(jPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaceptarActionPerformed
+    private void btn_imgUsuDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imgUsuDesActionPerformed
+        jF.showOpenDialog(this);
+        txt_imgUsuDes.setText(jF.getSelectedFile().getPath());
         // TODO add your handling code here:
-        if(txthost.getText().isEmpty()!=true && txtpuerto.getText().isEmpty()!=true && txtbd.getText().isEmpty()!=true && txtuser.getText().isEmpty()!=true && txtpass.getText().isEmpty()!=true){
- //           ConexionDB.cerrar();
-            Connection conexionConfigurada = ConexionDB.getConexionConfigurada(txthost.getText(),txtpuerto.getText(),txtbd.getText(),txtuser.getText(),txtpass.getText()); 
-             javax.swing.JOptionPane.showMessageDialog(null,"Configuracion realizada con exito");
-             limpiarcampos();
-        }
-        else{
-            javax.swing.JOptionPane.showMessageDialog(null,"Error rellene todos los campos");
-            limpiarcampos();
-        }
-    }//GEN-LAST:event_btnaceptarActionPerformed
+    }//GEN-LAST:event_btn_imgUsuDesActionPerformed
 
-    private void btnaceptarperfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaceptarperfilActionPerformed
+    private void txt_wsupuertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_wsupuertoActionPerformed
         // TODO add your handling code here:
-        if(txtrutaperfil.getText().isEmpty()!=true){
-            
-        }
-    }//GEN-LAST:event_btnaceptarperfilActionPerformed
- 
-    public void limpiarcampos(){
-        this.txtbd.setText("");
-        this.txthost.setText("");
-        this.txtpass.setText("");
-        this.txtrutacargadedatos.setText("");
-        this.txtpuerto.setText("");
-        this.txtrutaperfil.setText("");
-        this.txtrutapropuesta.setText("");
-        this.txtuser.setText("");
-    }
+    }//GEN-LAST:event_txt_wsupuertoActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void btn_imgUsuIniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imgUsuIniActionPerformed
+        jF.showOpenDialog(this);
+        txt_imgUsuIni.setText(jF.getSelectedFile().getPath());
+// TODO add your handling code here:
+    }//GEN-LAST:event_btn_imgUsuIniActionPerformed
+
+    private void btn_imgPropIniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imgPropIniActionPerformed
+        jF.showOpenDialog(this);
+        txt_imgPropIni.setText(jF.getSelectedFile().getPath());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_imgPropIniActionPerformed
+
+    private void btn_imgPropDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imgPropDesActionPerformed
+        jF.showOpenDialog(this);
+        txt_imgPropDes.setText(jF.getSelectedFile().getPath());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_imgPropDesActionPerformed
+
+    private void btn_propWebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_propWebActionPerformed
+        jF.showOpenDialog(this);
+        String oath = jF.getSelectedFile().getPath();
+        contCarga.crearPropertiesWebapp(oath);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_propWebActionPerformed
+
+    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+        desbloquearTxt();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
+        boolean setearNuevosAtributos = setearNuevosAtributos();
+        // TODO add your handling code here:
+        ;
+    }//GEN-LAST:event_btn_aceptarActionPerformed
+
+    private void btn_levantarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_levantarPActionPerformed
+        jFProp.setFileFilter(filter);
+        jFProp.showOpenDialog(this);
+        listarNuevo((HashMap<String, String>) contCarga.levantarYCargar((String) jFProp.getSelectedFile().getPath()));
+        btn_aceptar.setEnabled(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_levantarPActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -324,27 +352,232 @@ public class Configuracion_Culturarte extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnaceptar;
-    private javax.swing.JButton btnaceptarcarga;
-    private javax.swing.JButton btnaceptarperfil;
-    private javax.swing.JButton btnaceptarprop;
-    private javax.swing.JButton btncancelar;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtbd;
-    private javax.swing.JTextField txthost;
-    private javax.swing.JTextField txtpass;
-    private javax.swing.JTextField txtpuerto;
-    private javax.swing.JTextField txtrutacargadedatos;
-    private javax.swing.JTextField txtrutaperfil;
-    private javax.swing.JTextField txtrutapropuesta;
-    private javax.swing.JTextField txtuser;
+    private javax.swing.JButton btn_aceptar;
+    private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_editar;
+    private javax.swing.JButton btn_imgPropDes;
+    private javax.swing.JButton btn_imgPropIni;
+    private javax.swing.JButton btn_imgUsuDes;
+    private javax.swing.JButton btn_imgUsuIni;
+    private javax.swing.JButton btn_levantarP;
+    private javax.swing.JButton btn_propWeb;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txt_database;
+    private javax.swing.JTextField txt_hostdb;
+    private javax.swing.JTextField txt_imgPropDes;
+    private javax.swing.JTextField txt_imgPropIni;
+    private javax.swing.JTextField txt_imgUsuDes;
+    private javax.swing.JTextField txt_imgUsuIni;
+    private javax.swing.JTextField txt_passwdb;
+    private javax.swing.JTextField txt_puertodb;
+    private javax.swing.JTextField txt_userdb;
+    private javax.swing.JTextField txt_wscip;
+    private javax.swing.JTextField txt_wscname;
+    private javax.swing.JTextField txt_wscpuerto;
+    private javax.swing.JTextField txt_wspip;
+    private javax.swing.JTextField txt_wspname;
+    private javax.swing.JTextField txt_wsppuerto;
+    private javax.swing.JTextField txt_wsuip;
+    private javax.swing.JTextField txt_wsuname;
+    private javax.swing.JTextField txt_wsupuerto;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarPropLogica() {
+        configProperties.clear();
+        configProperties = (HashMap<String, String>) contCarga.getPropiedadesString();
+        txt_database.setText(configProperties.get("database"));
+        txt_hostdb.setText(configProperties.get("hostdb"));
+        txt_puertodb.setText(configProperties.get("puertodb"));
+        txt_userdb.setText(configProperties.get("userdb"));
+        txt_passwdb.setText(configProperties.get("paswdb"));
+        txt_wsuname.setText(configProperties.get("wsuname"));
+        txt_wsuip.setText(configProperties.get("wsuip"));
+        txt_wsupuerto.setText(configProperties.get("wsupuerto"));
+        txt_wspname.setText(configProperties.get("wspname"));
+        txt_wspip.setText(configProperties.get("wspip"));
+        txt_wsppuerto.setText(configProperties.get("wsppuerto"));
+        txt_wscname.setText(configProperties.get("wscname"));
+        txt_wscip.setText(configProperties.get("wscip"));
+        txt_wscpuerto.setText(configProperties.get("wscpuerto"));
+        txt_imgUsuIni.setText(configProperties.get("imgusuini"));
+        txt_imgUsuDes.setText(configProperties.get("imgusudes"));
+        txt_imgPropIni.setText(configProperties.get("imgpropini"));
+        txt_imgPropDes.setText(configProperties.get("imgpropdes"));
+    }
+    
+    private void listarNuevo(HashMap<String, String> prop) {
+        txt_database.setText(prop.get("database"));
+        txt_hostdb.setText(prop.get("hostdb"));
+        txt_puertodb.setText(prop.get("puertodb"));
+        txt_userdb.setText(prop.get("userdb"));
+        txt_passwdb.setText(prop.get("paswdb"));
+        txt_wsuname.setText(prop.get("wsuname"));
+        txt_wsuip.setText(prop.get("wsuip"));
+        txt_wsupuerto.setText(prop.get("wsupuerto"));
+        txt_wspname.setText(prop.get("wspname"));
+        txt_wspip.setText(prop.get("wspip"));
+        txt_wsppuerto.setText(prop.get("wsppuerto"));
+        txt_wscname.setText(prop.get("wscname"));
+        txt_wscip.setText(prop.get("wscip"));
+        txt_wscpuerto.setText(prop.get("wscpuerto"));
+        txt_imgUsuIni.setText(prop.get("imgusuini"));
+        txt_imgUsuDes.setText(prop.get("imgusudes"));
+        txt_imgPropIni.setText(prop.get("imgpropini"));
+        txt_imgPropDes.setText(prop.get("imgpropdes"));
+    }
+    
+    private void bloquearTxt() {
+        btn_aceptar.setEnabled(false);
+        btn_imgPropDes.setEnabled(false);
+        btn_imgPropIni.setEnabled(false);
+        btn_imgUsuDes.setEnabled(false);
+        btn_imgUsuIni.setEnabled(false);
+        txt_database.setEditable(false);
+        txt_hostdb.setEditable(false);
+        txt_puertodb.setEditable(false);
+        txt_userdb.setEditable(false);
+        txt_passwdb.setEditable(false);
+        txt_wsuname.setEditable(false);
+        txt_wsuip.setEditable(false);
+        txt_wsupuerto.setEditable(false);
+        txt_wspip.setEditable(false);
+        txt_wspname.setEditable(false);
+        txt_wsppuerto.setEditable(false);
+        txt_wscip.setEditable(false);
+        txt_wscname.setEditable(false);
+        txt_wscpuerto.setEditable(false);
+        txt_imgUsuIni.setEditable(false);
+        txt_imgUsuDes.setEditable(false);
+        txt_imgPropIni.setEditable(false);
+        txt_imgPropDes.setEditable(false);
+    }
+    
+    private void desbloquearTxt() {
+        btn_aceptar.setEnabled(true);
+        btn_imgPropDes.setEnabled(true);
+        btn_imgPropIni.setEnabled(true);
+        btn_imgUsuDes.setEnabled(true);
+        btn_imgUsuIni.setEnabled(true);
+        txt_database.setEditable(true);
+        txt_hostdb.setEditable(true);
+        txt_puertodb.setEditable(true);
+        txt_userdb.setEditable(true);
+        txt_passwdb.setEditable(true);
+        txt_wsuname.setEditable(true);
+        txt_wsuip.setEditable(true);
+        txt_wsupuerto.setEditable(true);
+        txt_wspip.setEditable(true);
+        txt_wspname.setEditable(true);
+        txt_wsppuerto.setEditable(true);
+        txt_wscip.setEditable(true);
+        txt_wscname.setEditable(true);
+        txt_wscpuerto.setEditable(true);
+        txt_imgUsuIni.setEditable(true);
+        txt_imgUsuDes.setEditable(true);
+        txt_imgPropIni.setEditable(true);
+        txt_imgPropDes.setEditable(true);
+    }
+    
+    private boolean setearNuevosAtributos() {
+        if (!verficaCambio("database", txt_database.getText())) {
+            configProperties.replace("database", txt_database.getText());
+        }
+        
+        if (!verficaCambio("hostdb", txt_hostdb.getText())) {
+            configProperties.replace("hostdb", txt_hostdb.getText());
+        }
+        
+        if (!verficaCambio("paswdb", txt_passwdb.getText())) {
+            configProperties.replace("paswdb", txt_passwdb.getText());
+        }
+        
+        if (!verficaCambio("puertodb", txt_puertodb.getText())) {
+            configProperties.replace("puertodb", txt_puertodb.getText());
+        }
+        
+        if (!verficaCambio("userdb", txt_userdb.getText())) {
+            configProperties.replace("userdb", txt_userdb.getText());
+        }
+        
+        if (!verficaCambio("wscip", txt_wscip.getText())) {
+            configProperties.replace("wscip", txt_wscip.getText());
+        }
+        
+        if (!verficaCambio("wscname", txt_wscname.getText())) {
+            configProperties.replace("wscname", txt_wscname.getText());
+        }
+        
+        if (!verficaCambio("wscpuerto", txt_wscpuerto.getText())) {
+            configProperties.replace("wscpuerto", txt_wscpuerto.getText());
+        }
+        
+        if (!verficaCambio("wspip", txt_wspip.getText())) {
+            configProperties.replace("wspip", txt_wspip.getText());
+        }
+        
+        if (!verficaCambio("wspname", txt_wspname.getText())) {
+            configProperties.replace("wspname", txt_wspname.getText());
+        }
+        
+        if (!verficaCambio("wsppuerto", txt_wsppuerto.getText())) {
+            configProperties.replace("wsppuerto", txt_wsppuerto.getText());
+        }
+        
+        if (!verficaCambio("wsuip", txt_wsuip.getText())) {
+            configProperties.replace("wsuip", txt_wsuip.getText());
+        }
+        
+        if (!verficaCambio("wsuname", txt_wsuname.getText())) {
+            configProperties.replace("wsuname", txt_wsuname.getText());
+        }
+        
+        if (!verficaCambio("wsupuerto", txt_wsupuerto.getText())) {
+            configProperties.replace("wsupuerto", txt_wsupuerto.getText());
+        }
+        if (!verficaCambio("imgusudes", txt_imgUsuDes.getText())) {
+            configProperties.replace("imgusudes", txt_imgUsuDes.getText());
+        }
+        if (!verficaCambio("imgusuini", txt_imgUsuIni.getText())) {
+            configProperties.replace("imgusuini", txt_imgUsuIni.getText());
+        }
+        if (!verficaCambio("imgpropdes", txt_imgPropDes.getText())) {
+            configProperties.replace("imgpropdes", txt_database.getText());
+        }
+        if (!verficaCambio("imgpropini", txt_imgPropIni.getText())) {
+            configProperties.replace("imgpropini", txt_imgPropIni.getText());
+        }
+        if (contCarga.recibeDiccPropiedades(configProperties)) {
+            cF.rearmar();
+            bloquearTxt();
+            btn_aceptar.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "Se a cargado con exito la nueva configuracion...");
+            
+        }
+        
+        return true;
+    }
+    
+    private boolean verficaCambio(String key, String value) {
+        System.out.println("verificaCambio...");
+        String atri = (String) configProperties.get(key);
+        return atri.equals(value);
+    }
 }

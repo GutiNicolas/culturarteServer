@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class categoriaPersistencia {
 
-    static ConexionDB conexion = new ConexionDB();
+    static ConexionDB conexion = ConexionDB.getInstance();
 
     public void altaCategoria(String nombre, String padre) throws Exception {
         try {

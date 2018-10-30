@@ -3,22 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/iConColaboracion.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/WebServices/WebServiceContColaboracion.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/DtarregloDtPropWeb.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/WebServices/WebServiceContPropuesta.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/ContPropuesta.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/DtColaboracionCompWeb.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/DtarregloDtColCompWeb.java</file>
             <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Presentacion/Principal.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Persistencia/usuariosPersistencia.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Persistencia/propuestasPersistencia.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/colaborador.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/dtColProp.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/ContColaboracion.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/DtarregloDtSigoAWEB.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/ContUsuario.java</file>
-            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Logica/DtarregloDtUsuWeb.java</file>
+            <file>file:/home/jp/Programacion/Servidor/CulturarteServer/src/Presentacion/Configuracion_Culturarte.java</file>
         </group>
     </open-files>
 </project-private>

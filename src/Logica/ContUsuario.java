@@ -17,17 +17,8 @@ import java.util.List;
 import java.util.Map;
 import Persistencia.usuariosPersistencia;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -37,13 +28,15 @@ public class ContUsuario implements iConUsuario {
 
     private ArrayList<String> listaImagenes = new ArrayList<>();
     usuariosPersistencia usuPer = new usuariosPersistencia();
-    private Map<String, usuario> usuarios = new HashMap<String, usuario>();
+    private Map<String, usuario> usuarios = new HashMap<>();
     seguirdejardeseguirPersistencia segdej = new seguirdejardeseguirPersistencia();
     colaboracionesPersistencia colabPer = new colaboracionesPersistencia();
     estadoPropuestaPersistencia estadopropper = new estadoPropuestaPersistencia();
     propuestasPersistencia propPersis = new propuestasPersistencia();
     utilidades util = utilidades.getInstance();
     ArrayList<dtFavoritos> favo = new ArrayList<>();
+    private String imagenDestino="/home/juan/ProgAplicaciones2018/Servidor/Imagenes_mover/imagenesPer/";
+    private String imagenInicio="/home/juan/ProgAplicaciones2018/Servidor/imagenesPerfil/";
 
     /**
      *
@@ -117,8 +110,8 @@ public class ContUsuario implements iConUsuario {
                 String inicio = null;
                 String destino = null;
                 String imagen = listaImagenes.get(i);
-                inicio = "/home/juan/ProgAplicaciones2018/Servidor/Imagenes_mover/imagenesPer/" + imagen;
-                destino = "/home/juan/ProgAplicaciones2018/Servidor/imagenesPerfil/" + imagen;
+                inicio = imagenInicio + imagen;
+                destino = imagenDestino + imagen;
                 System.out.println(destino);
                 util.copiarArchivo(inicio, destino);
             } catch (IOException ex) {
@@ -183,12 +176,12 @@ public class ContUsuario implements iConUsuario {
 
     public void sacarRutaImagen(dtUsuario usu) {
         if (usu.getImagen() != null) {
-            if(usu.getImagen()!=null&&usu.getImagen().equals("null")!=true){
-                if (usu.getImagen().equals("")!=true) {
+            if (usu.getImagen() != null && usu.getImagen().equals("null") != true) {
+                if (usu.getImagen().equals("") != true) {
                     String imagen = usu.getImagen();
                     listaImagenes.add(imagen);
                 }
-}
+            }
         }
 
     }
@@ -494,7 +487,7 @@ public class ContUsuario implements iConUsuario {
 
             }
         }
-        
+
         return dtp;
     }
 
@@ -1447,6 +1440,65 @@ public class ContUsuario implements iConUsuario {
             System.err.println(ex.getMessage());
         }
         return retorno;
+    }
+
+    @Override
+    public DtUsuarioWeb usuarioLoginA(String nick) {
+        DtUsuarioWeb retorno = new DtUsuarioWeb();
+        dtUsuario nuevo = (dtUsuario) this.usuarioLoginApp(nick);
+        if (nuevo instanceof dtProponente) {
+            retorno.setNombre(nuevo.getNombre());
+            retorno.setNickname(nick);
+            retorno.setApellido(nuevo.getApellido());
+            retorno.setEmail(nuevo.getEmail());
+            retorno.setFechaNac(nuevo.getFechaNac().getFecha());
+            retorno.setImagen(nuevo.getImagen());
+            retorno.setPass(nuevo.getPass());
+            retorno.setBio(((dtProponente) nuevo).getBiografia());
+            retorno.setDireccion(((dtProponente) nuevo).getDireccion());
+            retorno.setPagWeb(((dtProponente) nuevo).getSitioWeb());
+            retorno.setRol(nuevo.getRol());
+        }
+        if (nuevo instanceof dtColaborador) {
+            retorno.setNombre(nuevo.getNombre());
+            retorno.setNickname(nick);
+            retorno.setApellido(nuevo.getApellido());
+            retorno.setEmail(nuevo.getEmail());
+            retorno.setFechaNac(nuevo.getFechaNac().getFecha());
+            retorno.setImagen(nuevo.getImagen());
+            retorno.setPass(nuevo.getPass());
+            retorno.setRol(nuevo.getRol());
+
+        }
+        return retorno;
+    }
+
+    /**
+     * @return the imagenDestino
+     */
+    public String getImagenDestino() {
+        return imagenDestino;
+    }
+
+    /**
+     * @param imagenDestino the imagenDestino to set
+     */
+    public void setImagenDestino(String imagenDestino) {
+        this.imagenDestino = imagenDestino;
+    }
+
+    /**
+     * @return the imagenInicio
+     */
+    public String getImagenInicio() {
+        return imagenInicio;
+    }
+
+    /**
+     * @param imagenInicio the imagenInicio to set
+     */
+    public void setImagenInicio(String imagenInicio) {
+        this.imagenInicio = imagenInicio;
     }
 
 }

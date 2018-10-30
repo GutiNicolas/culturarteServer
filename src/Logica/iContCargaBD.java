@@ -6,6 +6,7 @@
 package Logica;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  *
@@ -40,4 +41,10 @@ public interface iContCargaBD {
     public abstract void levantarBDCategoriasPer();
 
     public abstract boolean cargarDatos();
+    
+    public abstract void crearProperties();
+    
+    public abstract Properties levantarProperties();
+    
+    public abstract  Properties leerProperties(String ruta);
 }

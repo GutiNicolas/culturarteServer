@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class seguirdejardeseguirPersistencia {
 
-    static ConexionDB conexion = new ConexionDB();
+    static ConexionDB conexion = ConexionDB.getInstance();
 
     public boolean seguir(dtSeguidores dts) {
         try {
