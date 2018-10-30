@@ -16,6 +16,7 @@ import java.util.logging.Logger;
  * @author apias
  */
 public class ConexionDB {
+
     private  String host;//="localhost"
     private  String port;//="3306"
     private  String db;//="cultuRarte"
