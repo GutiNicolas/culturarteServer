@@ -47,6 +47,9 @@ public class propuesta {
         }
     }
 
+    public propuesta() {
+    }
+
     public propuesta(String titulo, String descripcion, String imagen, String lugar, dtFecha fecharealizacion, dtFecha fechapublicada, int precioEntrada, int montoRequerido, String retorno, categoria cat) {
         this.estados = new TreeMap<Integer, propEstado>();
         this.titulo = titulo;
@@ -342,9 +345,9 @@ public class propuesta {
         return dtpropActual;
     }
 
-    public DtPropuesta getDtPropuesta() {
+    public dtPropuesta getDtPropuesta() {
         String estado = getEstadoActual();
-        DtPropuesta dtp = new DtPropuesta(this.titulo, this.descripcion, this.imagen, this.lugar, estado, null, null, this.fecharealizacion, this.fechapublicada, this.precioEntrada, this.montoRequerido, 0, this.retorno);
+        dtPropuesta dtp = new dtPropuesta(this.titulo, this.descripcion, this.imagen, this.lugar, estado, null, null, this.fecharealizacion, this.fechapublicada, this.precioEntrada, this.montoRequerido, 0, this.retorno);
         return dtp;
     }
 }

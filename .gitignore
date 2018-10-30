@@ -80,3 +80,16 @@ build/*
 ./build/*
 /build/*
 *.class
+/build/classes
+build/classes
+build/classes/*
+/build/classes/*
+.build/classes
+.build/classes/*
+./build/classes
+./build/classes/*
+classes
+/classes
+.classes
+./classes
+

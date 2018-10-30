@@ -24,7 +24,7 @@ import javax.swing.text.Utilities;
  */
 public class usuariosPersistencia {
 
-    static ConexionDB conexion = new ConexionDB();
+    static ConexionDB conexion = ConexionDB.getInstance();
     utilidades util = new utilidades();
 
     public void altaUsuario(dtUsuario dtUsu) throws Exception {

@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class estadoPropuestaPersistencia {
 
-    static ConexionDB conexion = new ConexionDB();
+    static ConexionDB conexion = ConexionDB.getInstance();
     utilidades util = new utilidades();
 
     public boolean agregarPropEstado(String titulo, String estado, String fecha, String hora, String fechaFin) {

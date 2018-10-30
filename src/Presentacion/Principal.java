@@ -25,9 +25,6 @@ public class Principal extends javax.swing.JFrame {
     ContPropuesta contPropuesta = ContPropuesta.getInstance();
     ContColaboracion contColaboracion = ContColaboracion.getInstance();
     ContCargaBD contCarga = ContCargaBD.getInstance();
-    WebServiceContUsusario WSContU = new WebServiceContUsusario();
-    WebServiceContPropuesta WSContP = new WebServiceContPropuesta();
-    WebServiceContColaboracion WSContC = new WebServiceContColaboracion();
 
     @Override
     public void setVisible(boolean b) {
@@ -46,19 +43,22 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setVisible(true);
-        WSContU.publicar();
-        WSContP.publicar();
-        WSContC.publicar();
+        try {
+            fabrica.cargarinicio();
+            
 
-        contUsuario.cargarUsuarios();
+            /* contUsuario.cargarUsuarios();
+            contPropuesta.cargarPropuestas();
+            contColaboracion.cargarColaboracion();
+            contUsuario.cargarFavoritos();
+            contPropuesta.propAutomaticas();
+       //     contCarga.crearProperties();
+            contCarga.levantarProperties();*/
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
 
-        contPropuesta.cargarPropuestas();
-        contColaboracion.cargarColaboracion();
-
-        contUsuario.cargarFavoritos();
-        contPropuesta.propAutomaticas();
         //fabrica.cargarDesdeBD();
-
         //Mandando fruta
         /*
         jMenu1.add(jMenuItem3);
@@ -130,6 +130,12 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem16 = new javax.swing.JMenuItem();
         jm_configuracionGeneral = new javax.swing.JMenuItem();
 
+        jMenu3.setText("jMenu3");
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
+
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
         jFrame1Layout.setHorizontalGroup(
@@ -142,10 +148,12 @@ public class Principal extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jMenu1.setText("Usuario");
         jMenu1.add(jSeparator1);
 
+        jm_altaPerfil.setText("Alta de Perfil");
         jm_altaPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_altaPerfilActionPerformed(evt);
@@ -153,6 +161,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jm_altaPerfil);
 
+        jm_consultaProponente.setText("Consulta Proponente");
         jm_consultaProponente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_consultaProponenteActionPerformed(evt);
@@ -160,6 +169,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jm_consultaProponente);
 
+        jm_consultaColaborador.setText("Consulta de colaborador");
         jm_consultaColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_consultaColaboradorActionPerformed(evt);
@@ -167,6 +177,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jm_consultaColaborador);
 
+        jm_seguirUsuario.setText("Seguir Usuario");
         jm_seguirUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_seguirUsuarioActionPerformed(evt);
@@ -174,6 +185,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jm_seguirUsuario);
 
+        jm_dejarSeguir.setText("Dejar de seguir");
         jm_dejarSeguir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_dejarSeguirActionPerformed(evt);
@@ -183,6 +195,9 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Propuesta");
+
+        jm_altaPropuesta.setText("Alta de Propuesta");
         jm_altaPropuesta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_altaPropuestaActionPerformed(evt);
@@ -190,6 +205,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jm_altaPropuesta);
 
+        jm_altaCategoria.setText("Alta de Categoria");
         jm_altaCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_altaCategoriaActionPerformed(evt);
@@ -197,6 +213,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jm_altaCategoria);
 
+        jm_consultaPropuesta.setText("Consulta de Propuesta");
         jm_consultaPropuesta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_consultaPropuestaActionPerformed(evt);
@@ -204,6 +221,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jm_consultaPropuesta);
 
+        jm_consultaPropuestaEstado.setText("Consulta de Propuesta por estado");
         jm_consultaPropuestaEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_consultaPropuestaEstadoActionPerformed(evt);
@@ -211,6 +229,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jm_consultaPropuestaEstado);
 
+        jm_modificarPropuesta.setText("Modificar Propuesta");
         jm_modificarPropuesta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_modificarPropuestaActionPerformed(evt);
@@ -218,6 +237,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jm_modificarPropuesta);
 
+        jM_Evaluar_prop.setText("Evaluar");
         jM_Evaluar_prop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jM_Evaluar_propActionPerformed(evt);
@@ -227,6 +247,9 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu4.setText("Colaboracion");
+
+        jm_colaborar.setText("Colaborar ");
         jm_colaborar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_colaborarActionPerformed(evt);
@@ -234,6 +257,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu4.add(jm_colaborar);
 
+        jm_cancelarColaboracion.setText("Cancelar Colaboracion");
         jm_cancelarColaboracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_cancelarColaboracionActionPerformed(evt);
@@ -241,6 +265,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu4.add(jm_cancelarColaboracion);
 
+        jm_consultaColaboracion.setText("Consulta de colaboracion");
         jm_consultaColaboracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_consultaColaboracionActionPerformed(evt);
@@ -250,6 +275,9 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        jm_cargarDatos.setText("Configuracion");
+
+        jMenuItem16.setText("Cargar datos de prueba");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem16ActionPerformed(evt);
@@ -257,6 +285,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jm_cargarDatos.add(jMenuItem16);
 
+        jm_configuracionGeneral.setText("Configuracion general");
         jm_configuracionGeneral.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jm_configuracionGeneralActionPerformed(evt);
@@ -394,6 +423,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jm_configuracionGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_configuracionGeneralActionPerformed
+        Configuracion_Culturarte cC = new Configuracion_Culturarte();
+        cC.show();
         // TODO add your handling code here:
     }//GEN-LAST:event_jm_configuracionGeneralActionPerformed
 

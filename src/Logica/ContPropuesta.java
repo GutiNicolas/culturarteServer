@@ -17,8 +17,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -31,14 +29,14 @@ public class ContPropuesta implements iConPropuesta {
     private ArrayList<String> listaImagenes = new ArrayList<>();
     private static ContPropuesta instance;
     private ContUsuario cUsuario = ContUsuario.getInstance();
-    private Map<String, categoria> categorias = new HashMap<String, categoria>();
-    private Map<String, estado> estados = new HashMap<String, estado>();
+    private Map<String, categoria> categorias = new HashMap<>();
+    private Map<String, estado> estados = new HashMap<>();
     categoriaPersistencia catPer = new categoriaPersistencia();
     estadoPersistencia estPer = new estadoPersistencia();
     propuestasPersistencia propPer = new propuestasPersistencia();
     estadoPropuestaPersistencia estPropPer = new estadoPropuestaPersistencia();
     ArrayList<propuesta> propuestas = new ArrayList<>();
-    private Map<String, Integer> idEstado = new HashMap<String, Integer>();
+    private Map<String, Integer> idEstado = new HashMap<>();
     private ContCargaBD contCarga = ContCargaBD.getInstance();
     ArrayList<propuesta> propFiltradaING = new ArrayList<>();
     ArrayList<propuesta> propCambioEstadoAuto = new ArrayList<>();
@@ -46,6 +44,8 @@ public class ContPropuesta implements iConPropuesta {
     utilidades util = utilidades.getInstance();
     ArrayList< dtCategoria> cat = new ArrayList<>();
     ArrayList<String> estadosString = new ArrayList<>();
+    private String imagenDestino="/home/juan/ProgAplicaciones2018/Servidor/Imagenes_mover/imagenesProp/";
+    private String imagenInicio="/home/juan/ProgAplicaciones2018/Servidor/imagenesProp/";
 
     private void cargaridEstado(ArrayList<dtEstado> nomEstados) {
         try {
@@ -71,16 +71,14 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     public boolean moverImagenesProp() {
-        //"/home/juan/ProgAplicaciones2018/progAplicaciones/Imagenes_mover/imagenesProp/"
-        int tam = listaImagenes.size();
 
         try {
             for (int i = 0; i < listaImagenes.size(); i++) {
                 String inicio = null;
                 String destino = null;
                 String imagen = listaImagenes.get(i);
-                inicio = "/home/juan/ProgAplicaciones2018/Servidor/Imagenes_mover/imagenesProp/" + imagen;
-                destino = "/home/juan/ProgAplicaciones2018/Servidor/imagenesProp/" + imagen;
+                inicio = imagenInicio + imagen;
+                destino = imagenDestino + imagen;
                 System.out.println(destino);
                 util.copiarArchivo(inicio, destino);
             }
@@ -93,7 +91,7 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     public void sacarRutaImagen(dtPropuestasBD prop) {
-        if (prop.getImagen() != null) {
+        if (prop.getImagen() != null && prop.getImagen().equals("null") != true && prop.getImagen().equals("")) {
             String imagen = prop.getImagen();
             listaImagenes.add(imagen);
         }
@@ -122,7 +120,7 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     @Override
-    public List<DtPropuesta> listaPropuestas(String idProponente) {
+    public List<dtPropuesta> listaPropuestas(String idProponente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -138,7 +136,7 @@ public class ContPropuesta implements iConPropuesta {
 
     @Override
     //revisado jp---cambio atributos que se pasan al constructor/testear!
-    public void datosPropuesta(DtPropuesta dtp) {
+    public void datosPropuesta(dtPropuesta dtp) {
         try {
             estado esta = (estado) estados.get(dtp.getEstado());
             categoria cat = (categoria) getCategorias().get(dtp.getCategoria());
@@ -159,26 +157,21 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     @Override
-    public List<DtPropuesta> listarPropuesta() {
+    public List<dtPropuesta> listarPropuesta() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public DtPropuesta infoProp(String idPropuesta) {
+    public dtPropuesta infoProp(String idPropuesta) {
         this.cUsuario = ContUsuario.getInstance();
         proponente p = (proponente) this.cUsuario.getUsuarioRecordado();
-        DtPropuesta dtp = p.getPropuestas(idPropuesta);
-        DtPropuesta dtprop;
-        dtprop = new DtPropuesta(dtp.getTitulo(), dtp.getDescripcion(), dtp.getImagen(), dtp.getLugar(), dtp.getEstado(), dtp.getCategoria(),
-                dtp.getProponente(), dtp.getFechaRealizacion(), dtp.getFechapublicada(),
-                dtp.getPrecioentrada(), dtp.getMontorequerido(), (Integer) cUsuario.montopropuesta(idPropuesta),
-                dtp.getRetorno(), (List<String>) cUsuario.listarColaboradores(idPropuesta));
-
-        return dtprop;
+        dtPropuesta dtp = p.getPropuestas(idPropuesta);
+        dtp.addColaboradores((ArrayList<String>) cUsuario.listarColaboradores(idPropuesta));
+        return dtp;
     }
 
     @Override
-    public void modificarPropuesta(DtPropuesta dtProp) {
+    public void modificarPropuesta(dtPropuesta dtProp) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -193,7 +186,7 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     @Override
-    public DtPropuesta mostrarInfoPropuesta(String idPropuesta) throws Exception {
+    public dtPropuesta mostrarInfoPropuesta(String idPropuesta) throws Exception {
         return ContUsuario.getInstance().infoPropuesta(idPropuesta);
     }
 
@@ -358,9 +351,9 @@ public class ContPropuesta implements iConPropuesta {
     public List<String> listarCategorias() {
         List<String> retorno = new ArrayList<>();
         for (String key : getCategorias().keySet()) {
-           
-                retorno.add(key);
-            
+
+            retorno.add(key);
+
         }
         return retorno;
     }
@@ -380,7 +373,7 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     @Override
-    public void actualizardatospropuesta(DtPropuesta dtp, String e, dtFecha dtf, dtHora dth) throws Exception {
+    public void actualizardatospropuesta(dtPropuesta dtp, String e, dtFecha dtf, dtHora dth) throws Exception {
         cUsuario.actualizardatospropuesta(dtp, this.getEstado(e), this.getIdEstado(e), dtf, dth);
     }
 
@@ -846,15 +839,15 @@ public class ContPropuesta implements iConPropuesta {
 
     }
 
-    public ArrayList<DtPropuesta> getPropuestasxEstado(String stado) {
-        ArrayList<DtPropuesta> prop = new ArrayList<>();
+    public ArrayList<dtPropuesta> getPropuestasxEstado(String stado) {
+        ArrayList<dtPropuesta> prop = new ArrayList<>();
         ArrayList<propuesta> propArray = new ArrayList<>();
         cUsuario.getPropuestas(propArray);
         for (int i = 0; i < propArray.size(); i++) {
             propuesta p = (propuesta) propArray.get(i);
             String pEs = p.getEstadoActual();
             if (pEs.equals(stado)) {
-                prop.add((DtPropuesta) p.getDtPropuesta());
+                prop.add((dtPropuesta) p.getDtPropuesta());
             }
 
         }
@@ -893,50 +886,157 @@ public class ContPropuesta implements iConPropuesta {
     }
 
     @Override
-    public List<DtPropuesta> listarpropuestasenlaweb() {
-        List<DtPropuesta> listarpropuestasenlaweb = (List<DtPropuesta>) cUsuario.listarpropuestasenlaweb();
+    public ArrayList<DtPropuestaWeb> listarpropuestasenlaweb() {
+        ArrayList<DtPropuestaWeb> listarpropuestasenlaweb = (ArrayList<DtPropuestaWeb>) cUsuario.listarpropuestasenlaweb();
         return listarpropuestasenlaweb;
     }
 
     @Override
     public List<String> listarpropuestasparacancelar(String nickp) {
-        return (List<String>)cUsuario.listarpropuestasparacancelar(nickp);
+        return (List<String>) cUsuario.listarpropuestasparacancelar(nickp);
     }
 
     @Override
-    public List<DtPropuesta> listarpropuestasencategoria(String cat) {
+    public ArrayList<DtPropuestaWeb> listarpropuestasencategoriaWeb(String cat) {
+        ArrayList<DtPropuestaWeb> arregloPropW = new ArrayList<>();
         try {
-            return (List<DtPropuesta>)cUsuario.listarpropuestasencategoria(cat);
+            ArrayList<dtPropuesta> propDt = (ArrayList<dtPropuesta>) cUsuario.listarpropuestasencategoria(cat);
+            for (int i = 0; i < propDt.size(); i++) {
+                arregloPropW.add((DtPropuestaWeb) invertirADtPropWeb((dtPropuesta) propDt.get(i)));
+            }
+
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
-    return null;
+        return arregloPropW;
+    }
+
+    private DtPropuestaWeb invertirADtPropWeb(dtPropuesta prop) {
+        DtPropuestaWeb nueva = new DtPropuestaWeb();
+        nueva.setTitulo(prop.getTitulo());
+        nueva.setRetorno(prop.getRetorno());
+        nueva.setCategoria(prop.getCategoria());
+        nueva.setDescripcion(prop.getDescripcion());
+        nueva.setEstado(prop.getEstado());
+        nueva.setFechaRealizacion(prop.getFechaRealizacion().getFecha());
+        nueva.setFechapublicada(prop.getFechapublicada().getFecha());
+        nueva.setImagen(prop.getImagen());
+        nueva.setLugar(prop.getLugar());
+        nueva.setMontoactual(prop.getMontoTotal());
+        nueva.setMontorequerido(prop.getMontorequerido());
+        nueva.setPrecioentrada(prop.getPrecioentrada());
+        nueva.setProponente(prop.getProponente());
+
+        return nueva;
     }
 
     @Override
     public List<String> listarpropuestasmenosingresadas(String titulo) {
-     return (List<String>)cUsuario.listarpropuestasmenosingresadas(titulo);
+        return (List<String>) cUsuario.listarpropuestasmenosingresadas(titulo);
     }
 
     @Override
     public List<String> listarpropuestascolaboradaspor(String string) {
-        return (List<String>)cUsuario.listarpropuestascolaboradaspor(string);
+        return (List<String>) cUsuario.listarpropuestascolaboradaspor(string);
     }
 
     @Override
     public void agregarcomentarioapropuesta(String string, String titulo, String comentario) {
-       cUsuario.agregarcomentarioapropuesta(string, titulo, comentario);
+        cUsuario.agregarcomentarioapropuesta(string, titulo, comentario);
     }
 
     @Override
     public List<String> mispropuestasaceptadas(String nick) {
-        return (List<String>)cUsuario.mispropuestasaceptadas(nick);
-    
+        return (List<String>) cUsuario.mispropuestasaceptadas(nick);
+
     }
 
     @Override
     public List<String> mispropuestasaingresadas(String nick) {
-        return (List<String>)cUsuario.mispropuestasaingresadas(nick);
+        return (List<String>) cUsuario.mispropuestasaingresadas(nick);
+    }
+
+    @Override
+    public DtFechaWeb getFechaWeb() {
+        DtFechaWeb nueva = new DtFechaWeb();
+        try {
+            dtFecha fe = util.getFecha();
+            nueva.setDia(fe.getDia());
+            nueva.setMes(fe.getMes());
+            nueva.setAnio(fe.getAnio());
+            nueva.setFecha(fe.getFecha());
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return nueva;
+    }
+
+    @Override
+    public DtHoraWeb getHoraWeb() {
+        DtHoraWeb nueva = new DtHoraWeb();
+        try {
+            dtHora dtH = (dtHora) util.getHora();
+            int min = dtH.getMinutos();
+            int horas = dtH.getHoras();
+            nueva.setHora(horas);
+            nueva.setMinuto(min);
+            nueva.setHoraC(dtH.getHora());
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return nueva;
+    }
+
+    @Override
+    public void altaPropWeb(DtPropuestaWeb prop) {
+        try {
+            dtFecha fRea = util.construirFecha((String) prop.getFechaRealizacion());
+            dtFecha fPubli = util.construirFecha((String) prop.getFechapublicada());
+            dtPropuesta nuevaP = new dtPropuesta(prop.getTitulo(), prop.getDescripcion(), prop.getImagen(), prop.getLugar(), prop.getEstado(), prop.getCategoria(), prop.getProponente(), fRea, fPubli, prop.getPrecioentrada(), prop.getMontorequerido(), prop.getMontoactual(), prop.getRetorno());
+            datosPropuesta(nuevaP);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+    }
+
+    @Override
+    public DtFechaWeb crearFecha(String fecha) {
+        dtFecha aux = util.construirFecha(fecha);
+        DtFechaWeb retorno = new DtFechaWeb();
+        retorno.setDia(aux.getDia());
+        retorno.setMes(aux.getMes());
+        retorno.setAnio(aux.getAnio());
+        retorno.setFecha(aux.getFecha());
+        return retorno;
+    }
+
+    /**
+     * @return the imagenDestino
+     */
+    public String getImagenDestino() {
+        return imagenDestino;
+    }
+
+    /**
+     * @param imagenDestino the imagenDestino to set
+     */
+    public void setImagenDestino(String imagenDestino) {
+        this.imagenDestino = imagenDestino;
+    }
+
+    /**
+     * @return the imagenInicio
+     */
+    public String getImagenInicio() {
+        return imagenInicio;
+    }
+
+    /**
+     * @param imagenInicio the imagenInicio to set
+     */
+    public void setImagenInicio(String imagenInicio) {
+        this.imagenInicio = imagenInicio;
     }
 
 }

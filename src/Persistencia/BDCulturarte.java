@@ -35,7 +35,7 @@ import java.util.Date;
  */
 public class BDCulturarte {
 
-    static ConexionDB conexion = new ConexionDB();
+   static ConexionDB conexion = ConexionDB.getInstance();
     utilidades util = new utilidades();
 
     public void levantaUsusOrigin(ArrayList<String> usus) {

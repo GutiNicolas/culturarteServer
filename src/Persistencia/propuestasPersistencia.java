@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public class propuestasPersistencia {
 
-    static ConexionDB conexion = new ConexionDB();
+   static ConexionDB conexion = ConexionDB.getInstance();
     utilidades util = new utilidades();
 
     public void altaPropuesta(dtPropuestasBD dtp) throws SQLException {
@@ -49,14 +49,22 @@ public class propuestasPersistencia {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                String imagen = rs.getString(3);
+                dtPropuestasBD dt = null;
                 dtFecha dtf = (dtFecha) util.construirFecha(rs.getString(5));
                 dtFecha dtfp = (dtFecha) util.construirFecha(rs.getString(8));
                 int precio = 0;
                 int monto = 0;
                 precio = Integer.parseInt(rs.getString(6));
-                monto = Integer.parseInt(rs.getString(7));
-                dtPropuestasBD dt = new dtPropuestasBD(rs.getString(1), rs.getString(9), rs.getString(2), imagen, rs.getString(4), rs.getString(10), rs.getString(11), dtf, dtfp, precio, monto);
+                monto = Integer.parseInt(rs.getString(7));//separar esto para solucionar lo de las imagenes en null
+                if (rs.getString(3) != null) {
+                    String imagen = rs.getString(3);
+                    dt = new dtPropuestasBD(rs.getString(1), rs.getString(9), rs.getString(2), imagen, rs.getString(4), rs.getString(10), rs.getString(11), dtf, dtfp, precio, monto);
+                    System.out.println("Con imagen");
+                }
+                if (rs.getString(3) == null) {
+                    dt = new dtPropuestasBD(rs.getString(1), rs.getString(9), rs.getString(2), null, rs.getString(4), rs.getString(10), rs.getString(11), dtf, dtfp, precio, monto);
+                    System.out.println("Sin imagen");
+                }
                 propuestas.add(dt);
 
             }

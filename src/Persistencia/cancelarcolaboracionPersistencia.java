@@ -16,7 +16,7 @@ import java.sql.Statement;
  */
 public class cancelarcolaboracionPersistencia {
 
-    private ConexionDB conexion = new ConexionDB();
+    static ConexionDB conexion = ConexionDB.getInstance();
 
     public boolean cancelarColaboracion(String nick, colProp cp) {
         try {

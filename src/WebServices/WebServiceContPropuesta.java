@@ -6,10 +6,11 @@
 package WebServices;
 
 import Logica.ContPropuesta;
+import Logica.DtFechaWeb;
+import Logica.DtHoraWeb;
+import Logica.DtPropuestaWeb;
+import Logica.DtarregloDtPropWeb;
 import Logica.dtContieneArray;
-import Logica.dtFecha;
-import Logica.dtHora;
-import Logica.DtPropuesta;
 import Logica.utilidades;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,6 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
-import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 import javax.xml.ws.WebServiceContext;
 
@@ -42,14 +42,33 @@ public class WebServiceContPropuesta {
         this.direccion = "http://localhost:8680/ServicioP";
     }
 
+    public WebServiceContPropuesta(String direccion) {
+        this.direccion = direccion;
+    }
+
     @WebMethod
     public String hola() {
         return "hola";
     }
 
-    //@WebMethod(exclude = true)
+    public boolean despublicar() {
+        try {
+            endpoint.stop();
+            return true;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+
+    }
+
     public void publicar() {
-        endpoint = Endpoint.publish(direccion, this);
+        try {
+            endpoint = Endpoint.publish(direccion, this);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
     }
 ///////////////////funciones generales
 
@@ -70,19 +89,19 @@ public class WebServiceContPropuesta {
      * @return
      */
     @WebMethod
-    public dtFecha construirDtFecha(@WebParam(name = "fecha") String fecha) {
-        return (dtFecha) util.construirFecha(fecha);
+    public DtFechaWeb construirDtFecha(@WebParam(name = "fecha") String fecha) {
+        return cP.crearFecha(fecha);
 
     }
 
     @WebMethod
-    public dtFecha getFecha() {
-        return (dtFecha) util.getFecha();
+    public DtFechaWeb getFecha() {
+        return cP.getFechaWeb();
     }
 
     @WebMethod
-    public dtHora getHora() {
-        return (dtHora) util.getHora();
+    public DtHoraWeb getHora() {
+        return cP.getHoraWeb();
     }
 
     ///////////////////////////////ServletFavoritos funciones
@@ -97,8 +116,8 @@ public class WebServiceContPropuesta {
      */
     @WebMethod
     public dtContieneArray listarTodasLasPropuestas(@WebParam(name = "nick") String nick) {
-        dtContieneArray nuevo = null;
-        if ((List) cP.listartodaslaspropuestas(nick) != null) {
+        dtContieneArray nuevo = new dtContieneArray();
+        if ((List<String>) cP.listartodaslaspropuestas(nick) != null) {
             nuevo = new dtContieneArray((ArrayList) cP.listartodaslaspropuestas(nick), null);
         }
         return nuevo;
@@ -117,7 +136,7 @@ public class WebServiceContPropuesta {
     @WebMethod
     public dtContieneArray listarMisPropuestasFavoritas(@WebParam(name = "nick") String nick) {
 
-        dtContieneArray nuevo = null;
+        dtContieneArray nuevo = new dtContieneArray();
 
         if ((List<String>) cP.listarmispropsfavs(nick) != null) {
             nuevo = new dtContieneArray((ArrayList) cP.listarmispropsfavs(nick), null);
@@ -176,9 +195,10 @@ public class WebServiceContPropuesta {
      * @return
      */
     @WebMethod
-    public dtContieneArray listarPropuestasWeb() {
-        List<DtPropuesta> listarpropuestasenlaweb = (List<DtPropuesta>) cP.listarpropuestasenlaweb();
-        dtContieneArray nuevo = new dtContieneArray((ArrayList) listarpropuestasenlaweb, null);
+    public DtarregloDtPropWeb listarPropuestasWeb() {
+
+        DtarregloDtPropWeb nuevo = new DtarregloDtPropWeb();
+        nuevo.setArregloProp((ArrayList<DtPropuestaWeb>) cP.listarpropuestasenlaweb());
         return nuevo;
     }
 //////////////////////////////ServvletCancelarPropuesta funciones
@@ -194,26 +214,34 @@ public class WebServiceContPropuesta {
      */
     @WebMethod
     public dtContieneArray propuestasParaCancelar(@WebParam(name = "nick") String nick) {
-        dtContieneArray nuevo = new dtContieneArray((ArrayList) cP.listarpropuestasparacancelar(nick), null);
+        dtContieneArray nuevo = new dtContieneArray();
+        if ((List<String>) cP.listarpropuestasparacancelar(nick) != null) {
+            nuevo = new dtContieneArray((ArrayList) cP.listarpropuestasparacancelar(nick), null);
+        }
         return nuevo;
     }
 ///////////////////////////ServletAltaPropuesta funciones
 
     @WebMethod
     public dtContieneArray listaCategorias() {
-        dtContieneArray nuevo = new dtContieneArray((ArrayList) cP.listarCategorias(), null);
+        dtContieneArray nuevo = new dtContieneArray();
+        if ((ArrayList) cP.listarCategorias() != null) {
+            nuevo = new dtContieneArray((ArrayList) cP.listarCategorias(), null);
+        }
+
         return nuevo;
     }
 
     @WebMethod
-    public void altaPropuesta(@WebParam(name = "dtpropuesta") DtPropuesta dtpropuesta) {
-        cP.datosPropuesta(dtpropuesta);
+    public void altaPropuesta(@WebParam(name = "dtpropuesta") DtPropuestaWeb dtpropuesta) {
+        cP.altaPropWeb(dtpropuesta);
     }
 
 /////////////////////////////////ServletCOnsultadePropuestaProEstado funciones
     @WebMethod
-    public dtContieneArray listarPropEnCategoria(@WebParam(name = "categorioa") String cat) {
-        dtContieneArray nuevo = new dtContieneArray((ArrayList) cP.listarpropuestasencategoria(cat), null);
+    public DtarregloDtPropWeb listarPropEnCategoria(@WebParam(name = "categorioa") String cat) {
+        DtarregloDtPropWeb nuevo = new DtarregloDtPropWeb();
+        nuevo.setArregloProp((ArrayList<DtPropuestaWeb>) cP.listarpropuestasencategoriaWeb(cat));
         return nuevo;
     }
 

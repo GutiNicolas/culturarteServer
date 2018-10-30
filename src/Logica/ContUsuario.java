@@ -17,13 +17,6 @@ import java.util.List;
 import java.util.Map;
 import Persistencia.usuariosPersistencia;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,18 +28,32 @@ public class ContUsuario implements iConUsuario {
 
     private ArrayList<String> listaImagenes = new ArrayList<>();
     usuariosPersistencia usuPer = new usuariosPersistencia();
-    private Map<String, usuario> usuarios = new HashMap<String, usuario>();
+    private Map<String, usuario> usuarios = new HashMap<>();
     seguirdejardeseguirPersistencia segdej = new seguirdejardeseguirPersistencia();
     colaboracionesPersistencia colabPer = new colaboracionesPersistencia();
     estadoPropuestaPersistencia estadopropper = new estadoPropuestaPersistencia();
     propuestasPersistencia propPersis = new propuestasPersistencia();
     utilidades util = utilidades.getInstance();
     ArrayList<dtFavoritos> favo = new ArrayList<>();
+    private String imagenDestino="/home/juan/ProgAplicaciones2018/Servidor/Imagenes_mover/imagenesPer/";
+    private String imagenInicio="/home/juan/ProgAplicaciones2018/Servidor/imagenesPerfil/";
 
+    /**
+     *
+     * @param fecha
+     * @return
+     */
+    @Override
     public dtFecha creadtFecha(String fecha) {
         return (dtFecha) util.construirFecha(fecha);
     }
 
+    /**
+     *
+     * @param email
+     * @return
+     */
+    @Override
     public boolean emailValido(String email) {
 
         // Patrón para validar el email
@@ -103,8 +110,8 @@ public class ContUsuario implements iConUsuario {
                 String inicio = null;
                 String destino = null;
                 String imagen = listaImagenes.get(i);
-                inicio = "/home/juan/ProgAplicaciones2018/Servidor/Imagenes_mover/imagenesPer/" + imagen;
-                destino = "/home/juan/ProgAplicaciones2018/Servidor/imagenesPerfil/" + imagen;
+                inicio = imagenInicio + imagen;
+                destino = imagenDestino + imagen;
                 System.out.println(destino);
                 util.copiarArchivo(inicio, destino);
             } catch (IOException ex) {
@@ -148,7 +155,20 @@ public class ContUsuario implements iConUsuario {
 
             contCarga.levantarBDfavoritosPer();
             usuPer.levantarFavoritos(favo);
-            
+            for (int i = 0; i < favo.size(); i++) {
+                dtFavoritos f = (dtFavoritos) favo.get(i);
+                String usu = null, prop = null;
+                usu = f.getUsuario();
+                prop = f.getPropuestaTitulo();
+                usuario u = new usuario();
+                propuesta p = new propuesta();
+                System.out.println(usu);
+                u = (usuario) usuarios.get(usu);
+                System.out.println(prop);
+                p = (propuesta) damePropuesta(prop);
+                u.setFavorita(p);
+                contCarga.setearFavoritos(f);
+            }
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -156,8 +176,12 @@ public class ContUsuario implements iConUsuario {
 
     public void sacarRutaImagen(dtUsuario usu) {
         if (usu.getImagen() != null) {
-            String imagen = usu.getImagen();
-            listaImagenes.add(imagen);
+            if (usu.getImagen() != null && usu.getImagen().equals("null") != true) {
+                if (usu.getImagen().equals("") != true) {
+                    String imagen = usu.getImagen();
+                    listaImagenes.add(imagen);
+                }
+            }
         }
 
     }
@@ -300,17 +324,17 @@ public class ContUsuario implements iConUsuario {
     }
 
     @Override
-    public List<DtPropuesta> listarPropuestas(String idProponente) {
-        List<DtPropuesta> retornar = new ArrayList<DtPropuesta>();
-        List<DtPropuesta> aux = new ArrayList<DtPropuesta>();
+    public List<dtPropuesta> listarPropuestas(String idProponente) {
+        List<dtPropuesta> retornar = new ArrayList<dtPropuesta>();
+        List<dtPropuesta> aux = new ArrayList<dtPropuesta>();
 
         proponente p = (proponente) this.usuarios.get(idProponente);
         aux = p.getTodasPropuestas();
         if (aux.isEmpty() == false) {
             Iterator it = aux.iterator();
             while (it.hasNext()) {
-                DtPropuesta Adtp = (DtPropuesta) it.next();
-                DtPropuesta dtp = new DtPropuesta(Adtp, montopropuesta(Adtp.getTitulo()));
+                dtPropuesta Adtp = (dtPropuesta) it.next();
+                dtPropuesta dtp = new dtPropuesta(Adtp, montopropuesta(Adtp.getTitulo()));
                 retornar.add(dtp);
             }
             aux.clear();
@@ -450,26 +474,21 @@ public class ContUsuario implements iConUsuario {
      * @throws Exception
      */
     @Override
-    public DtPropuesta infoPropuesta(String titulo) throws Exception {
-        DtPropuesta dtp = null;
+    public dtPropuesta infoPropuesta(String titulo) throws Exception {
+        dtPropuesta dtp = null;
         System.err.println(usuarios.size());
         for (String key : this.usuarios.keySet()) {
             if (this.usuarios.get(key) instanceof proponente) {
                 proponente p = (proponente) this.usuarios.get(key);
                 if (p.propuestasUsuario.containsKey(titulo)) {
                     dtp = p.getPropuestas(titulo);
+                    dtp.addColaboradores((List<String>) listarColaboradores(titulo));
                 }
 
             }
         }
-        DtPropuesta dtprop;
-        dtprop = new DtPropuesta(dtp.getTitulo(), dtp.getDescripcion(), dtp.getImagen(), dtp.getLugar(), dtp.getEstado(), dtp.getCategoria(),
-                dtp.getProponente(), dtp.getFechaRealizacion(), dtp.getFechapublicada(),
-                dtp.getPrecioentrada(), dtp.getMontorequerido(), (Integer) montopropuesta(titulo),
-                dtp.getRetorno(), (List<String>) listarColaboradores(titulo));
 
-        return dtprop;
-
+        return dtp;
     }
 
     public int montopropuesta(String idPropuesta) {
@@ -721,7 +740,7 @@ public class ContUsuario implements iConUsuario {
     }
 
     @Override
-    public void actualizardatospropuesta(DtPropuesta dtp, estado e, int orden, dtFecha dtf, dtHora dth) throws Exception {
+    public void actualizardatospropuesta(dtPropuesta dtp, estado e, int orden, dtFecha dtf, dtHora dth) throws Exception {
 
         propuesta p = this.damePropuesta(dtp.getTitulo());
         if (p.getTitulo() == dtp.getTitulo()) {
@@ -854,17 +873,48 @@ public class ContUsuario implements iConUsuario {
      * @param nick
      * @return
      */
-    public dtUsuario infoUsuarioGeneral(String nick) {
-        dtUsuario dtu = null;
+    public DtUsuarioWeb infoUsuarioGeneral(String nick) {
+        DtUsuarioWeb dtu = new DtUsuarioWeb();
         if (this.usuarios.get(nick) instanceof proponente) {
             proponente p = (proponente) this.usuarios.get(nick);
-            dtu = p.getDtProponente();
+            dtu = (DtUsuarioWeb) recombinar(p.getDtProponente());
         }
         if (this.usuarios.get(nick) instanceof colaborador) {
             colaborador c = (colaborador) this.usuarios.get(nick);
-            dtu = c.getColaborador();
+            dtu = (DtUsuarioWeb) recombinar(c.getColaborador());
         }
         return dtu;
+    }
+
+    private DtUsuarioWeb recombinar(dtUsuario usu) {
+        DtUsuarioWeb retorno = new DtUsuarioWeb();
+        if (usu instanceof dtProponente) {
+            dtProponente uP = (dtProponente) usu;
+            retorno.setNombre(uP.getNombre());
+            retorno.setApellido(uP.getApellido());
+            retorno.setNickname(uP.getNickname());
+            retorno.setEmail(uP.getEmail());
+            retorno.setImagen(uP.getImagen());
+            retorno.setFechaNac((String) uP.getFechaNac().getFecha());
+            retorno.setRol("Proponente");
+            retorno.setPass(uP.getPass());
+            retorno.setBio(uP.getBiografia());
+            retorno.setPagWeb(uP.getSitioWeb());
+            retorno.setDireccion(uP.getDireccion());
+
+        }
+        if (usu instanceof dtColaborador) {
+            dtColaborador cola = (dtColaborador) usu;
+            retorno.setNombre(cola.getNombre());
+            retorno.setApellido(cola.getApellido());
+            retorno.setNickname(cola.getNickname());
+            retorno.setEmail(cola.getEmail());
+            retorno.setImagen(cola.getImagen());
+            retorno.setFechaNac((String) cola.getFechaNac().getFecha());
+            retorno.setRol("Colaborador");
+            retorno.setPass(cola.getPass());
+        }
+        return retorno;
     }
 
     /**
@@ -874,12 +924,12 @@ public class ContUsuario implements iConUsuario {
      * @param nick
      * @return
      */
-    public List<dtUsuario> listarmisseguidores(String nick) {
-        ArrayList<dtUsuario> retorno = new ArrayList<>();
+    public List<DtUsuarioWeb> listarmisseguidores(String nick) {
+        ArrayList<DtUsuarioWeb> retorno = new ArrayList<>();
         for (String key : this.usuarios.keySet()) {
             usuario u = this.usuarios.get(key);
             if (u.seguidos.containsKey(nick)) {
-                dtUsuario dtu = this.infoUsuarioGeneral(u.getNickname());
+                DtUsuarioWeb dtu = (DtUsuarioWeb) infoUsuarioGeneral(u.getNickname());
                 retorno.add(dtu);
             }
         }
@@ -892,22 +942,30 @@ public class ContUsuario implements iConUsuario {
      * @param nick
      * @return
      */
-    public List<dtSigoA> listarmisseguidos(String nick) {
-        ArrayList<dtSigoA> retorno = new ArrayList<>();
+    public ArrayList<DtSigoAWeb> listarmisseguidos(String nick) {
+        ArrayList<DtSigoAWeb> retorno = new ArrayList<>();
+
         usuario u = this.usuarios.get(nick);
         for (String key : u.seguidos.keySet()) {
+
             if (u.seguidos.get(key) instanceof proponente) {
+                DtSigoAWeb nuevo = new DtSigoAWeb();
                 proponente aux = (proponente) this.usuarios.get(key);
-                dtSigoA dtsa = new dtSigoA(key, "Proponente", aux.getNombre() + " " + aux.getApellido());
-                retorno.add(dtsa);
+                nuevo.setNickusuario(key);
+                nuevo.setNombrecompleto(aux.getNombre() + " " + aux.getApellido());
+                nuevo.setRol("Proponente");
+                retorno.add(nuevo);
             }
             if (u.seguidos.get(key) instanceof colaborador) {
                 colaborador aux = (colaborador) this.usuarios.get(key);
-                dtSigoA dtsa = new dtSigoA(key, "Colaborador", aux.getNombre() + " " + aux.getApellido());
-                retorno.add(dtsa);
+                DtSigoAWeb nuevo = new DtSigoAWeb();
+                nuevo.setNickusuario(key);
+                nuevo.setNombrecompleto(aux.getNombre() + " " + aux.getApellido());
+                nuevo.setRol("Colaborador");
+                retorno.add(nuevo);
             }
         }
-        return retorno;
+        return (ArrayList<DtSigoAWeb>) retorno;
     }
 
     public List<String> mispropuestasfavoritas(String nick) {
@@ -1005,13 +1063,16 @@ public class ContUsuario implements iConUsuario {
      *
      * @return
      */
-    public List<DtPropuesta> listarpropuestasenlaweb() {
-        List<DtPropuesta> retorno = new ArrayList<>();
+    public ArrayList<DtPropuestaWeb> listarpropuestasenlaweb() {
+        ArrayList<DtPropuestaWeb> retorno = new ArrayList<>();
         for (String key : this.usuarios.keySet()) {
             if (this.usuarios.get(key) instanceof proponente) {
                 proponente p = (proponente) this.usuarios.get(key);
                 for (String keyp : p.propuestasUsuario.keySet()) {
-                    DtPropuesta dtp = new DtPropuesta(keyp, key);
+                    //   dtPropuesta dtp = new dtPropuesta(keyp, key);
+                    DtPropuestaWeb dtp = new DtPropuestaWeb();
+                    dtp.setProponente(key);
+                    dtp.setTitulo(keyp);
                     retorno.add(dtp);
                 }
             }
@@ -1062,8 +1123,8 @@ public class ContUsuario implements iConUsuario {
         return retorno;
     }
 
-    public List<DtPropuesta> listarpropuestasencategoria(String cat) throws Exception {
-        List<DtPropuesta> retorno = new ArrayList<>();
+    public List<dtPropuesta> listarpropuestasencategoria(String cat) throws Exception {
+        List<dtPropuesta> retorno = new ArrayList<>();
         for (String usus : this.usuarios.keySet()) {
             if (this.usuarios.get(usus) instanceof proponente) {
                 proponente p = (proponente) this.usuarios.get(usus);
@@ -1155,18 +1216,18 @@ public class ContUsuario implements iConUsuario {
 
     }
 
-    public List<dtUsuario> listarusuariosweb(String nick) {
-        List<dtUsuario> lst = new ArrayList<dtUsuario>();
+    public ArrayList<DtUsuarioWeb> listarusuariosweb(String nick) {
+        ArrayList<DtUsuarioWeb> lst = new ArrayList<>();
         if (nick.isEmpty() == false) {
             for (String key : this.usuarios.keySet()) {
                 if (key.contains(nick)) {
-                    lst.add(this.infoUsuarioGeneral(key));
+                    lst.add((DtUsuarioWeb) this.infoUsuarioGeneral(key));
                 }
 
             }
         } else {
             for (String key : this.usuarios.keySet()) {
-                lst.add(this.infoUsuarioGeneral(key));
+                lst.add((DtUsuarioWeb) this.infoUsuarioGeneral(key));
             }
         }
         return lst;
@@ -1235,16 +1296,21 @@ public class ContUsuario implements iConUsuario {
      *
      * @return List dtUsuario
      */
-    public List<dtUsuario> ranking() {
-        List<dtUsuario> rank = new ArrayList<>();
+    public ArrayList<DtUsuarioWeb> ranking() {
+        ArrayList<DtUsuarioWeb> rank = new ArrayList<>();
         for (String key : this.usuarios.keySet()) {
             usuario u = this.usuarios.get(key);
             if (contarseguidores(key) > 0) {
-                rank.add(new dtUsuario(u.getNombre(), u.getApellido(), u.getNickname(), contarseguidores(key)));
+                DtUsuarioWeb dtU = new DtUsuarioWeb();
+                dtU.setNombre(u.getNombre());
+                dtU.setApellido(u.getApellido());
+                dtU.setNickname(u.getNickname());
+                dtU.setPuntaje((Integer) contarseguidores(key));
+                rank.add(dtU);
             }
         }
 
-        dtUsuario aux = null;
+        DtUsuarioWeb aux = null;
         for (int i = 0; i < rank.size(); i++) {
             for (int j = i + 1; j < rank.size(); j++) {
                 if (rank.get(i).getPuntaje() < rank.get(j).getPuntaje()) {
@@ -1287,4 +1353,155 @@ public class ContUsuario implements iConUsuario {
 
         return colaboradores;
     }
+
+    /**
+     *
+     * @param fecha
+     * @return
+     */
+    @Override
+    public DtFechaWeb crearFecha(String fecha) {
+        dtFecha aux = creadtFecha(fecha);
+        DtFechaWeb retorno = new DtFechaWeb();
+        retorno.setDia(aux.getDia());
+        retorno.setMes(aux.getMes());
+        retorno.setAnio(aux.getAnio());
+        retorno.setFecha(aux.getFecha());
+        return retorno;
+    }
+
+    @Override
+    public void agregarUsuWeb(DtUsuarioWeb usu) {
+        try {
+            dtUsuario dtusu = null;
+            if (usu.getRol().equals("Proponente")) {
+                dtusu = new dtProponente(usu.getNombre(), usu.getApellido(), usu.getNickname(), usu.getImagen(), usu.getEmail(), (dtFecha) util.construirFecha((String) usu.getFechaNac()), usu.getDireccion(), usu.getBio(), usu.getPagWeb(), usu.getPass());
+            }
+            if (usu.getRol().equals("Colaborador")) {
+                dtusu = new dtColaborador(usu.getNombre(), usu.getApellido(), usu.getNickname(), usu.getImagen(), usu.getEmail(), (dtFecha) util.construirFecha((String) usu.getFechaNac()), usu.getPass());
+            }
+            agregarUsu(dtusu);
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    @Override
+    public DtUsuarioWeb usuarioLoginW(String nick) {
+        DtUsuarioWeb retorno = new DtUsuarioWeb();
+        dtUsuario nuevo = (dtUsuario) this.usuarioLogin(nick);
+        if (nuevo instanceof dtProponente) {
+            retorno.setNombre(nuevo.getNombre());
+            retorno.setNickname(nick);
+            retorno.setApellido(nuevo.getApellido());
+            retorno.setEmail(nuevo.getEmail());
+            retorno.setFechaNac(nuevo.getFechaNac().getFecha());
+            retorno.setImagen(nuevo.getImagen());
+            retorno.setPass(nuevo.getPass());
+            retorno.setBio(((dtProponente) nuevo).getBiografia());
+            retorno.setDireccion(((dtProponente) nuevo).getDireccion());
+            retorno.setPagWeb(((dtProponente) nuevo).getSitioWeb());
+            retorno.setRol(nuevo.getRol());
+        }
+        if (nuevo instanceof dtColaborador) {
+            retorno.setNombre(nuevo.getNombre());
+            retorno.setNickname(nick);
+            retorno.setApellido(nuevo.getApellido());
+            retorno.setEmail(nuevo.getEmail());
+            retorno.setFechaNac(nuevo.getFechaNac().getFecha());
+            retorno.setImagen(nuevo.getImagen());
+            retorno.setPass(nuevo.getPass());
+            retorno.setRol(nuevo.getRol());
+
+        }
+        return retorno;
+    }
+
+    @Override
+    public DtPropuestaWeb infoPropuestaWeb(String titulo) {
+        DtPropuestaWeb retorno = new DtPropuestaWeb();
+        try {
+            dtPropuesta aux = infoPropuesta(titulo);
+            retorno.setTitulo(titulo);
+            retorno.setDescripcion(aux.getDescripcion());
+            retorno.setImagen(aux.getImagen());
+            retorno.setLugar(aux.getLugar());
+            retorno.setEstado(aux.getEstado());
+            retorno.setCategoria(aux.getCategoria());
+            retorno.setProponente(aux.getProponente());
+            retorno.setFechaRealizacion((String) aux.getFechaRealizacion().getFecha());
+            retorno.setFechapublicada((String) aux.getFechapublicada().getFecha());
+            retorno.setPrecioentrada(aux.getPrecioentrada());
+            retorno.setMontorequerido(aux.getMontorequerido());
+            retorno.setMontoactual(aux.getMontoTotal());
+            retorno.setRetorno(aux.getRetorno());
+            retorno.setColaboradores((ArrayList) aux.detColaboradores());
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+        return retorno;
+    }
+
+    @Override
+    public DtUsuarioWeb usuarioLoginA(String nick) {
+        DtUsuarioWeb retorno = new DtUsuarioWeb();
+        dtUsuario nuevo = (dtUsuario) this.usuarioLoginApp(nick);
+        if (nuevo instanceof dtProponente) {
+            retorno.setNombre(nuevo.getNombre());
+            retorno.setNickname(nick);
+            retorno.setApellido(nuevo.getApellido());
+            retorno.setEmail(nuevo.getEmail());
+            retorno.setFechaNac(nuevo.getFechaNac().getFecha());
+            retorno.setImagen(nuevo.getImagen());
+            retorno.setPass(nuevo.getPass());
+            retorno.setBio(((dtProponente) nuevo).getBiografia());
+            retorno.setDireccion(((dtProponente) nuevo).getDireccion());
+            retorno.setPagWeb(((dtProponente) nuevo).getSitioWeb());
+            retorno.setRol(nuevo.getRol());
+        }
+        if (nuevo instanceof dtColaborador) {
+            retorno.setNombre(nuevo.getNombre());
+            retorno.setNickname(nick);
+            retorno.setApellido(nuevo.getApellido());
+            retorno.setEmail(nuevo.getEmail());
+            retorno.setFechaNac(nuevo.getFechaNac().getFecha());
+            retorno.setImagen(nuevo.getImagen());
+            retorno.setPass(nuevo.getPass());
+            retorno.setRol(nuevo.getRol());
+
+        }
+        return retorno;
+    }
+
+    /**
+     * @return the imagenDestino
+     */
+    public String getImagenDestino() {
+        return imagenDestino;
+    }
+
+    /**
+     * @param imagenDestino the imagenDestino to set
+     */
+    public void setImagenDestino(String imagenDestino) {
+        this.imagenDestino = imagenDestino;
+    }
+
+    /**
+     * @return the imagenInicio
+     */
+    public String getImagenInicio() {
+        return imagenInicio;
+    }
+
+    /**
+     * @param imagenInicio the imagenInicio to set
+     */
+    public void setImagenInicio(String imagenInicio) {
+        this.imagenInicio = imagenInicio;
+    }
+
 }
+/*p.getTitulo(), p.getDescripcion(), p.getImagen(), p.getLugar(),
+p.getEstadoActual(), p.getCategoria(), this.getNickname(), p.getFecharealizacion(),
+p.getFechapublicada(), p.getPrecioEntrada(), p.getMontoRequerido(), 0, p.getRetorno()*/
