@@ -66,7 +66,6 @@ public class Alta_perfil extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jTextField2 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -99,279 +98,141 @@ public class Alta_perfil extends javax.swing.JFrame {
         jP_contra = new javax.swing.JPasswordField();
         jP_contraVS = new javax.swing.JPasswordField();
 
+        jTextField2.setText("jTextField2");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        jPanel1.setLayout(null);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
-        jPanel1.add(jLabel1, gridBagConstraints);
+        jLabel1.setText("NickName");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(20, 10, 69, 15);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 20, 0, 0);
-        jPanel1.add(jLabel2, gridBagConstraints);
+        jLabel2.setText("Nombre");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(20, 35, 55, 15);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 20, 0, 0);
-        jPanel1.add(jLabel3, gridBagConstraints);
+        jLabel3.setText("Apellido");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(20, 60, 57, 15);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 20, 0, 0);
-        jPanel1.add(jLabel4, gridBagConstraints);
+        jLabel4.setText("Email");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(20, 94, 37, 15);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 14;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 20, 0, 0);
-        jPanel1.add(jLabel5, gridBagConstraints);
+        jLabel5.setText("Fecha Nacimiento");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(20, 208, 125, 15);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 17;
-        gridBagConstraints.gridwidth = 77;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 102;
-        gridBagConstraints.ipady = 121;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 1, 0, 0);
-        jPanel1.add(jL_imagenP, gridBagConstraints);
+        jL_imagenP.setText("Imagen");
+        jPanel1.add(jL_imagenP);
+        jL_imagenP.setBounds(134, 231, 154, 136);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 17;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 20, 0, 0);
-        jPanel1.add(jLabel6, gridBagConstraints);
+        jLabel6.setText("Imagen ");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(20, 231, 56, 15);
 
+        jb_examinar.setText("Examinar");
         jb_examinar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_examinarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 18;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(44, 20, 0, 0);
-        jPanel1.add(jb_examinar, gridBagConstraints);
+        jPanel1.add(jb_examinar);
+        jb_examinar.setBounds(20, 290, 98, 25);
 
+        jrb_proponente.setText("Proponente");
         jrb_proponente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrb_proponenteActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 20;
-        gridBagConstraints.gridy = 20;
-        gridBagConstraints.gridwidth = 60;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 8, 0, 0);
-        jPanel1.add(jrb_proponente, gridBagConstraints);
+        jPanel1.add(jrb_proponente);
+        jrb_proponente.setBounds(153, 390, 109, 23);
 
+        jrb_colaborador.setText("Colaborador");
         jrb_colaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrb_colaboradorActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 20;
-        gridBagConstraints.gridwidth = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 20, 0, 0);
-        jPanel1.add(jrb_colaborador, gridBagConstraints);
+        jPanel1.add(jrb_colaborador);
+        jrb_colaborador.setBounds(20, 390, 113, 23);
 
+        jb_aceptar.setText("Aceptar");
         jb_aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_aceptarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 22;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(40, 20, 49, 0);
-        jPanel1.add(jb_aceptar, gridBagConstraints);
+        jPanel1.add(jb_aceptar);
+        jb_aceptar.setBounds(20, 504, 89, 25);
 
+        jb_cancelar.setText("Cancelar");
         jb_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_cancelarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 20;
-        gridBagConstraints.gridy = 22;
-        gridBagConstraints.gridwidth = 38;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(40, 8, 49, 0);
-        jPanel1.add(jb_cancelar, gridBagConstraints);
+        jPanel1.add(jb_cancelar);
+        jb_cancelar.setBounds(153, 504, 96, 25);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 90;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 27, 0, 0);
-        jPanel1.add(jLabel7, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 76;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 125;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 4, 0, 0);
-        jPanel1.add(jT_nick, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 76;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 125;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 4, 0, 0);
-        jPanel1.add(jT_nombre, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 76;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 125;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 4, 0, 0);
-        jPanel1.add(jT_apellido, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 76;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 125;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 4, 0, 0);
-        jPanel1.add(jT_email, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 20;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 61;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 60;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 18, 0, 0);
-        jPanel1.add(jdc_fechaNac, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 92;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 145;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 21, 0, 79);
-        jPanel1.add(jT_web, gridBagConstraints);
+        jLabel7.setText("Pagina Web");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(315, 15, 85, 15);
+        jPanel1.add(jT_nick);
+        jT_nick.setBounds(113, 9, 129, 19);
+        jPanel1.add(jT_nombre);
+        jT_nombre.setBounds(113, 37, 129, 19);
+        jPanel1.add(jT_apellido);
+        jT_apellido.setBounds(113, 65, 129, 19);
+        jPanel1.add(jT_email);
+        jT_email.setBounds(113, 92, 129, 19);
+        jPanel1.add(jdc_fechaNac);
+        jdc_fechaNac.setBounds(163, 208, 86, 19);
+        jPanel1.add(jT_web);
+        jT_web.setBounds(421, 9, 132, 19);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 90;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 27, 0, 0);
-        jPanel1.add(jLabel8, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 92;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 145;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 21, 0, 79);
-        jPanel1.add(jT_direccion, gridBagConstraints);
+        jLabel8.setText("Direccion");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(315, 43, 65, 15);
+        jPanel1.add(jT_direccion);
+        jT_direccion.setBounds(421, 37, 132, 19);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 90;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 32, 0, 0);
-        jPanel1.add(jLabel9, gridBagConstraints);
+        jLabel9.setText("Biografia");
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(320, 70, 64, 15);
 
+        jtp_biografia.setColumns(20);
+        jtp_biografia.setRows(5);
         jScrollPane1.setViewportView(jtp_biografia);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 90;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 13;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 217;
-        gridBagConstraints.ipady = 327;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(9, 32, 0, 0);
-        jPanel1.add(jScrollPane1, gridBagConstraints);
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(320, 94, 312, 370);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 17;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 15, 0, 0);
-        jPanel1.add(jLabel10, gridBagConstraints);
+        jLabel10.setText("Password");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(104, 117, 70, 15);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 37;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipady = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(24, 50, 0, 0);
-        jPanel1.add(jLabel11, gridBagConstraints);
+        jLabel11.setText("Confirmacion password");
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(50, 156, 166, 19);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 59;
-        gridBagConstraints.ipadx = 209;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 20, 0, 0);
-        jPanel1.add(jP_contra, gridBagConstraints);
+        jP_contra.setText("jPasswordField1");
+        jPanel1.add(jP_contra);
+        jP_contra.setBounds(20, 136, 213, 19);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.gridwidth = 59;
-        gridBagConstraints.ipadx = 209;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
-        jPanel1.add(jP_contraVS, gridBagConstraints);
+        jP_contraVS.setText("jPasswordField2");
+        jPanel1.add(jP_contraVS);
+        jP_contraVS.setBounds(20, 185, 213, 19);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

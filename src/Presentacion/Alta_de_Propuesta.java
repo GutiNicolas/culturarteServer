@@ -92,7 +92,6 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel3 = new javax.swing.JLabel();
         jScrollBar1 = new javax.swing.JScrollBar();
@@ -130,6 +129,8 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jT_cat = new javax.swing.JTree();
 
+        jLabel3.setText("Tipo de espectaculo");
+
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
@@ -141,7 +142,11 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(null);
+
+        jLabel1.setText("Proponente");
+
+        jLabel2.setText("Tipo de espectaculo");
 
         txttipoespectaculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,142 +190,78 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 19;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 83;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(17, 54, 0, 2);
-        getContentPane().add(jPanel1, gridBagConstraints);
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(378, 52, 436, 71);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 54, 0, 0);
-        getContentPane().add(jLabel4, gridBagConstraints);
+        jLabel4.setText(" Titulo");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(378, 129, 44, 15);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 50, 0, 0);
-        getContentPane().add(jLabel5, gridBagConstraints);
+        jLabel5.setText(" Descripcion");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(374, 175, 86, 15);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 60, 0, 0);
-        getContentPane().add(jLabel6, gridBagConstraints);
+        jLabel6.setText(" Lugar");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(384, 415, 45, 15);
 
         txtlugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtlugarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 9;
-        gridBagConstraints.ipadx = 149;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 60, 0, 0);
-        getContentPane().add(txtlugar, gridBagConstraints);
+        getContentPane().add(txtlugar);
+        txtlugar.setBounds(384, 434, 153, 19);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 24, 0, 0);
-        getContentPane().add(jLabel7, gridBagConstraints);
+        jLabel7.setText("Fecha prevista");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(657, 129, 104, 15);
 
         txttitulo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txttitulo1ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 8;
-        gridBagConstraints.ipadx = 149;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 54, 0, 0);
-        getContentPane().add(txttitulo1, gridBagConstraints);
+        getContentPane().add(txttitulo1);
+        txttitulo1.setBounds(378, 150, 153, 19);
 
         txtcostoentrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcostoentradaActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 8;
-        gridBagConstraints.ipadx = 149;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 24, 0, 0);
-        getContentPane().add(txtcostoentrada, gridBagConstraints);
+        getContentPane().add(txtcostoentrada);
+        txtcostoentrada.setBounds(657, 253, 153, 19);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(42, 24, 0, 0);
-        getContentPane().add(jLabel11, gridBagConstraints);
+        jLabel11.setText("Costo entrada");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(657, 232, 102, 15);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(17, 30, 0, 0);
-        getContentPane().add(jLabel12, gridBagConstraints);
+        jLabel12.setText("Imagen");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(663, 289, 52, 15);
 
+        btnexplorar.setText("Explorar");
         btnexplorar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnexplorarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 15;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 12, 0, 0);
-        getContentPane().add(btnexplorar, gridBagConstraints);
+        getContentPane().add(btnexplorar);
+        btnexplorar.setBounds(727, 284, 92, 25);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 16;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.gridheight = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 60, 0, 0);
-        getContentPane().add(jLabel13, gridBagConstraints);
+        jLabel13.setText(" Retornos posibles");
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(384, 457, 133, 15);
 
+        btndardealta.setText("Dar de alta");
         btndardealta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndardealtaActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 22;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 8;
-        gridBagConstraints.ipadx = -2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 59, 0, 0);
-        getContentPane().add(btndardealta, gridBagConstraints);
+        getContentPane().add(btndardealta);
+        btndardealta.setBounds(692, 457, 111, 25);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -348,19 +289,8 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 62;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 108;
-        gridBagConstraints.ipady = 355;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(24, 20, 0, 0);
-        getContentPane().add(jScrollPane2, gridBagConstraints);
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(21, 82, 133, 417);
 
         txtbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -372,111 +302,52 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
                 txtbuscarKeyPressed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 121;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 20, 0, 0);
-        getContentPane().add(txtbuscar, gridBagConstraints);
+        getContentPane().add(txtbuscar);
+        txtbuscar.setBounds(21, 39, 125, 19);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
-        getContentPane().add(jLabel14, gridBagConstraints);
+        jLabel14.setText("Proponentes");
+        getContentPane().add(jLabel14);
+        jLabel14.setBounds(21, 20, 92, 15);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 29;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 60, 0, 0);
-        getContentPane().add(cbporcentaje, gridBagConstraints);
+        cbporcentaje.setText("Porcentaje");
+        getContentPane().add(cbporcentaje);
+        cbporcentaje.setBounds(384, 476, 102, 23);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 29;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 96;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(24, 60, 0, 0);
-        getContentPane().add(cbentradas, gridBagConstraints);
+        cbentradas.setText("Entrada");
+        getContentPane().add(cbentradas);
+        cbentradas.setBounds(384, 496, 81, 23);
 
+        txtdescripcion.setColumns(20);
+        txtdescripcion.setRows(5);
         jScrollPane1.setViewportView(txtdescripcion);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 10;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 197;
-        gridBagConstraints.ipady = 127;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(4, 60, 0, 0);
-        getContentPane().add(jScrollPane1, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 6;
-        gridBagConstraints.ipadx = 150;
-        gridBagConstraints.ipady = 100;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 30, 0, 0);
-        getContentPane().add(labelimage, gridBagConstraints);
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(384, 194, 249, 201);
+        getContentPane().add(labelimage);
+        labelimage.setBounds(663, 312, 150, 100);
 
         txtmontorec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtmontorecActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 257;
-        gridBagConstraints.gridwidth = 8;
-        gridBagConstraints.ipadx = 149;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 54, 17, 0);
-        getContentPane().add(txtmontorec, gridBagConstraints);
+        getContentPane().add(txtmontorec);
+        txtmontorec.setBounds(378, 545, 153, 19);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 159;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 98;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 60, 0, 0);
-        getContentPane().add(jLabel16, gridBagConstraints);
+        jLabel16.setText("Monto requerido");
+        getContentPane().add(jLabel16);
+        jLabel16.setBounds(384, 526, 119, 15);
 
+        btncancelar.setText("Cancelar");
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncancelarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 63;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 97;
-        gridBagConstraints.ipadx = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 58, 0, 0);
-        getContentPane().add(btncancelar, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 111;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 30, 0, 0);
-        getContentPane().add(jdc_fecha, gridBagConstraints);
+        getContentPane().add(btncancelar);
+        btncancelar.setBounds(691, 499, 108, 25);
+        getContentPane().add(jdc_fecha);
+        jdc_fecha.setBounds(663, 152, 137, 19);
 
         jT_cat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -485,18 +356,8 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(jT_cat);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 35;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 117;
-        gridBagConstraints.ipady = 407;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(4, 28, 0, 0);
-        getContentPane().add(jScrollPane3, gridBagConstraints);
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(182, 39, 142, 460);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
