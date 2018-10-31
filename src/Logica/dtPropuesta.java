@@ -174,6 +174,12 @@ public class dtPropuesta {
         return montoactual;
     }
 
+    public void setMontoactual(int montoactual) {
+        this.montoactual = montoactual;
+    }
+    
+    
+
     /**
      * @return the retorno
      */
