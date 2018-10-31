@@ -6,7 +6,9 @@
 package Logica;
 
 import Persistencia.colaboracionesPersistencia;
+import Persistencia.pagosPersistencia;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -21,6 +23,9 @@ public class ContColaboracion implements iConColaboracion {
     private ContUsuario cUsuario = ContUsuario.getInstance();
     private colaboracionesPersistencia colPer = new colaboracionesPersistencia();
     private ContCargaBD contCarga = ContCargaBD.getInstance();
+    private pagosPersistencia pPer = new pagosPersistencia();
+    private HashMap<String, pago> tipoPagosExistentes = new HashMap<>();
+    private ArrayList<formaPago> pagos = new ArrayList<>();
 
     public static ContColaboracion getInstance() {
         if (instance == null) {
@@ -49,6 +54,7 @@ public class ContColaboracion implements iConColaboracion {
 
     public void cargarColaboraciones() {
         ArrayList<dtColaboracionCompleto> dtColaComp = new ArrayList<>();
+        ArrayList<dtPago> pagos = new ArrayList<>();
         //////////////     
         try {
             contCarga.levantarBDcolPer();
@@ -56,8 +62,7 @@ public class ContColaboracion implements iConColaboracion {
             for (int i = 0; i < dtColaComp.size(); i++) {
                 dtColaboracionCompleto dt = (dtColaboracionCompleto) dtColaComp.get(i);
                 contCarga.agregardtcolaboraciones(dt);
-                pago pago = null;////verificar
-                colProp cp = new colProp(dt.getFecha(), dt.getHora(), dt.getMonto(), dt.getRetorno(), null, dt.getComentario(), pago);
+                colProp cp = new colProp(dt.getFecha(), dt.getHora(), dt.getMonto(), dt.getRetorno(), null, dt.getComentario());
                 cUsuario.registrarcolaboracion(dt.getNickname(), dt.getTitulo(), cp);
 
             }
@@ -87,39 +92,34 @@ public class ContColaboracion implements iConColaboracion {
     }
 
     @Override
-    public boolean registrarColaboracion(DtColaboracionCompWeb cola, dtPago pf) {
+    public boolean registrarColaboracion(DtColaboracionCompWeb cola) {
 
         String titulo = (String) cola.getTituloP();
         String colab = (String) cola.getNick();
         int monto = (Integer) cola.getMontoC();
         String retorno = (String) cola.getRetornoP();
-
-        pago pago = null;
-        if (pf != null) {
-            pago = (pago) crearPago(pf);
-        }
-
-        return cUsuario.registrarColaboracion(titulo, colab, monto, retorno, null, pago);
+        return cUsuario.registrarColaboracion(titulo, colab, monto, retorno, null);
 
     }
 
     private pago crearPago(dtPago p) {
-        pago fp = null;
+
         if (p instanceof dtTarjetaCredito) {
             dtTarjetaCredito dttc = (dtTarjetaCredito) p;
-            fp = new tarjetaCredito(dttc.getTipo(), dttc.getNumeroTarjeta(), dttc.getCvc(), dttc.getfVencimiento(), dttc.getTitular());
+            pago fp = new tarjetaCredito(dttc.getTipo(), dttc.getNumeroTarjeta(), dttc.getCvc(), dttc.getfVencimiento(), dttc.getTitular());
+            return fp;
         }
         if (p instanceof dtTransferencia) {
-            dtTransferencia dttf = (dtTransferencia) p;
-            fp = new transferencia(dttf.getBanco(), dttf.getNumeroCuenta(), dttf.getTitular());
+            dtTransferencia trans = (dtTransferencia) p;
+            pago fp = new transferencia(trans.getBanco(), trans.getNumeroCuenta(), p.getTitular());
+            return fp;
         }
         if (p instanceof dtPaypal) {
             dtPaypal dtpp = (dtPaypal) p;
-            fp = new payPal(dtpp.getNumeroPaypal(), dtpp.getTitular());
+            pago fp = new payPal(dtpp.getNumeroPaypal(), dtpp.getTitular());
+            return fp;
         }
-
-        return fp;
-
+        return null;
     }
 
     @Override
@@ -135,13 +135,15 @@ public class ContColaboracion implements iConColaboracion {
     @Override
     public DtarregloDtColCompWeb listarmiscolaboracionesWeb(String nick) {
         List<dtColProp> listCol = new ArrayList<>();
-                listCol=cUsuario.listarmiscolaboraciones(nick);
+        listCol = cUsuario.listarmiscolaboraciones(nick);
         DtarregloDtColCompWeb nuevo = new DtarregloDtColCompWeb();
-        ArrayList<DtColaboracionCompWeb>arrColWeb= new ArrayList<>();
+        ArrayList<DtColaboracionCompWeb> arrColWeb = new ArrayList<>();
         try {
-            for(int i =0; i<listCol.size();i++){
-            arrColWeb.add((DtColaboracionCompWeb)invertirDtColProp((dtColProp)listCol.get(i)));
+            for (int i = 0; i < listCol.size(); i++) {
+                arrColWeb.add((DtColaboracionCompWeb) invertirDtColProp((dtColProp) listCol.get(i)));
+                
             }
+            nuevo.setArregloCola(arrColWeb);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -152,7 +154,7 @@ public class ContColaboracion implements iConColaboracion {
         DtColaboracionCompWeb nuevo = new DtColaboracionCompWeb();
         nuevo.setTituloP(colP.getTitulo());
         nuevo.setNick(colP.getNickname());
-        nuevo.setFechaC((String)colP.getFechaCol().getFecha());
+        nuevo.setFechaC((String) colP.getFechaCol().getFecha());
         nuevo.setHoraC(colP.getHoraCol().getHora());
         nuevo.setMontoC(colP.getMontoColaborado());
         return nuevo;
@@ -162,5 +164,55 @@ public class ContColaboracion implements iConColaboracion {
     public String armarretorno(String cbe, String cbp) {
         return (String) cUsuario.armarretorno(cbe, cbp);
     }
+
+    @Override
+    public void cargarPagos() {
+        try {
+
+            contCarga.levantarBDPagosPer();
+            ArrayList<dtPago> Pagos = (ArrayList<dtPago>) pPer.cargarPagos();
+            for (int i = 0; i < Pagos.size(); i++) {
+                dtPago p = (dtPago) Pagos.get(i);
+                //formaPago nuevaFp= new formaPago(p.getTituloP(), p.getTitular(), nickname, codigo, fP)
+             //   pagos.add((pago) this.crearPago(p));
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    private boolean obtenerDatosdeClientes(pago pago) {
+//        String nick = null, numPago = null;
+//        if (pago instanceof tarjetaCredito) {
+//            dtTarjetaCredito dttc = (dtTarjetaCredito) pago;
+//            nick = dttc.getNickname();
+//            numPago = dttc.getNumeroTarjeta();
+//            if (!tipoPagosExistentes.containsKey(nick + "-" + numPago)) {
+//                tipoPagosExistentes.put(nick + "-" + numPago, pago);
+//                return false;
+//            }
+//        }
+//        if (pago instanceof dtTransferencia) {
+//            dtTransferencia trans = (dtTransferencia) pago;
+//            nick = trans.getNickname();
+//            numPago = trans.getNumeroCuenta();
+//            if (!tipoPagosExistentes.containsKey(nick + "-" + numPago)) {
+//                tipoPagosExistentes.put(nick + "-" + numPago, pago);
+//                return false;
+//            }
+//        }
+//        if (pago instanceof dtPaypal) {
+//            dtPaypal dtpp = (dtPaypal) pago;
+//            nick = dtpp.getNickname();
+//            numPago = dtpp.getNumeroPaypal();
+//            if (!tipoPagosExistentes.containsKey(nick + "-" + numPago)) {
+//                tipoPagosExistentes.put(nick + "-" + numPago, pago);
+//                return false;
+//            }
+//
+//        }
+    return true;}
 
 }

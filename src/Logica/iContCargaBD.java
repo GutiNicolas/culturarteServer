@@ -28,6 +28,8 @@ public interface iContCargaBD {
 
     public abstract void seteardtSeguidores(dtSeguidores dtseg);
 
+    public abstract void seteardtPago(dtPago pago);
+
     public abstract void levantarBDproPer();
 
     public abstract void levantaBDusuPer();
@@ -37,14 +39,17 @@ public interface iContCargaBD {
     public abstract void levantarBDestadosPropPer();
 
     public abstract void levantarBDseguidoresPer();
-    
+
     public abstract void levantarBDCategoriasPer();
 
+    public abstract void levantarBDPagosPer();
+
     public abstract boolean cargarDatos();
-    
+
     public abstract void crearProperties();
-    
+
     public abstract Properties levantarProperties();
-    
-    public abstract  Properties leerProperties(String ruta);
+
+    public abstract Properties leerProperties(String ruta);
+
 }

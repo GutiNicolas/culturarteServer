@@ -38,6 +38,7 @@ public class ContCargaBD implements iContCargaBD {
     private ArrayList<dtEstadosPropuestas> estadosPropuestaPer = new ArrayList<>();
     private ArrayList<dtSeguidores> seguidoresUPer = new ArrayList<>();
     private ArrayList<dtFavoritos> favoritosPer = new ArrayList<>();
+    private ArrayList<dtPago> pagosPer = new ArrayList<>();
 //arreglos primitivos para carga -- bruto
     private ArrayList<String> usuPer = new ArrayList<>();
     private ArrayList<String> propPer = new ArrayList<>();
@@ -46,6 +47,7 @@ public class ContCargaBD implements iContCargaBD {
     private ArrayList<dtSeguidores> seguidoresPer = new ArrayList<>();
     private ArrayList<dtCategoria> catPer = new ArrayList<>();
     private ArrayList<dtFavoritos> favPer = new ArrayList<>();
+    private ArrayList<dtPago> pagPer = new ArrayList<>();
 //Variables movimiento de imagenes --
 
     private String imagenUSU = null, imagenPropuesta = null, imagenLevantar = null;
@@ -138,6 +140,7 @@ public class ContCargaBD implements iContCargaBD {
             cargarEstadosPropuestas();
             cargarSeguidores();
             cargarFavoritos();
+            cargarPagos();
             return true;
         } catch (Exception e) {
             return false;
@@ -413,6 +416,17 @@ public class ContCargaBD implements iContCargaBD {
         }
 
     }
+    
+    private void cargarPagos(){
+        try {
+            for(int i = 0;i<pagosPer.size();i++){
+            dtPago pago = (dtPago)pagosPer.get(i);
+            bdCul.agregarPagosCD(pago);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
 
     private void cargaOrigin() {
         if (cargaUsuariosOrigin()) {
@@ -550,11 +564,15 @@ public class ContCargaBD implements iContCargaBD {
         this.favPer.clear();
         System.out.println("vacio favPer");
         this.favoritosPer.clear();
-        System.out.println("vacion favoritosPer");
+        System.out.println("vacio favoritosPer");
+        this.pagPer.clear();
+        System.out.println("vacio pagPer");
+        this.pagosPer.clear();
+        System.out.println("vacio pagosPer");
         this.clavesPropiedades.clear();
-        System.out.println("vacion clavesPropiedades");
+        System.out.println("vacio clavesPropiedades");
         this.configProp.clear();
-        System.out.println("vacion configProp");
+        System.out.println("vacio configProp");
         propiedades = null;
         System.out.println("vacio TODO");
 
@@ -1119,5 +1137,49 @@ public class ContCargaBD implements iContCargaBD {
         }
         System.out.println("Finalizo levantarYCargar...");
         return dicTemp;
+    }
+
+    ///////////pagos
+    @Override
+    public void seteardtPago(dtPago pago) {
+        try {
+            System.out.println("setearPago inicio...");
+        String codigo = null;
+        if (pago instanceof dtTarjetaCredito) {
+            dtTarjetaCredito tc = (dtTarjetaCredito) pago;
+            codigo = tc.getNumeroTarjeta();
+            System.out.println("pago es dtTarjetaCredito "+"codigo: "+codigo);
+        }
+        if (pago instanceof dtTransferencia) {
+            dtTransferencia tr = (dtTransferencia) pago;
+            codigo = tr.getNumeroCuenta();
+                        System.out.println("pago es dtTraenciansfe "+"codigo: "+codigo);
+        }
+        if (pago instanceof dtPaypal) {
+            dtPaypal py = (dtPaypal) pago;
+            codigo = py.getNumeroPaypal();
+                    System.out.println("pago es dtPaypal "+"codigo: "+codigo);
+        }
+            System.out.println("procedo a buscar");
+        for (int i = 0; i < pagPer.size(); i++) {
+            dtPago p = pagPer.get(i);
+            if (p.getNickname().equals(pago.getNickname())) {
+                if (p.getTituloP().equals(pago.getTituloP())) {
+                    if (p.getCodigo().equals(codigo)) {
+                        pagosPer.add(pago);
+                        System.out.println("Encontre el pago");
+                        break;
+                    }
+                }
+            }
+        }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void levantarBDPagosPer() {
+        bdCul.levantarPagosOrigin(pagosPer);
     }
 }

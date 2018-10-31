@@ -38,7 +38,7 @@ public class colProp {
     }
 //CONSTRUCTOR//
 
-    public colProp(dtFecha fecha, dtHora hora, int montocolaborado, String retorno, propuesta prop, String comen, pago fp) {
+    public colProp(dtFecha fecha, dtHora hora, int montocolaborado, String retorno, propuesta prop, String comen) {
         this.fecha = fecha;
         this.hora = hora;
         this.montocolaborado = montocolaborado;
@@ -47,7 +47,7 @@ public class colProp {
         if (comen != null) {
             this.comentario = comen;
         }
-        if(fp!=null){formaPago=fp;}
+        
 
     }
 

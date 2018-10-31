@@ -10,15 +10,13 @@ package Logica;
  * @author juan
  */
 public class pago {
-   protected String titular;
+   private String titular;
 
     public pago(String titular) {
         this.titular = titular;
     }
 
-    pago() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     /**
      * @return the titular
@@ -33,5 +31,6 @@ public class pago {
     public void setTitular(String titular) {
         this.titular = titular;
     }
+
     
 }

@@ -14,6 +14,8 @@ import java.util.List;
 public interface iConColaboracion {
 
     public abstract void cargarColaboracion();
+    
+    public abstract void cargarPagos();
 
     public abstract dtColProp seleccionarColaboracion(String nickusuario, String titulo);
 
@@ -25,7 +27,7 @@ public interface iConColaboracion {
 
     public abstract void eliminarcolaboracion(String nickname, String titulo) throws Exception;
 
-    public abstract boolean registrarColaboracion(DtColaboracionCompWeb cola, dtPago pf);
+    public abstract boolean registrarColaboracion(DtColaboracionCompWeb cola);
 
     public abstract boolean registrarPagoWeb(String usuario, String tituloP, DtPagoWeb pago);
 

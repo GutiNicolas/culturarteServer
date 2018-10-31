@@ -17,11 +17,13 @@ public class dtTransferencia extends dtPago {
     private String banco;
     private String numeroCuenta;
 
-    public dtTransferencia(String banco, String numeroCuenta, String titular) {
-        super(titular);
+    public dtTransferencia(String banco, String numeroCuenta, String tituloP, String titular, String nickname) {
+        super(tituloP, titular, nickname);
         this.banco = banco;
         this.numeroCuenta = numeroCuenta;
     }
+
+
 
     /**
      * @return the banco

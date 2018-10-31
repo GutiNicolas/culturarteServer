@@ -17,6 +17,8 @@ public class payPal extends pago{
         this.numeroPaypal = numeroPaypal;
     }
 
+   
+
     /**
      * @return the numeroPaypal
      */

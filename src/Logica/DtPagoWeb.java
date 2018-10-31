@@ -34,7 +34,7 @@ public class DtPagoWeb {
     private String bancoNombre;
   //  @XmlElement(name = "numeroCuentaB", namespace = "")
     private String numeroCuentaB;
-
+    private String tituloP;
     public DtPagoWeb() {
     }
 
@@ -162,6 +162,20 @@ public class DtPagoWeb {
      */
     public void setNumeroCuenta(String numeroCuenta) {
         this.numeroCuentaB = numeroCuenta;
+    }
+
+    /**
+     * @return the tituloPropuesta
+     */
+    public String getTituloPropuesta() {
+        return tituloP;
+    }
+
+    /**
+     * @param tituloPropuesta the tituloPropuesta to set
+     */
+    public void setTituloPropuesta(String tituloPropuesta) {
+        this.tituloP = tituloPropuesta;
     }
 
 }

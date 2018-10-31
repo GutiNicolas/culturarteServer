@@ -18,11 +18,10 @@ public class transferencia extends pago{
         this.banco = banco;
         this.numeroCuenta = numeroCuenta;
     }
-    
-    public transferencia(String titular) {
-        super(titular);
-    }
 
+   
+    
+   
     /**
      * @return the banco
      */

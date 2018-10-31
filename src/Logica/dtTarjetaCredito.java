@@ -16,17 +16,18 @@ public class dtTarjetaCredito extends dtPago {
 
     private String tipo;
     private String numeroTarjeta;
-    private int cvc;
+    private String cvc;
     private dtFecha fVencimiento;
 
-    public dtTarjetaCredito(String tipo, String numeroTarjeta, int cvc, dtFecha fVencimiento, String titular) {
-        super(titular);
+    public dtTarjetaCredito(String tipo, String numeroTarjeta, String cvc, dtFecha fVencimiento, String tituloP, String titular, String nickname) {
+        super(tituloP, titular, nickname);
         this.tipo = tipo;
         this.numeroTarjeta = numeroTarjeta;
         this.cvc = cvc;
         this.fVencimiento = fVencimiento;
     }
 
+    
     /**
      * @return the tipo
      */
@@ -44,7 +45,7 @@ public class dtTarjetaCredito extends dtPago {
     /**
      * @return the cvc
      */
-    public int getCvc() {
+    public String getCvc() {
         return cvc;
     }
 

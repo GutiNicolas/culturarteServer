@@ -630,7 +630,7 @@ public class Registrar_Colaboracion_a_Propuesta extends javax.swing.JInternalFra
                                     if (txttituloprop.getText().isEmpty() == false && txttituloprop.getText().contains("Seleccione una") == false) {
                                         if (txtnickcolaborador.getText().isEmpty() == false && txtnickcolaborador.getText().contains("Seleccione uno") == false) {
                                             
-                                            boolean b = contUsu.registrarColaboracion(txttituloprop.getText(), txtnickcolaborador.getText(), Integer.parseInt(txtmontoacolaborar.getText()), re, jTA_comentario.getText(),null);
+                                            boolean b = contUsu.registrarColaboracion(txttituloprop.getText(), txtnickcolaborador.getText(), Integer.parseInt(txtmontoacolaborar.getText()), re, jTA_comentario.getText());
                                             if (txtestado.getText().contains("Publicada") && b) {
                                                 contProp.agregarEstadoAPropuesta("En financiacion", txttituloprop.getText(), dtf, dth);
                                             }

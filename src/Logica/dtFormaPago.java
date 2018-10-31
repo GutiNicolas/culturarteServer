@@ -7,42 +7,25 @@ package Logica;
 
 /**
  *
- * @author juan
+ * @author jp
  */
-public class dtPago {
+public class dtFormaPago {
 
     private String tituloP;
     private String titular;
     private String nickname;
     private String codigo;
+    private dtPago fP;
 
-    public dtPago(String titular) {
-        this.titular = titular;
-    }
-
-    public dtPago(String tituloP, String titular) {
-        this.tituloP = tituloP;
-        this.titular = titular;
-    }
-
-    public dtPago(String tituloP, String titular, String nickname) {
+    public dtFormaPago(String tituloP, String titular, String nickname, String codigo, dtPago fP) {
         this.tituloP = tituloP;
         this.titular = titular;
         this.nickname = nickname;
+        this.codigo = codigo;
+        this.fP = fP;
     }
 
-    public dtPago(String tituloP, String titular, String nickname, String codi) {
-        this.tituloP = tituloP;
-        this.titular = titular;
-        this.nickname = nickname;
-        this.codigo=codi;
-    }
-
-    /**
-     * @return the titular
-     */
-    public String getTitular() {
-        return titular;
+    public dtFormaPago() {
     }
 
     /**
@@ -60,6 +43,20 @@ public class dtPago {
     }
 
     /**
+     * @return the titular
+     */
+    public String getTitular() {
+        return titular;
+    }
+
+    /**
+     * @param titular the titular to set
+     */
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
+    /**
      * @return the nickname
      */
     public String getNickname() {
@@ -71,13 +68,6 @@ public class dtPago {
      */
     public void setNickname(String nickname) {
         this.nickname = nickname;
-    }
-
-    /**
-     * @param titular the titular to set
-     */
-    public void setTitular(String titular) {
-        this.titular = titular;
     }
 
     /**
@@ -94,4 +84,17 @@ public class dtPago {
         this.codigo = codigo;
     }
 
+    /**
+     * @return the fP
+     */
+    public dtPago getfP() {
+        return fP;
+    }
+
+    /**
+     * @param fP the fP to set
+     */
+    public void setfP(dtPago fP) {
+        this.fP = fP;
+    }
 }

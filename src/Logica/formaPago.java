@@ -7,42 +7,22 @@ package Logica;
 
 /**
  *
- * @author juan
+ * @author jp
  */
-public class dtPago {
+public class formaPago {
 
     private String tituloP;
     private String titular;
     private String nickname;
     private String codigo;
+    private pago fP;
 
-    public dtPago(String titular) {
-        this.titular = titular;
-    }
-
-    public dtPago(String tituloP, String titular) {
-        this.tituloP = tituloP;
-        this.titular = titular;
-    }
-
-    public dtPago(String tituloP, String titular, String nickname) {
+    public formaPago(String tituloP, String titular, String nickname, String codigo, pago fP) {
         this.tituloP = tituloP;
         this.titular = titular;
         this.nickname = nickname;
-    }
-
-    public dtPago(String tituloP, String titular, String nickname, String codi) {
-        this.tituloP = tituloP;
-        this.titular = titular;
-        this.nickname = nickname;
-        this.codigo=codi;
-    }
-
-    /**
-     * @return the titular
-     */
-    public String getTitular() {
-        return titular;
+        this.codigo = codigo;
+        this.fP = fP;
     }
 
     /**
@@ -60,6 +40,20 @@ public class dtPago {
     }
 
     /**
+     * @return the titular
+     */
+    public String getTitular() {
+        return titular;
+    }
+
+    /**
+     * @param titular the titular to set
+     */
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
+    /**
      * @return the nickname
      */
     public String getNickname() {
@@ -71,13 +65,6 @@ public class dtPago {
      */
     public void setNickname(String nickname) {
         this.nickname = nickname;
-    }
-
-    /**
-     * @param titular the titular to set
-     */
-    public void setTitular(String titular) {
-        this.titular = titular;
     }
 
     /**
@@ -94,4 +81,17 @@ public class dtPago {
         this.codigo = codigo;
     }
 
+    /**
+     * @return the fP
+     */
+    public pago getfP() {
+        return fP;
+    }
+
+    /**
+     * @param fP the fP to set
+     */
+    public void setfP(pago fP) {
+        this.fP = fP;
+    }
 }
