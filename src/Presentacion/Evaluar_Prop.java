@@ -56,7 +56,7 @@ public class Evaluar_Prop extends javax.swing.JFrame {
         jT_propuesta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabla_propuestas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,20 +76,17 @@ public class Evaluar_Prop extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_propuestas);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(12, 31, 267, 441);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 31, 267, 441));
 
         jT_busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jT_busquedaKeyPressed(evt);
             }
         });
-        getContentPane().add(jT_busqueda);
-        jT_busqueda.setBounds(77, 10, 193, 19);
+        getContentPane().add(jT_busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 10, 193, -1));
 
         jLabel1.setText("Buscar");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 10, 48, 15);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jR_publicada.setText("Publicada");
         jR_publicada.addActionListener(new java.awt.event.ActionListener() {
@@ -97,8 +94,7 @@ public class Evaluar_Prop extends javax.swing.JFrame {
                 jR_publicadaActionPerformed(evt);
             }
         });
-        getContentPane().add(jR_publicada);
-        jR_publicada.setBounds(307, 96, 94, 23);
+        getContentPane().add(jR_publicada, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 96, -1, -1));
 
         jR_cancelada.setText("Cancelada");
         jR_cancelada.addActionListener(new java.awt.event.ActionListener() {
@@ -106,8 +102,7 @@ public class Evaluar_Prop extends javax.swing.JFrame {
                 jR_canceladaActionPerformed(evt);
             }
         });
-        getContentPane().add(jR_cancelada);
-        jR_cancelada.setBounds(307, 126, 99, 23);
+        getContentPane().add(jR_cancelada, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 126, -1, -1));
 
         btn_aceptar.setText("Aceptar");
         btn_aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -115,8 +110,7 @@ public class Evaluar_Prop extends javax.swing.JFrame {
                 btn_aceptarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_aceptar);
-        btn_aceptar.setBounds(410, 366, 97, 25);
+        getContentPane().add(btn_aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 366, 97, -1));
 
         btn_cancelar.setText("Cancelar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,12 +118,10 @@ public class Evaluar_Prop extends javax.swing.JFrame {
                 btn_cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_cancelar);
-        btn_cancelar.setBounds(410, 412, 98, 25);
+        getContentPane().add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 412, 98, -1));
 
         jT_propuesta.setText("Propuesta");
-        getContentPane().add(jT_propuesta);
-        jT_propuesta.setBounds(307, 33, 203, 19);
+        getContentPane().add(jT_propuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 33, 203, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

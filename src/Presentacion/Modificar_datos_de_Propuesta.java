@@ -114,11 +114,10 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
         labelretorno = new javax.swing.JLabel();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Propuestas");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(40, 30, 82, 15);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
@@ -271,8 +270,7 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(14, 10, 0, 0);
         jPanel1.add(jDateChooser1, gridBagConstraints);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(282, 49, 509, 398);
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 49, 509, 398));
 
         btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
@@ -280,8 +278,7 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
                 btnguardarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnguardar);
-        btnguardar.setBounds(630, 548, 92, 25);
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 548, -1, -1));
 
         btncancelar.setText("Cancelar");
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -289,8 +286,7 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
                 btncancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btncancelar);
-        btncancelar.setBounds(532, 548, 96, 25);
+        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 548, -1, -1));
 
         busquedapropuestas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,8 +298,7 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
                 busquedapropuestasKeyPressed(evt);
             }
         });
-        getContentPane().add(busquedapropuestas);
-        busquedapropuestas.setBounds(40, 49, 213, 19);
+        getContentPane().add(busquedapropuestas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 49, 213, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -323,46 +318,35 @@ public class Modificar_datos_de_Propuesta extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(41, 83, 241, 398);
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 83, 241, 398));
 
         labeltitulo.setText("Seleccione una propuesta");
-        getContentPane().add(labeltitulo);
-        labeltitulo.setBounds(110, 481, 172, 15);
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 481, 172, -1));
 
         jLabel13.setText("Titulo");
-        getContentPane().add(jLabel13);
-        jLabel13.setBounds(40, 481, 40, 15);
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 481, -1, -1));
 
         jLabel14.setText("Proponente");
-        getContentPane().add(jLabel14);
-        jLabel14.setBounds(40, 500, 84, 15);
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, -1, -1));
 
         labelproponente.setText("Seleccione una propuesta");
-        getContentPane().add(labelproponente);
-        labelproponente.setBounds(163, 500, 119, 15);
+        getContentPane().add(labelproponente, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 500, 119, -1));
 
         jLabel12.setText("Categoria");
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(40, 519, 70, 15);
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 519, -1, -1));
 
         labelcategoria.setText("Seleccione una propuesta");
-        getContentPane().add(labelcategoria);
-        labelcategoria.setBounds(133, 519, 149, 15);
+        getContentPane().add(labelcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 519, 149, -1));
 
         jLabel15.setText("Fecha publicacion");
-        getContentPane().add(jLabel15);
-        jLabel15.setBounds(40, 538, 126, 15);
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 538, -1, -1));
 
         jLabel16.setText("Retorno");
-        getContentPane().add(jLabel16);
-        jLabel16.setBounds(40, 557, 57, 15);
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 557, -1, -1));
 
         labelretorno.setText("Seleccione una propuesta");
-        getContentPane().add(labelretorno);
-        labelretorno.setBounds(123, 557, 159, 15);
-        getContentPane().add(jDateChooser2);
-        jDateChooser2.setBounds(193, 538, 89, 19);
+        getContentPane().add(labelretorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 557, 159, -1));
+        getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 538, 89, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

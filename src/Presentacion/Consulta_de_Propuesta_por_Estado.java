@@ -81,11 +81,10 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
         jtxt_buscar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
 
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Estado");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(8, 263, 49, 19);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 263, -1, 19));
 
         tablepropuesta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,20 +104,16 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
         });
         jScrollPane2.setViewportView(tablepropuesta);
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(8, 49, 827, 194);
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 49, 827, 194));
 
         jLabel2.setText("Imagen");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(229, 292, 52, 15);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 292, -1, -1));
 
         lableEstadk.setText("Estado");
-        getContentPane().add(lableEstadk);
-        lableEstadk.setBounds(181, 20, 47, 15);
+        getContentPane().add(lableEstadk, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 20, 47, -1));
 
         jLabel4.setText("Colaboradores");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(429, 273, 105, 15);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 273, -1, -1));
 
         tablacolaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,22 +128,17 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
         ));
         jScrollPane3.setViewportView(tablacolaboradores);
 
-        getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(429, 292, 117, 183);
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 292, 117, 183));
 
         jLabel5.setText("Monto total");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(8, 475, 83, 15);
-        getContentPane().add(txtmontotoal);
-        txtmontotoal.setBounds(118, 475, 82, 19);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 475, -1, -1));
+        getContentPane().add(txtmontotoal, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 475, 82, -1));
 
         txtimagen.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 0)));
-        getContentPane().add(txtimagen);
-        txtimagen.setBounds(239, 311, 160, 130);
+        getContentPane().add(txtimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 311, 160, 130));
 
         jLabel6.setText("Propuestas");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(18, 20, 143, 15);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 20, 143, -1));
 
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -156,8 +146,7 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(739, 508, 96, 25);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(739, 508, -1, -1));
 
         tableestados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -177,8 +166,7 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
         });
         jScrollPane4.setViewportView(tableestados);
 
-        getContentPane().add(jScrollPane4);
-        jScrollPane4.setBounds(8, 292, 220, 183);
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 292, 220, 183));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,14 +181,11 @@ public class Consulta_de_Propuesta_por_Estado extends javax.swing.JInternalFrame
         ));
         jScrollPane5.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane5);
-        jScrollPane5.setBounds(576, 311, 259, 164);
-        getContentPane().add(jtxt_buscar);
-        jtxt_buscar.setBounds(689, 282, 143, 19);
+        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(576, 311, 259, 164));
+        getContentPane().add(jtxt_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(689, 282, 143, -1));
 
         jLabel3.setText("Propuesta:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(576, 282, 103, 15);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(576, 282, 103, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

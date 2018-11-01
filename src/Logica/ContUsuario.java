@@ -480,6 +480,7 @@ public class ContUsuario implements iConUsuario {
                 proponente p = (proponente) this.usuarios.get(key);
                 if (p.propuestasUsuario.containsKey(titulo)) {
                     dtp = p.getPropuestas(titulo);
+                    dtp.setMontoactual(this.getMontoColaborado(titulo));
                     dtp.addColaboradores((List<String>) listarColaboradores(titulo));
                 }
 

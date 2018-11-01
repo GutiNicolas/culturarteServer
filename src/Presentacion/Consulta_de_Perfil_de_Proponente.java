@@ -75,7 +75,7 @@ public class Consulta_de_Perfil_de_Proponente extends javax.swing.JInternalFrame
         jButton1 = new javax.swing.JButton();
         labelimagen = new javax.swing.JLabel();
 
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,20 +103,16 @@ public class Consulta_de_Perfil_de_Proponente extends javax.swing.JInternalFrame
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(36, 88, 147, 384);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 88, 147, 384));
 
         jLabel1.setText("Proponentes");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(58, 26, 92, 15);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 26, -1, -1));
 
         jLabel2.setText("Informacion para:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(224, 26, 125, 15);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 26, -1, -1));
 
         labelnickname.setText("Seleccione un proponente...");
-        getContentPane().add(labelnickname);
-        labelnickname.setBounds(381, 26, 201, 15);
+        getContentPane().add(labelnickname, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 26, -1, -1));
 
         tableproponente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -138,16 +134,13 @@ public class Consulta_de_Perfil_de_Proponente extends javax.swing.JInternalFrame
             tableproponente.getColumnModel().getColumn(5).setHeaderValue("Biografia");
         }
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(224, 41, 462, 74);
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 41, 462, 74));
 
         jLabel3.setText("Imagen:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(224, 127, 57, 15);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 127, -1, -1));
 
         jLabel4.setText("Propuestas:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(370, 127, 87, 15);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 127, -1, -1));
 
         tablecolaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -162,12 +155,10 @@ public class Consulta_de_Perfil_de_Proponente extends javax.swing.JInternalFrame
         ));
         jScrollPane3.setViewportView(tablecolaboradores);
 
-        getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(232, 388, 294, 100);
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 388, 294, 100));
 
         jLabel5.setText("Colaboradores para la propuesta:");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(224, 359, 242, 15);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 359, -1, -1));
 
         tablepropuestas1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -187,16 +178,13 @@ public class Consulta_de_Perfil_de_Proponente extends javax.swing.JInternalFrame
         });
         jScrollPane4.setViewportView(tablepropuestas1);
 
-        getContentPane().add(jScrollPane4);
-        jScrollPane4.setBounds(365, 151, 321, 104);
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 151, 321, 104));
 
         jLabel6.setText("Monto recaudado:");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(551, 359, 166, 15);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 359, 166, -1));
 
         labelmonto.setText("Monto");
-        getContentPane().add(labelmonto);
-        labelmonto.setBounds(551, 386, 54, 15);
+        getContentPane().add(labelmonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 386, 54, -1));
 
         tableinfopropuesta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -211,10 +199,8 @@ public class Consulta_de_Perfil_de_Proponente extends javax.swing.JInternalFrame
         ));
         jScrollPane5.setViewportView(tableinfopropuesta);
 
-        getContentPane().add(jScrollPane5);
-        jScrollPane5.setBounds(224, 262, 381, 85);
-        getContentPane().add(labelimgpropuesta);
-        labelimgpropuesta.setBounds(623, 262, 81, 81);
+        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 262, 381, 85));
+        getContentPane().add(labelimgpropuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 262, 81, 81));
 
         txtbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,8 +212,7 @@ public class Consulta_de_Perfil_de_Proponente extends javax.swing.JInternalFrame
                 txtbuscarKeyPressed(evt);
             }
         });
-        getContentPane().add(txtbuscar);
-        txtbuscar.setBounds(36, 58, 118, 19);
+        getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 58, 118, -1));
 
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -235,10 +220,8 @@ public class Consulta_de_Perfil_de_Proponente extends javax.swing.JInternalFrame
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(558, 447, 96, 25);
-        getContentPane().add(labelimagen);
-        labelimagen.setBounds(232, 151, 100, 100);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(558, 447, -1, -1));
+        getContentPane().add(labelimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 151, 100, 100));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

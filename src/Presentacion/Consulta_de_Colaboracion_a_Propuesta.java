@@ -61,7 +61,7 @@ public class Consulta_de_Colaboracion_a_Propuesta extends javax.swing.JInternalF
         labelnick = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablacolaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,16 +81,13 @@ public class Consulta_de_Colaboracion_a_Propuesta extends javax.swing.JInternalF
         });
         jScrollPane1.setViewportView(tablacolaboradores);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(24, 90, 109, 395);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 90, 109, 395));
 
         jLabel1.setText("Colaboradores");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(28, 30, 105, 15);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 30, -1, -1));
 
         jLabel4.setText("Colaboraciones realizadas");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(157, 59, 189, 15);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 59, -1, -1));
 
         tablacolaboraciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,12 +107,10 @@ public class Consulta_de_Colaboracion_a_Propuesta extends javax.swing.JInternalF
         });
         jScrollPane2.setViewportView(tablacolaboraciones);
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(161, 80, 597, 138);
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 80, 597, 138));
 
         jLabel5.setText("Informacion de la colaboracion");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(161, 230, 217, 15);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 230, -1, -1));
 
         tablainfocol.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,8 +125,7 @@ public class Consulta_de_Colaboracion_a_Propuesta extends javax.swing.JInternalF
         ));
         jScrollPane3.setViewportView(tablainfocol);
 
-        getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(161, 251, 597, 234);
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 251, 597, 234));
 
         txtbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,12 +137,10 @@ public class Consulta_de_Colaboracion_a_Propuesta extends javax.swing.JInternalF
                 txtbuscarKeyPressed(evt);
             }
         });
-        getContentPane().add(txtbuscar);
-        txtbuscar.setBounds(28, 59, 103, 19);
+        getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 59, 103, -1));
 
         labelnick.setText("Seleccione un colaborador");
-        getContentPane().add(labelnick);
-        labelnick.setBounds(379, 59, 188, 19);
+        getContentPane().add(labelnick, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 59, -1, 19));
 
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -156,8 +148,7 @@ public class Consulta_de_Colaboracion_a_Propuesta extends javax.swing.JInternalF
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(652, 518, 82, 25);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(652, 518, 82, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

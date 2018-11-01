@@ -71,7 +71,7 @@ private ContPropuesta contP=ContPropuesta.getInstance();
         labeltitulo = new javax.swing.JLabel();
         labelnickname = new javax.swing.JLabel();
 
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablacolaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,12 +91,10 @@ private ContPropuesta contP=ContPropuesta.getInstance();
         });
         jScrollPane1.setViewportView(tablacolaboradores);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(35, 87, 121, 421);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 87, 121, 421));
 
         jLabel1.setText("Colaboradores");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(35, 28, 105, 15);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 28, -1, -1));
 
         tablacolaboracion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,8 +109,7 @@ private ContPropuesta contP=ContPropuesta.getInstance();
         ));
         jScrollPane2.setViewportView(tablacolaboracion);
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(176, 351, 577, 183);
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 351, 577, 183));
 
         btnconfirmar.setText("Eliminar");
         btnconfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -120,8 +117,7 @@ private ContPropuesta contP=ContPropuesta.getInstance();
                 btnconfirmarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnconfirmar);
-        btnconfirmar.setBounds(605, 260, 90, 25);
+        getContentPane().add(btnconfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 260, -1, -1));
 
         btncancelar.setText("Cancelar");
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,16 +125,14 @@ private ContPropuesta contP=ContPropuesta.getInstance();
                 btncancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btncancelar);
-        btncancelar.setBounds(497, 260, 96, 25);
+        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 260, -1, -1));
 
         txtbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtbuscarKeyPressed(evt);
             }
         });
-        getContentPane().add(txtbuscar);
-        txtbuscar.setBounds(30, 59, 123, 19);
+        getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 59, 123, -1));
 
         tablacolaboraciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -158,28 +152,22 @@ private ContPropuesta contP=ContPropuesta.getInstance();
         });
         jScrollPane3.setViewportView(tablacolaboraciones);
 
-        getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(176, 59, 291, 272);
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 59, 291, 272));
 
         jLabel2.setText("Colaboracion seleccionada:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(487, 59, 195, 15);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 59, -1, -1));
 
         jLabel3.setText("Titulo");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(487, 82, 40, 15);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 82, -1, -1));
 
         jLabel4.setText("Nickname");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(487, 111, 68, 15);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 111, -1, -1));
 
         labeltitulo.setText("Seleccione una colaboracion");
-        getContentPane().add(labeltitulo);
-        labeltitulo.setBounds(540, 82, 202, 15);
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 82, -1, -1));
 
         labelnickname.setText("Seleccione una colaboracion");
-        getContentPane().add(labelnickname);
-        labelnickname.setBounds(562, 111, 202, 15);
+        getContentPane().add(labelnickname, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 111, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

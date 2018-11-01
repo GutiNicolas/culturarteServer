@@ -73,25 +73,21 @@ public class Dejar_de_Seguir_Usuario extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         btncancelar = new javax.swing.JButton();
 
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Usuario seguidor");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(296, 85, 122, 15);
-        getContentPane().add(txtseguidor);
-        txtseguidor.setBounds(296, 112, 100, 19);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 85, -1, -1));
+        getContentPane().add(txtseguidor, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 112, 100, -1));
 
         jLabel2.setText(" Usuario a no seguir");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(283, 161, 157, 15);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(283, 161, 157, -1));
 
         txtbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtbuscarKeyPressed(evt);
             }
         });
-        getContentPane().add(txtbuscar);
-        txtbuscar.setBounds(61, 47, 112, 19);
+        getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 47, 112, -1));
 
         btnseguir.setText("Dejar de seguir");
         btnseguir.addActionListener(new java.awt.event.ActionListener() {
@@ -99,8 +95,7 @@ public class Dejar_de_Seguir_Usuario extends javax.swing.JInternalFrame {
                 btnseguirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnseguir);
-        btnseguir.setBounds(300, 270, 114, 36);
+        getContentPane().add(btnseguir, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 114, 36));
 
         tableseguidor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,8 +115,7 @@ public class Dejar_de_Seguir_Usuario extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tableseguidor);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(458, 85, 165, 442);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 85, 165, 442));
 
         tableseguidor1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,26 +135,21 @@ public class Dejar_de_Seguir_Usuario extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tableseguidor1);
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(59, 85, 198, 442);
-        getContentPane().add(txtaseguir1);
-        txtaseguir1.setBounds(296, 188, 100, 19);
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 85, 198, 442));
+        getContentPane().add(txtaseguir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 188, 100, -1));
 
         txtbuscar2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtbuscar2KeyPressed(evt);
             }
         });
-        getContentPane().add(txtbuscar2);
-        txtbuscar2.setBounds(458, 47, 112, 19);
+        getContentPane().add(txtbuscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 47, 112, -1));
 
         jLabel3.setText("Buscar usuario seguidor");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(61, 26, 190, 15);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 26, 190, -1));
 
         jLabel4.setText("Buscar usuario a dejar de seguir");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(305, 26, 291, 15);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 26, 291, -1));
 
         btncancelar.setText("Cancelar");
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -168,8 +157,7 @@ public class Dejar_de_Seguir_Usuario extends javax.swing.JInternalFrame {
                 btncancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btncancelar);
-        btncancelar.setBounds(297, 226, 108, 25);
+        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 226, 108, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

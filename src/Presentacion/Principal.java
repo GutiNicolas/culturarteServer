@@ -44,7 +44,7 @@ public class Principal extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setVisible(true);
         try {
-            fabrica.cargarinicio();
+             fabrica.cargarinicio();
             
 
             /* contUsuario.cargarUsuarios();
@@ -148,7 +148,7 @@ public class Principal extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jMenu1.setText("Usuario");
         jMenu1.add(jSeparator1);

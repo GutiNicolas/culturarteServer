@@ -142,7 +142,7 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Proponente");
 
@@ -190,56 +190,46 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(378, 52, 436, 71);
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 52, 436, 71));
 
         jLabel4.setText(" Titulo");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(378, 129, 44, 15);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 129, -1, -1));
 
         jLabel5.setText(" Descripcion");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(374, 175, 86, 15);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 175, -1, -1));
 
         jLabel6.setText(" Lugar");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(384, 415, 45, 15);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 415, -1, -1));
 
         txtlugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtlugarActionPerformed(evt);
             }
         });
-        getContentPane().add(txtlugar);
-        txtlugar.setBounds(384, 434, 153, 19);
+        getContentPane().add(txtlugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 434, 153, -1));
 
         jLabel7.setText("Fecha prevista");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(657, 129, 104, 15);
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(657, 129, -1, -1));
 
         txttitulo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txttitulo1ActionPerformed(evt);
             }
         });
-        getContentPane().add(txttitulo1);
-        txttitulo1.setBounds(378, 150, 153, 19);
+        getContentPane().add(txttitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 150, 153, -1));
 
         txtcostoentrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcostoentradaActionPerformed(evt);
             }
         });
-        getContentPane().add(txtcostoentrada);
-        txtcostoentrada.setBounds(657, 253, 153, 19);
+        getContentPane().add(txtcostoentrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(657, 253, 153, -1));
 
         jLabel11.setText("Costo entrada");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(657, 232, 102, 15);
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(657, 232, -1, -1));
 
         jLabel12.setText("Imagen");
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(663, 289, 52, 15);
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(663, 289, -1, -1));
 
         btnexplorar.setText("Explorar");
         btnexplorar.addActionListener(new java.awt.event.ActionListener() {
@@ -247,12 +237,10 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
                 btnexplorarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnexplorar);
-        btnexplorar.setBounds(727, 284, 92, 25);
+        getContentPane().add(btnexplorar, new org.netbeans.lib.awtextra.AbsoluteConstraints(727, 284, -1, -1));
 
         jLabel13.setText(" Retornos posibles");
-        getContentPane().add(jLabel13);
-        jLabel13.setBounds(384, 457, 133, 15);
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 457, -1, -1));
 
         btndardealta.setText("Dar de alta");
         btndardealta.addActionListener(new java.awt.event.ActionListener() {
@@ -260,8 +248,7 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
                 btndardealtaActionPerformed(evt);
             }
         });
-        getContentPane().add(btndardealta);
-        btndardealta.setBounds(692, 457, 111, 25);
+        getContentPane().add(btndardealta, new org.netbeans.lib.awtextra.AbsoluteConstraints(692, 457, 111, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -289,8 +276,7 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(21, 82, 133, 417);
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 82, 133, 417));
 
         txtbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,41 +288,33 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
                 txtbuscarKeyPressed(evt);
             }
         });
-        getContentPane().add(txtbuscar);
-        txtbuscar.setBounds(21, 39, 125, 19);
+        getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 39, 125, -1));
 
         jLabel14.setText("Proponentes");
-        getContentPane().add(jLabel14);
-        jLabel14.setBounds(21, 20, 92, 15);
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 20, -1, -1));
 
         cbporcentaje.setText("Porcentaje");
-        getContentPane().add(cbporcentaje);
-        cbporcentaje.setBounds(384, 476, 102, 23);
+        getContentPane().add(cbporcentaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 476, -1, -1));
 
         cbentradas.setText("Entrada");
-        getContentPane().add(cbentradas);
-        cbentradas.setBounds(384, 496, 81, 23);
+        getContentPane().add(cbentradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 496, -1, -1));
 
         txtdescripcion.setColumns(20);
         txtdescripcion.setRows(5);
         jScrollPane1.setViewportView(txtdescripcion);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(384, 194, 249, 201);
-        getContentPane().add(labelimage);
-        labelimage.setBounds(663, 312, 150, 100);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 194, 249, 201));
+        getContentPane().add(labelimage, new org.netbeans.lib.awtextra.AbsoluteConstraints(663, 312, 150, 100));
 
         txtmontorec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtmontorecActionPerformed(evt);
             }
         });
-        getContentPane().add(txtmontorec);
-        txtmontorec.setBounds(378, 545, 153, 19);
+        getContentPane().add(txtmontorec, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 545, 153, -1));
 
         jLabel16.setText("Monto requerido");
-        getContentPane().add(jLabel16);
-        jLabel16.setBounds(384, 526, 119, 15);
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 526, -1, -1));
 
         btncancelar.setText("Cancelar");
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -344,10 +322,8 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
                 btncancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btncancelar);
-        btncancelar.setBounds(691, 499, 108, 25);
-        getContentPane().add(jdc_fecha);
-        jdc_fecha.setBounds(663, 152, 137, 19);
+        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(691, 499, 108, -1));
+        getContentPane().add(jdc_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(663, 152, 137, -1));
 
         jT_cat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -356,8 +332,7 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(jT_cat);
 
-        getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(182, 39, 142, 460);
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 39, 142, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

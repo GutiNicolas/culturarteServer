@@ -53,7 +53,7 @@ public class Alta_Categoria extends javax.swing.JFrame {
         jb_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jT_categorias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -65,32 +65,27 @@ public class Alta_Categoria extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jT_categorias);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(0, 0, 0, 0);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
 
         jLabel1.setText("Padre");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(210, 20, 42, 15);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, -1));
 
         jt_padre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jt_padreKeyTyped(evt);
             }
         });
-        getContentPane().add(jt_padre);
-        jt_padre.setBounds(290, 20, 163, 19);
+        getContentPane().add(jt_padre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 163, -1));
 
         jLabel2.setText("Hijo");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(220, 80, 27, 15);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, -1));
 
         jt_hijo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jt_hijoActionPerformed(evt);
             }
         });
-        getContentPane().add(jt_hijo);
-        jt_hijo.setBounds(300, 80, 163, 19);
+        getContentPane().add(jt_hijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 163, -1));
 
         jb_aceptar.setText("Aceptar");
         jb_aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,8 +93,7 @@ public class Alta_Categoria extends javax.swing.JFrame {
                 jb_aceptarActionPerformed(evt);
             }
         });
-        getContentPane().add(jb_aceptar);
-        jb_aceptar.setBounds(260, 180, 89, 25);
+        getContentPane().add(jb_aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
 
         jb_cancelar.setText("Cancelar");
         jb_cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -107,8 +101,7 @@ public class Alta_Categoria extends javax.swing.JFrame {
                 jb_cancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(jb_cancelar);
-        jb_cancelar.setBounds(380, 180, 96, 25);
+        getContentPane().add(jb_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

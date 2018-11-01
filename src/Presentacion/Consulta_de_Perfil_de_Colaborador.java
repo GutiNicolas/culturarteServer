@@ -65,7 +65,7 @@ public class Consulta_de_Perfil_de_Colaborador extends javax.swing.JInternalFram
         txtbuscar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,16 +93,13 @@ public class Consulta_de_Perfil_de_Colaborador extends javax.swing.JInternalFram
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(37, 73, 125, 425);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 73, 125, 425));
 
         jLabel1.setText("Colaboradores");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(54, 23, 105, 15);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 23, -1, -1));
 
         jLabel2.setText("Informacion para:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(194, 23, 125, 15);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 23, -1, -1));
 
         tablecolaborador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,12 +114,10 @@ public class Consulta_de_Perfil_de_Colaborador extends javax.swing.JInternalFram
         ));
         jScrollPane2.setViewportView(tablecolaborador);
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(194, 44, 414, 81);
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 44, 414, 81));
 
         labelnickname.setText("Seleccione un colaborador...");
-        getContentPane().add(labelnickname);
-        labelnickname.setBounds(337, 23, 203, 15);
+        getContentPane().add(labelnickname, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 23, -1, -1));
 
         tablepropuestas1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,18 +132,14 @@ public class Consulta_de_Perfil_de_Colaborador extends javax.swing.JInternalFram
         ));
         jScrollPane4.setViewportView(tablepropuestas1);
 
-        getContentPane().add(jScrollPane4);
-        jScrollPane4.setBounds(194, 295, 414, 203);
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 295, 414, 203));
 
         jLabel4.setText("Colaboraciones:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(194, 276, 115, 15);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 276, -1, -1));
 
         jLabel3.setText("Imagen:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(200, 137, 57, 15);
-        getContentPane().add(labelimagen);
-        labelimagen.setBounds(194, 158, 100, 100);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 137, -1, -1));
+        getContentPane().add(labelimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 158, 100, 100));
 
         txtbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,8 +151,7 @@ public class Consulta_de_Perfil_de_Colaborador extends javax.swing.JInternalFram
                 txtbuscarKeyPressed(evt);
             }
         });
-        getContentPane().add(txtbuscar);
-        txtbuscar.setBounds(37, 44, 118, 19);
+        getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 44, 118, -1));
 
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -169,8 +159,7 @@ public class Consulta_de_Perfil_de_Colaborador extends javax.swing.JInternalFram
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(511, 504, 96, 25);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 504, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
