@@ -102,37 +102,30 @@ public class Alta_perfil extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        jPanel1.setLayout(null);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("NickName");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 10, 69, 15);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel2.setText("Nombre");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 35, 55, 15);
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 35, -1, -1));
 
         jLabel3.setText("Apellido");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 60, 57, 15);
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jLabel4.setText("Email");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 94, 37, 15);
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 94, -1, -1));
 
         jLabel5.setText("Fecha Nacimiento");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 208, 125, 15);
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 208, -1, -1));
 
         jL_imagenP.setText("Imagen");
-        jPanel1.add(jL_imagenP);
-        jL_imagenP.setBounds(134, 231, 154, 136);
+        jPanel1.add(jL_imagenP, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 231, 154, 136));
 
         jLabel6.setText("Imagen ");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(20, 231, 56, 15);
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 231, -1, -1));
 
         jb_examinar.setText("Examinar");
         jb_examinar.addActionListener(new java.awt.event.ActionListener() {
@@ -140,8 +133,7 @@ public class Alta_perfil extends javax.swing.JFrame {
                 jb_examinarActionPerformed(evt);
             }
         });
-        jPanel1.add(jb_examinar);
-        jb_examinar.setBounds(20, 290, 98, 25);
+        jPanel1.add(jb_examinar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
 
         jrb_proponente.setText("Proponente");
         jrb_proponente.addActionListener(new java.awt.event.ActionListener() {
@@ -149,8 +141,7 @@ public class Alta_perfil extends javax.swing.JFrame {
                 jrb_proponenteActionPerformed(evt);
             }
         });
-        jPanel1.add(jrb_proponente);
-        jrb_proponente.setBounds(153, 390, 109, 23);
+        jPanel1.add(jrb_proponente, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 390, -1, -1));
 
         jrb_colaborador.setText("Colaborador");
         jrb_colaborador.addActionListener(new java.awt.event.ActionListener() {
@@ -158,8 +149,7 @@ public class Alta_perfil extends javax.swing.JFrame {
                 jrb_colaboradorActionPerformed(evt);
             }
         });
-        jPanel1.add(jrb_colaborador);
-        jrb_colaborador.setBounds(20, 390, 113, 23);
+        jPanel1.add(jrb_colaborador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
 
         jb_aceptar.setText("Aceptar");
         jb_aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -167,8 +157,7 @@ public class Alta_perfil extends javax.swing.JFrame {
                 jb_aceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(jb_aceptar);
-        jb_aceptar.setBounds(20, 504, 89, 25);
+        jPanel1.add(jb_aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 504, -1, -1));
 
         jb_cancelar.setText("Cancelar");
         jb_cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -176,59 +165,43 @@ public class Alta_perfil extends javax.swing.JFrame {
                 jb_cancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(jb_cancelar);
-        jb_cancelar.setBounds(153, 504, 96, 25);
+        jPanel1.add(jb_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 504, -1, -1));
 
         jLabel7.setText("Pagina Web");
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(315, 15, 85, 15);
-        jPanel1.add(jT_nick);
-        jT_nick.setBounds(113, 9, 129, 19);
-        jPanel1.add(jT_nombre);
-        jT_nombre.setBounds(113, 37, 129, 19);
-        jPanel1.add(jT_apellido);
-        jT_apellido.setBounds(113, 65, 129, 19);
-        jPanel1.add(jT_email);
-        jT_email.setBounds(113, 92, 129, 19);
-        jPanel1.add(jdc_fechaNac);
-        jdc_fechaNac.setBounds(163, 208, 86, 19);
-        jPanel1.add(jT_web);
-        jT_web.setBounds(421, 9, 132, 19);
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 15, -1, -1));
+        jPanel1.add(jT_nick, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 9, 129, -1));
+        jPanel1.add(jT_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 37, 129, -1));
+        jPanel1.add(jT_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 65, 129, -1));
+        jPanel1.add(jT_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 92, 129, -1));
+        jPanel1.add(jdc_fechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 208, 86, -1));
+        jPanel1.add(jT_web, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 9, 132, -1));
 
         jLabel8.setText("Direccion");
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(315, 43, 65, 15);
-        jPanel1.add(jT_direccion);
-        jT_direccion.setBounds(421, 37, 132, 19);
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 43, -1, -1));
+        jPanel1.add(jT_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 37, 132, -1));
 
         jLabel9.setText("Biografia");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(320, 70, 64, 15);
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
 
         jtp_biografia.setColumns(20);
         jtp_biografia.setRows(5);
         jScrollPane1.setViewportView(jtp_biografia);
 
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(320, 94, 312, 370);
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 94, 312, 370));
 
         jLabel10.setText("Password");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(104, 117, 70, 15);
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 117, -1, -1));
 
         jLabel11.setText("Confirmacion password");
-        jPanel1.add(jLabel11);
-        jLabel11.setBounds(50, 156, 166, 19);
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 156, -1, 19));
 
         jP_contra.setText("jPasswordField1");
-        jPanel1.add(jP_contra);
-        jP_contra.setBounds(20, 136, 213, 19);
+        jPanel1.add(jP_contra, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 136, 213, -1));
 
         jP_contraVS.setText("jPasswordField2");
-        jPanel1.add(jP_contraVS);
-        jP_contraVS.setBounds(20, 185, 213, 19);
+        jPanel1.add(jP_contraVS, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 185, 213, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 578));
+        getContentPane().add(jPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

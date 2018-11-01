@@ -17,18 +17,18 @@ import javax.swing.tree.TreePath;
 
 /**
  *
- * @author juan
+ * @author jp
  */
-public class Alta_Categoria extends javax.swing.JFrame {
+public class AltaCategoria extends javax.swing.JFrame {
 
     private ArrayList< dtCategoria> cat = new ArrayList<>();
 
     ContPropuesta contProp = ContPropuesta.getInstance();
 
     /**
-     * Creates new form Alta_Categoria
+     * Creates new form AltaCategoria
      */
-    public Alta_Categoria() {
+    public AltaCategoria() {
         initComponents();
         this.jT_categorias.setModel(llenarjT());
         this.jt_padre.setEditable(false);
@@ -43,59 +43,17 @@ public class Alta_Categoria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jT_categorias = new javax.swing.JTree();
         jt_padre = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jt_hijo = new javax.swing.JTextField();
         jb_aceptar = new javax.swing.JButton();
         jb_cancelar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jT_categorias = new javax.swing.JTree();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
-
-        jLabel1.setText("Padre");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(300, 40, 42, 15);
-
-        jt_padre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jt_padreKeyTyped(evt);
-            }
-        });
-        getContentPane().add(jt_padre);
-        jt_padre.setBounds(380, 40, 164, 30);
-
-        jLabel2.setText("Hijo");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(310, 100, 27, 15);
-
-        jt_hijo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jt_hijoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jt_hijo);
-        jt_hijo.setBounds(380, 90, 164, 30);
-
-        jb_aceptar.setText("Aceptar");
-        jb_aceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_aceptarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jb_aceptar);
-        jb_aceptar.setBounds(330, 170, 89, 25);
-
-        jb_cancelar.setText("Cancelar");
-        jb_cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_cancelarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jb_cancelar);
-        jb_cancelar.setBounds(430, 170, 96, 25);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jT_categorias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -107,8 +65,43 @@ public class Alta_Categoria extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jT_categorias);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(20, 10, 230, 430);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 12, 230, 430));
+
+        jt_padre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_padreKeyTyped(evt);
+            }
+        });
+        getContentPane().add(jt_padre, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 49, 164, 30));
+
+        jLabel1.setText("Padre");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 49, -1, -1));
+
+        jLabel2.setText("Hijo");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 109, -1, -1));
+
+        jt_hijo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jt_hijoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jt_hijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 99, 164, 30));
+
+        jb_aceptar.setText("Aceptar");
+        jb_aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_aceptarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jb_aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 179, -1, -1));
+
+        jb_cancelar.setText("Cancelar");
+        jb_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_cancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jb_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 179, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -130,21 +123,14 @@ public class Alta_Categoria extends javax.swing.JFrame {
     private void jT_categoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jT_categoriasMouseClicked
 
     }//GEN-LAST:event_jT_categoriasMouseClicked
-    private boolean controlDatos() {
 
-        if (jt_hijo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe escribir un nombre de categoria");
-            jt_hijo.selectAll();
-            jt_hijo.requestFocus();
-            return false;
-        }
-        return true;
-    }
+    private void jt_padreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_padreKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jt_padreKeyTyped
 
-    private void limpiar() {
-        jt_padre.setText(null);
-        jt_hijo.setText(null);
-    }
+    private void jt_hijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_hijoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jt_hijoActionPerformed
 
     private void jb_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_aceptarActionPerformed
         if (jt_padre.getText() == null && controlDatos() == true) {
@@ -170,14 +156,6 @@ public class Alta_Categoria extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jb_cancelarActionPerformed
 
-    private void jt_padreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_padreKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jt_padreKeyTyped
-
-    private void jt_hijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_hijoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jt_hijoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -195,20 +173,20 @@ public class Alta_Categoria extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Alta_Categoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AltaCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Alta_Categoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AltaCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Alta_Categoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AltaCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Alta_Categoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AltaCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Alta_Categoria().setVisible(true);
+                new AltaCategoria().setVisible(true);
             }
         });
     }
@@ -224,7 +202,22 @@ public class Alta_Categoria extends javax.swing.JFrame {
     private javax.swing.JTextField jt_padre;
     // End of variables declaration//GEN-END:variables
 
-//FUNCIONES......
+    private boolean controlDatos() {
+
+        if (jt_hijo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe escribir un nombre de categoria");
+            jt_hijo.selectAll();
+            jt_hijo.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    private void limpiar() {
+        jt_padre.setText(null);
+        jt_hijo.setText(null);
+    }
+
     private void cargaCategorias() {
         try {
             cat.clear();
@@ -311,3 +304,5 @@ public class Alta_Categoria extends javax.swing.JFrame {
         return modelo;
     }
 }
+
+

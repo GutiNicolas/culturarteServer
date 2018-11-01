@@ -11,11 +11,17 @@ package Logica;
  */
 public class payPal extends pago{
     private String numeroPaypal;
-
-    public payPal(String numeroPaypal, String titular) {
-        super(titular);
+/**
+     * @param numeroPaypal
+     * @param titular
+     * @param prop
+     * @param nick*/
+    public payPal(String numeroPaypal, String titular, String prop, String nick) {
+        super(titular, prop, nick);
         this.numeroPaypal = numeroPaypal;
     }
+
+  
 
    
 

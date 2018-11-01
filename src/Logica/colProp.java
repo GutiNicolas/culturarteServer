@@ -93,6 +93,7 @@ public class colProp {
         this.propColaborada = null;
         this.fecha = null;
         this.hora = null;
+        this.formaPago=null;
     }
 
     /**

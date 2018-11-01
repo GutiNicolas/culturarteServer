@@ -248,7 +248,7 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
                 btndardealtaActionPerformed(evt);
             }
         });
-        getContentPane().add(btndardealta, new org.netbeans.lib.awtextra.AbsoluteConstraints(692, 457, 111, -1));
+        getContentPane().add(btndardealta, new org.netbeans.lib.awtextra.AbsoluteConstraints(653, 457, 150, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -322,8 +322,8 @@ public class Alta_de_Propuesta extends javax.swing.JInternalFrame {
                 btncancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(691, 499, 108, -1));
-        getContentPane().add(jdc_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(663, 152, 137, -1));
+        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(659, 499, 140, -1));
+        getContentPane().add(jdc_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, 137, -1));
 
         jT_cat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {

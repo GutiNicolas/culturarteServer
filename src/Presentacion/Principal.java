@@ -319,7 +319,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jm_altaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_altaCategoriaActionPerformed
         // TODO add your handling code here:
-        Alta_Categoria adc = new Alta_Categoria();
+        AltaCategoria adc = new AltaCategoria();
         // jDesktopPane1.add(adc);
         // this.getContentPane().add(adc);
         adc.show(true);

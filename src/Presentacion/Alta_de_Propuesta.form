@@ -235,7 +235,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="692" y="457" width="111" height="-1"/>
+          <AbsoluteConstraints x="653" y="457" width="150" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -365,14 +365,14 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="691" y="499" width="108" height="-1"/>
+          <AbsoluteConstraints x="659" y="499" width="140" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="jdc_fecha">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="663" y="152" width="137" height="-1"/>
+          <AbsoluteConstraints x="650" y="160" width="137" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -169,28 +169,7 @@ public class usuariosPersistencia {
         }
     }
 
-    public static Map<String, String> usuariosANoBorrar() {
-        Map<String, String> retorno = new HashMap<>();
-        try {
-            String sql = null;
-            Connection con = conexion.getConexion();
-            Statement st = (Statement) con.createStatement();
-            sql = "SELECT * FROM `cultuRarte`.`usuPer`";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                String nick = rs.getString(1);
-                retorno.put(nick, nick);
-            }
-
-            return retorno;
-
-        } catch (Exception e) {
-
-            System.err.println(e.getMessage());
-            return null;
-        }
-    }
-
+  
     public void agregarpropcomofav(String nickusuario, String titulo) {
         try {
             String sql = null;

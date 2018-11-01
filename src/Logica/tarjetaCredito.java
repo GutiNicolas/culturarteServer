@@ -14,14 +14,24 @@ public class tarjetaCredito extends pago{
     private String numeroTarjeta;
     private String cvc;
     private dtFecha fVencimiento;
-
-    public tarjetaCredito(String tipo, String numeroTarjeta, String cvc, dtFecha fVencimiento, String titular) {
-        super(titular);
+/**
+     * @param tipo
+     * @param numeroTarjeta
+     * @param cvc
+     * @param fVencimiento
+     * @param titular
+     * @param prop
+     * @param nick
+ */
+    public tarjetaCredito(String tipo, String numeroTarjeta, String cvc, dtFecha fVencimiento, String titular, String prop, String nick) {
+        super(titular, prop, nick);
         this.tipo = tipo;
         this.numeroTarjeta = numeroTarjeta;
         this.cvc = cvc;
         this.fVencimiento = fVencimiento;
     }
+
+  
 
    
 

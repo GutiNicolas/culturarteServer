@@ -99,7 +99,7 @@ public class Registrar_Colaboracion_a_Propuesta extends javax.swing.JInternalFra
         jTA_comentario = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
 
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tpropuestas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,12 +119,10 @@ public class Registrar_Colaboracion_a_Propuesta extends javax.swing.JInternalFra
         });
         jScrollPane1.setViewportView(tpropuestas);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(23, 51, 230, 474);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 51, 230, 474));
 
         jLabel1.setText("Propuestas");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(19, 27, 82, 15);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 27, -1, -1));
 
         jTable_propuestas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,18 +137,14 @@ public class Registrar_Colaboracion_a_Propuesta extends javax.swing.JInternalFra
         ));
         jScrollPane2.setViewportView(jTable_propuestas);
 
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(271, 25, 383, 129);
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 25, 383, 129));
 
         jLabel5.setText("Monto total recaudado");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(271, 160, 158, 15);
-        getContentPane().add(txtmontotoal);
-        txtmontotoal.setBounds(259, 192, 143, 19);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 160, 158, -1));
+        getContentPane().add(txtmontotoal, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 192, 143, -1));
 
         jLabel3.setText("Estado");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(464, 160, 49, 15);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 160, -1, -1));
 
         txtestado.setEditable(false);
         txtestado.addActionListener(new java.awt.event.ActionListener() {
@@ -158,8 +152,7 @@ public class Registrar_Colaboracion_a_Propuesta extends javax.swing.JInternalFra
                 txtestadoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtestado);
-        txtestado.setBounds(460, 191, 175, 19);
+        getContentPane().add(txtestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 191, 175, -1));
 
         tablecolaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -179,12 +172,10 @@ public class Registrar_Colaboracion_a_Propuesta extends javax.swing.JInternalFra
         });
         jScrollPane3.setViewportView(tablecolaboradores);
 
-        getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(260, 261, 169, 264);
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 261, 169, 264));
 
         jLabel2.setText("  Colaboradores");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(254, 216, 113, 15);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(254, 216, -1, -1));
 
         tablecolaborador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -199,26 +190,20 @@ public class Registrar_Colaboracion_a_Propuesta extends javax.swing.JInternalFra
         ));
         jScrollPane4.setViewportView(tablecolaborador);
 
-        getContentPane().add(jScrollPane4);
-        jScrollPane4.setBounds(460, 275, 249, 124);
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 275, 249, 124));
 
         jLabel4.setText("Colaborador");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(460, 256, 88, 15);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 256, -1, -1));
 
         txtnickcolaborador.setText("Seleccione uno");
-        getContentPane().add(txtnickcolaborador);
-        txtnickcolaborador.setBounds(573, 256, 107, 15);
+        getContentPane().add(txtnickcolaborador, new org.netbeans.lib.awtextra.AbsoluteConstraints(573, 256, -1, -1));
 
         jLabel6.setText("Tipo de retorno");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(456, 413, 110, 15);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 413, -1, -1));
 
         jLabel7.setText("Monto");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(460, 477, 45, 15);
-        getContentPane().add(txtmontoacolaborar);
-        txtmontoacolaborar.setBounds(527, 477, 113, 19);
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 477, -1, -1));
+        getContentPane().add(txtmontoacolaborar, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 477, 113, -1));
 
         btnaceptar.setText("Aceptar");
         btnaceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -226,8 +211,7 @@ public class Registrar_Colaboracion_a_Propuesta extends javax.swing.JInternalFra
                 btnaceptarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnaceptar);
-        btnaceptar.setBounds(460, 500, 179, 25);
+        getContentPane().add(btnaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 500, 179, -1));
 
         btncancelar.setText("Cancelar");
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -235,8 +219,7 @@ public class Registrar_Colaboracion_a_Propuesta extends javax.swing.JInternalFra
                 btncancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btncancelar);
-        btncancelar.setBounds(460, 528, 180, 25);
+        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 528, 180, -1));
 
         busquedapropuestas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,16 +231,13 @@ public class Registrar_Colaboracion_a_Propuesta extends javax.swing.JInternalFra
                 busquedapropuestasKeyPressed(evt);
             }
         });
-        getContentPane().add(busquedapropuestas);
-        busquedapropuestas.setBounds(126, 25, 127, 19);
+        getContentPane().add(busquedapropuestas, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 25, 127, -1));
 
         cbporcentaje.setText("Procentaje");
-        getContentPane().add(cbporcentaje);
-        cbporcentaje.setBounds(552, 428, 102, 23);
+        getContentPane().add(cbporcentaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 428, -1, -1));
 
         cbentradas.setText("Entrada");
-        getContentPane().add(cbentradas);
-        cbentradas.setBounds(552, 448, 81, 23);
+        getContentPane().add(cbentradas, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 448, -1, -1));
 
         busuqedacolaboradores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,27 +249,22 @@ public class Registrar_Colaboracion_a_Propuesta extends javax.swing.JInternalFra
                 busuqedacolaboradoresKeyPressed(evt);
             }
         });
-        getContentPane().add(busuqedacolaboradores);
-        busuqedacolaboradores.setBounds(259, 237, 133, 19);
+        getContentPane().add(busuqedacolaboradores, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 237, 133, -1));
 
         jLabel8.setText("Propuesta");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(460, 214, 74, 15);
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 214, -1, -1));
 
         txttituloprop.setText("Seleccione una");
-        getContentPane().add(txttituloprop);
-        txttituloprop.setBounds(551, 214, 158, 15);
+        getContentPane().add(txttituloprop, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 214, 158, -1));
 
         jTA_comentario.setColumns(20);
         jTA_comentario.setRows(5);
         jScrollPane5.setViewportView(jTA_comentario);
 
-        getContentPane().add(jScrollPane5);
-        jScrollPane5.setBounds(719, 54, 141, 469);
+        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(719, 54, 141, 469));
 
         jLabel9.setText("Comentario");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(719, 30, 82, 15);
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(719, 30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

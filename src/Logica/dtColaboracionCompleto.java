@@ -13,28 +13,18 @@ import javax.xml.bind.annotation.XmlElement;
  *
  * @author nicolasgutierrez
  */
-@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtColaboracionCompleto {
 
-    @XmlElement(name = "nickname", namespace = "")
     private String nickname;
-    @XmlElement(name = "titulo", namespace = "")
     private String titulo;
-    @XmlElement(name = "retorno", namespace = "")
     private String retorno;
-    @XmlElement(name = "monto", namespace = "")
     private int monto;
-    @XmlElement(name = "fecha", namespace = "")
     private dtFecha fecha;
-    @XmlElement(name = "hora", namespace = "")
     private dtHora hora;
-    @XmlElement(name = "comentario", namespace = "")
     private String comentario;
-    @XmlElement(name = "estado", namespace = "")
     private String estado;
-    @XmlElement(name = "proponente", namespace = "")
     private String proponente;
-
+/*
     /**
      * constructor de dtColaboracionCompleto
      */
@@ -53,52 +43,52 @@ public class dtColaboracionCompleto {
     /**
      * constructor de dtCola
      */
-    public dtColaboracionCompleto(String titulo, String estado, String proponente, int monto_recaudado) {
+  /*  public dtColaboracionCompleto(String titulo, String estado, String proponente, int monto_recaudado) {
         this.titulo = titulo;
         this.estado = estado;
         this.proponente = proponente;
         this.monto = monto_recaudado;
-    }
+    }*/
 
     /**
      * constructor de dtColaboraciones
      */
-    public dtColaboracionCompleto(String nickname, String idPropuesta, dtFecha fecha) {
+   /* public dtColaboracionCompleto(String nickname, String idPropuesta, dtFecha fecha) {
         this.nickname = nickname;
         this.titulo = idPropuesta;
         this.fecha = fecha;
-    }
+    }*/
 
     /**
      * constructor de dtColaboraciones
      */
-    public dtColaboracionCompleto(String nickname, String idPropuesta) {
+  /*  public dtColaboracionCompleto(String nickname, String idPropuesta) {
         this.nickname = nickname;
         this.titulo = idPropuesta;
-    }
+    }*/
 
     /**
      * Constructor de dtColProp
      */
-    public dtColaboracionCompleto(String nickname, String retorno, dtFecha fecha, dtHora hora, int montoColaborado, String comen) {
+   /* public dtColaboracionCompleto(String nickname, String retorno, dtFecha fecha, dtHora hora, int montoColaborado, String comen) {
         this.nickname = nickname;
         this.retorno = retorno;
         this.fecha = fecha;
         this.hora = hora;
         this.monto = montoColaborado;
         this.comentario = comen;
-    }
+    }*/
 
     /**
      * Constructor de dtColProp
      */
-    public dtColaboracionCompleto(String nickname, dtFecha fecha, dtHora hora, int montoColaborado, String titulo) {
+  /*  public dtColaboracionCompleto(String nickname, dtFecha fecha, dtHora hora, int montoColaborado, String titulo) {
         this.nickname = nickname;
         this.fecha = fecha;
         this.hora = hora;
         this.monto = montoColaborado;
         this.titulo = titulo;
-    }
+    }*/
 
     public String getNickname() {
         return nickname;

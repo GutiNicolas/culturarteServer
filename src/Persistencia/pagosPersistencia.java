@@ -23,10 +23,11 @@ import java.util.ArrayList;
 public class pagosPersistencia {
 
     ConexionDB conexion = ConexionDB.getInstance();
-    Connection conn = conexion.getConexion();
+
     utilidades util = utilidades.getInstance();
 
-    public boolean agregarPagoPrimeraVez(dtPago pago) {
+    public boolean agregarPago(dtPago pago) {
+        Connection conn = conexion.getConexion();
         System.out.println("Agregar Pago inicio...");
         String sql = null, sql2 = null;
         try {
@@ -34,7 +35,7 @@ public class pagosPersistencia {
             if (pago instanceof dtTransferencia) {
                 dtTransferencia dttrans = (dtTransferencia) pago;
                 sql = "INSERT INTO `pagos`(`titular`, `NumTTP`, `nickname`, `tituloPropuesta`) VALUES ('" + dttrans.getTitular() + "','" + dttrans.getNumeroCuenta() + "','" + dttrans.getNickname() + "','" + dttrans.getTituloP() + "')";
-                sql2 = "INSERT INTO `transferenciaBancaria`(`Titular`, `NumTransferencia`, `Banco`) VALUES ('" + dttrans.getNickname() + "','" + dttrans.getNumeroCuenta() + "','" + dttrans.getBanco() + "')";
+                sql2 = "INSERT INTO `transferenciaBancaria`(`nickname`, `NumTransferencia`, `Banco`, `tituloProp`) VALUES ('" + dttrans.getNickname() + "','" + dttrans.getNumeroCuenta() + "','" + dttrans.getBanco() + "','" + dttrans.getTituloP() + "')";
                 st.executeUpdate(sql);
                 System.out.println(sql);
                 st.executeUpdate(sql2);
@@ -43,7 +44,7 @@ public class pagosPersistencia {
             if (pago instanceof dtPaypal) {
                 dtPaypal paypal = (dtPaypal) pago;
                 sql = "INSERT INTO `pagos`(`titular`, `NumTTP`, `nickname`, `tituloPropuesta`) VALUES ('" + paypal.getTitular() + "','" + paypal.getNumeroPaypal() + "','" + paypal.getNickname() + "','" + paypal.getTituloP() + "')";
-                sql2 = "INSERT INTO `paypal`(`Titular`, `NumPaypal`) VALUES ('" + paypal.getNickname() + "','" + paypal.getNumeroPaypal() + "')";
+                sql2 = "INSERT INTO `paypal`(`nickname`, `NumPaypal`, `tituloProp`) VALUES ('" + paypal.getNickname() + "','" + paypal.getNumeroPaypal() + "','" + paypal.getTituloP() + "')";
                 st.executeUpdate(sql);
                 System.out.println(sql);
                 st.executeUpdate(sql2);
@@ -52,7 +53,7 @@ public class pagosPersistencia {
             if (pago instanceof dtTarjetaCredito) {
                 dtTarjetaCredito tarjeta = (dtTarjetaCredito) pago;
                 sql = "INSERT INTO `pagos`(`titular`, `NumTTP`, `nickname`, `tituloPropuesta`) VALUES ('" + tarjeta.getTitular() + "','" + tarjeta.getNumeroTarjeta() + "','" + tarjeta.getNickname() + "','" + tarjeta.getTituloP() + "')";
-                sql2 = "INSERT INTO `tarjetaCredito`(`Titular`, `NumTarjeta`, `TipoTarjeta`, `fechaVencimiento`, `CVC`) VALUES ('" + tarjeta.getNickname() + "','" + tarjeta.getNumeroTarjeta() + "','" + tarjeta.getTipo() + "','" + tarjeta.getfVencimiento() + "','" + tarjeta.getCvc() + "')";
+                sql2 = "INSERT INTO `tarjetaCredito`(`nickname`, `NumTarjeta`, `TipoTarjeta`, `fechaVencimiento`, `CVC`, `tituloProp`) VALUES ('" + tarjeta.getNickname() + "','" + tarjeta.getNumeroTarjeta() + "','" + tarjeta.getTipo() + "','" + tarjeta.getfVencimiento() + "','" + tarjeta.getCvc() + "','" + tarjeta.getTituloP() + "')";
                 st.executeUpdate(sql);
                 System.out.println(sql);
                 st.executeUpdate(sql2);
@@ -67,40 +68,10 @@ public class pagosPersistencia {
 
     }
 
-    public boolean agregarPago(dtPago pago) {
-        System.out.println("Agregar Pago inicio...");
-        String sql = null;
-        try {
-            Statement st = conn.createStatement();
-            if (pago instanceof dtTransferencia) {
-                dtTransferencia dttrans = (dtTransferencia) pago;
-                sql = "INSERT INTO `pagos`(`titular`, `NumTTP`, `nickname`, `tituloPropuesta`) VALUES ('" + dttrans.getTitular() + "','" + dttrans.getNumeroCuenta() + "','" + dttrans.getNickname() + "','" + dttrans.getTituloP() + "')";
-                st.executeUpdate(sql);
-                System.out.println(sql);
-            }
-            if (pago instanceof dtPaypal) {
-                dtPaypal paypal = (dtPaypal) pago;
-                sql = "INSERT INTO `pagos`(`titular`, `NumTTP`, `nickname`, `tituloPropuesta`) VALUES ('" + paypal.getTitular() + "','" + paypal.getNumeroPaypal() + "','" + paypal.getNickname() + "','" + paypal.getTituloP() + "')";
-                st.executeUpdate(sql);
-                System.out.println(sql);
-            }
-            if (pago instanceof dtTarjetaCredito) {
-                dtTarjetaCredito tarjeta = (dtTarjetaCredito) pago;
-                sql = "INSERT INTO `pagos`(`titular`, `NumTTP`, `nickname`, `tituloPropuesta`) VALUES ('" + tarjeta.getTitular() + "','" + tarjeta.getNumeroTarjeta() + "','" + tarjeta.getNickname() + "','" + tarjeta.getTituloP() + "')";
-                st.executeUpdate(sql);
-                System.out.println(sql);
-            }
-            System.out.println("Agregar pago finalizo...");
-            return true;
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-            return false;
-        }
-    }
-
     public ArrayList<dtPago> cargarPagos() {
         ArrayList<dtPago> pagos = new ArrayList<>();
         try {
+
             System.out.println("cargarPagos inicio...");
             armarPagosTransferencia(pagos);
             armarPagosTarjetaCredito(pagos);
@@ -113,17 +84,17 @@ public class pagosPersistencia {
 
     private void armarPagosTransferencia(ArrayList<dtPago> pagos) {
         try {
+            Connection conn = conexion.getConexion();
             System.out.println("armarPagosTransferencia inicio...");
             int seguir;
             String sqlp = "SELECT * FROM `pagos`";
             String sqlT = "SELECT * FROM `transferenciaBancaria`";
-            Statement stp = conn.createStatement();
+            Statement st = conn.createStatement();
             Statement stt = conn.createStatement();
-            ResultSet rspagos = stp.executeQuery(sqlp);
+            ResultSet rspagos = st.executeQuery(sqlp);
             ResultSet rsTrans = stt.executeQuery(sqlT);
             while (rsTrans.next()) {
                 String nickT = null, nickp = null;
-                rspagos.first();
                 seguir = 0;
                 while (rspagos.next() && seguir == 0) {
                     if (rspagos.getString(3).equals(rsTrans.getString(1))) {
@@ -131,12 +102,14 @@ public class pagosPersistencia {
                         if (rspagos.getString(2).equals(rsTrans.getString(2))) {
                             System.out.println("numTransferencia: " + rsTrans.getString(2));
                             seguir = 1;
-                            dtPago pago = new dtTransferencia(rsTrans.getString(3), rsTrans.getString(2), rspagos.getString(4), rspagos.getString(1), rspagos.getString(3));
+                            dtPago pago = new dtTransferencia(rsTrans.getString(3), rsTrans.getString(2), rsTrans.getString(4), rspagos.getString(1), rsTrans.getString(1));
                             pagos.add(pago);
                             System.out.println("agrego el pago!");
                         }
                     }
+
                 }
+                rspagos.beforeFirst();
             }
             System.out.println("armarPagos fin...");
         } catch (Exception e) {
@@ -146,66 +119,69 @@ public class pagosPersistencia {
 
     private void armarPagosTarjetaCredito(ArrayList<dtPago> pagos) {
         try {
+            Connection conn = conexion.getConexion();
             System.out.println("armarPagosTarjataCredito inicio...");
             String sqlp = null, sqltd = null;
             sqlp = "SELECT * FROM `pagos`";
             sqltd = "SELECT * FROM `tarjetaCredito`";
-            Statement stP = conn.createStatement();
-            Statement sttd = conn.createStatement();
-            ResultSet rsPagos = stP.executeQuery(sqlp);
-            ResultSet rstd = sttd.executeQuery(sqltd);
+            Statement st = conn.createStatement();
+            Statement stt = conn.createStatement();
+            ResultSet rsPagos = st.executeQuery(sqlp);
+            ResultSet rstd = stt.executeQuery(sqltd);
             while (rstd.next()) {
                 int seguir = 0;
-                rsPagos.first();
                 while (rsPagos.next() && seguir == 0) {
                     if (rsPagos.getString(3).equals(rstd.getString(1))) {
-                        System.out.println("nick: "+rsPagos.getString(3));
+                        System.out.println("nick: " + rsPagos.getString(3));
                         if (rsPagos.getString(2).equals(rstd.getString(2))) {
-                            System.out.println("numTarjeta: "+rstd.getString(2));
-                            dtFecha fechaVen = (dtFecha)util.construirFecha(rstd.getString(4));
-                            dtPago pago = new dtTarjetaCredito(rstd.getString(3), rstd.getString(2), rstd.getString(5), fechaVen, rsPagos.getString(4), rsPagos.getString(1), rstd.getString(1));
+                            System.out.println("numTarjeta: " + rstd.getString(2));
+                            dtFecha fechaVen = (dtFecha) util.construirFecha(rstd.getString(4));
+                            dtPago pago = new dtTarjetaCredito(rstd.getString(3), rstd.getString(2), rstd.getString(5), fechaVen, rstd.getString(6), rsPagos.getString(1), rstd.getString(1));
                             pagos.add(pago);
                             System.out.println("agrege el pago!");
                             seguir = 1;
                         }
                     }
                 }
-                System.out.println("fin armarPagos...");
+                rsPagos.beforeFirst();
+
             }
+            System.out.println("fin armarPagos...");
         } catch (Exception e) {
-            System.err.println(e.getMessage()+" "+e.getCause());
+            System.err.println(e.getMessage() + " " + e.getCause());
         }
     }
-    
-    private void armarPagosPaypal(ArrayList<dtPago> pagos){
+
+    private void armarPagosPaypal(ArrayList<dtPago> pagos) {
         try {
-            String sqlP=null, sqlpp=null;
-            sqlP="";
-            sqlpp="";
-            Statement stp = conn.createStatement();
-            Statement stpp= conn.createStatement();
-            ResultSet rsp= stp.executeQuery(sqlP);
-            ResultSet rspp= stpp.executeQuery(sqlpp);
-            while(rspp.next()){
-            int seguir=0;
-            rsp.first();
-            while(rsp.next()&&seguir==0){
-            if(rsp.getString(3).equals(rspp.getString(1))){
-                System.out.println("nick: "+rsp.getString(3));
-            if(rsp.getString(2).equals(rspp.getString(2))){
-                System.out.println("numPaypal: "+rspp.getString(2));
-            dtPago pago = new dtPaypal(rspp.getString(2), rsp.getString(2), rsp.getString(1), rsp.getString(3));
-            pagos.add(pago);
-            seguir=1;
-                System.out.println("agrege el pago!");
-            }
-            }
-            
-            
-            }
+            Connection conn = conexion.getConexion();
+            String sqlP = null, sqlpp = null;
+            sqlP = "SELECT * FROM `pagos`";
+            sqlpp = "SELECT * FROM `paypal`";
+            Statement st = conn.createStatement();
+            Statement stpp = conn.createStatement();
+            ResultSet rsp = st.executeQuery(sqlP);
+            ResultSet rspp = stpp.executeQuery(sqlpp);
+            while (rspp.next()) {
+                int seguir = 0;
+                while (rsp.next() && seguir == 0) {
+                    if (rsp.getString(3).equals(rspp.getString(1))) {
+                        System.out.println("nick: " + rsp.getString(3));
+                        if (rsp.getString(2).equals(rspp.getString(2))) {
+                            System.out.println("numPaypal: " + rspp.getString(2));
+                            dtPago pago = new dtPaypal(rspp.getString(2), rsp.getString(2), rsp.getString(1), rsp.getString(3));
+                            pagos.add(pago);
+                            seguir = 1;
+                            System.out.println("agrege el pago!");
+                        }
+                    }
+
+                }
+                rsp.beforeFirst();
+
             }
         } catch (Exception e) {
-            System.err.println(e.getMessage()+" "+e.getCause());
+            System.err.println(e.getMessage() + " " + e.getCause());
         }
     }
 }

@@ -12,12 +12,19 @@ package Logica;
 public class transferencia extends pago{
     private String banco;
     private String numeroCuenta;
-
-    public transferencia(String banco, String numeroCuenta, String titular) {
-        super(titular);
+/**
+     * @param banco
+     * @param numeroCuenta
+     * @param titular
+     * @param prop
+     * @param nick*/
+    public transferencia(String banco, String numeroCuenta, String titular, String prop, String nick) {
+        super(titular, prop, nick);
         this.banco = banco;
         this.numeroCuenta = numeroCuenta;
     }
+
+  
 
    
     

@@ -13,7 +13,6 @@ import Logica.dtEstado;
 import Logica.dtEstadosPropuestas;
 import Logica.dtFavoritos;
 import Logica.dtFecha;
-import Logica.dtHora;
 import Logica.dtPago;
 import Logica.dtPaypal;
 import Logica.dtProponente;
@@ -23,13 +22,11 @@ import Logica.dtTarjetaCredito;
 import Logica.dtTransferencia;
 import Logica.dtUsuario;
 import Logica.utilidades;
-import static Persistencia.usuariosPersistencia.conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Clase del controlador de carga, se encarga de levantar datos a persistir y la
@@ -177,7 +174,7 @@ public class BDCulturarte {
 
     public void levantarPagosOrigin(ArrayList<dtPago> pagosPer) {
         try {
-            String sql = "";
+            String sql = "SELECT * FROM `pagosPersistencia`";
             Connection conn = conexion.getConexion();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -444,11 +441,12 @@ public class BDCulturarte {
         String sql = null, sql2 = null;
         try {
             Connection conn = conexion.getConexion();
+            System.out.println("Agregar Pago inicio...");
             Statement st = conn.createStatement();
             if (pago instanceof dtTransferencia) {
                 dtTransferencia dttrans = (dtTransferencia) pago;
                 sql = "INSERT INTO `pagos`(`titular`, `NumTTP`, `nickname`, `tituloPropuesta`) VALUES ('" + dttrans.getTitular() + "','" + dttrans.getNumeroCuenta() + "','" + dttrans.getNickname() + "','" + dttrans.getTituloP() + "')";
-                sql2 = "INSERT INTO `transferenciaBancaria`(`Titular`, `NumTransferencia`, `Banco`) VALUES ('" + dttrans.getNickname() + "','" + dttrans.getNumeroCuenta() + "','" + dttrans.getBanco() + "')";
+                sql2 = "INSERT INTO `transferenciaBancaria`(`nickname`, `NumTransferencia`, `Banco`, `tituloProp`) VALUES ('" + dttrans.getNickname() + "','" + dttrans.getNumeroCuenta() + "','" + dttrans.getBanco() + "','" + dttrans.getTituloP() + "')";
                 st.executeUpdate(sql);
                 System.out.println(sql);
                 st.executeUpdate(sql2);
@@ -457,7 +455,7 @@ public class BDCulturarte {
             if (pago instanceof dtPaypal) {
                 dtPaypal paypal = (dtPaypal) pago;
                 sql = "INSERT INTO `pagos`(`titular`, `NumTTP`, `nickname`, `tituloPropuesta`) VALUES ('" + paypal.getTitular() + "','" + paypal.getNumeroPaypal() + "','" + paypal.getNickname() + "','" + paypal.getTituloP() + "')";
-                sql2 = "INSERT INTO `paypal`(`Titular`, `NumPaypal`) VALUES ('" + paypal.getNickname() + "','" + paypal.getNumeroPaypal() + "')";
+                sql2 = "INSERT INTO `paypal`(`nickname`, `NumPaypal`, `tituloProp`) VALUES ('" + paypal.getNickname() + "','" + paypal.getNumeroPaypal() + "','" + paypal.getTituloP() + "')";
                 st.executeUpdate(sql);
                 System.out.println(sql);
                 st.executeUpdate(sql2);
@@ -466,7 +464,7 @@ public class BDCulturarte {
             if (pago instanceof dtTarjetaCredito) {
                 dtTarjetaCredito tarjeta = (dtTarjetaCredito) pago;
                 sql = "INSERT INTO `pagos`(`titular`, `NumTTP`, `nickname`, `tituloPropuesta`) VALUES ('" + tarjeta.getTitular() + "','" + tarjeta.getNumeroTarjeta() + "','" + tarjeta.getNickname() + "','" + tarjeta.getTituloP() + "')";
-                sql2 = "INSERT INTO `tarjetaCredito`(`Titular`, `NumTarjeta`, `TipoTarjeta`, `fechaVencimiento`, `CVC`) VALUES ('" + tarjeta.getNickname() + "','" + tarjeta.getNumeroTarjeta() + "','" + tarjeta.getTipo() + "','" + tarjeta.getfVencimiento() + "','" + tarjeta.getCvc() + "')";
+                sql2 = "INSERT INTO `tarjetaCredito`(`nickname`, `NumTarjeta`, `TipoTarjeta`, `fechaVencimiento`, `CVC`, `tituloProp`) VALUES ('" + tarjeta.getNickname() + "','" + tarjeta.getNumeroTarjeta() + "','" + tarjeta.getTipo() + "','" + tarjeta.getfVencimiento() + "','" + tarjeta.getCvc() + "','" + tarjeta.getTituloP() + "')";
                 st.executeUpdate(sql);
                 System.out.println(sql);
                 st.executeUpdate(sql2);

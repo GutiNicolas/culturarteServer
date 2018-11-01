@@ -1180,6 +1180,6 @@ public class ContCargaBD implements iContCargaBD {
 
     @Override
     public void levantarBDPagosPer() {
-        bdCul.levantarPagosOrigin(pagosPer);
+        bdCul.levantarPagosOrigin(pagPer);
     }
 }
