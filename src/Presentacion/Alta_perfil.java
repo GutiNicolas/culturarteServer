@@ -66,7 +66,6 @@ public class Alta_perfil extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jTextField2 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -99,285 +98,110 @@ public class Alta_perfil extends javax.swing.JFrame {
         jP_contra = new javax.swing.JPasswordField();
         jP_contraVS = new javax.swing.JPasswordField();
 
+        jTextField2.setText("jTextField2");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
-        jPanel1.add(jLabel1, gridBagConstraints);
+        jLabel1.setText("NickName");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 20, 0, 0);
-        jPanel1.add(jLabel2, gridBagConstraints);
+        jLabel2.setText("Nombre");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 35, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 20, 0, 0);
-        jPanel1.add(jLabel3, gridBagConstraints);
+        jLabel3.setText("Apellido");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 20, 0, 0);
-        jPanel1.add(jLabel4, gridBagConstraints);
+        jLabel4.setText("Email");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 94, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 14;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 20, 0, 0);
-        jPanel1.add(jLabel5, gridBagConstraints);
+        jLabel5.setText("Fecha Nacimiento");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 208, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 17;
-        gridBagConstraints.gridwidth = 77;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 102;
-        gridBagConstraints.ipady = 121;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 1, 0, 0);
-        jPanel1.add(jL_imagenP, gridBagConstraints);
+        jL_imagenP.setText("Imagen");
+        jPanel1.add(jL_imagenP, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 231, 154, 136));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 17;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 20, 0, 0);
-        jPanel1.add(jLabel6, gridBagConstraints);
+        jLabel6.setText("Imagen ");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 231, -1, -1));
 
+        jb_examinar.setText("Examinar");
         jb_examinar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_examinarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 18;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(44, 20, 0, 0);
-        jPanel1.add(jb_examinar, gridBagConstraints);
+        jPanel1.add(jb_examinar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
 
+        jrb_proponente.setText("Proponente");
         jrb_proponente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrb_proponenteActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 20;
-        gridBagConstraints.gridy = 20;
-        gridBagConstraints.gridwidth = 60;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 8, 0, 0);
-        jPanel1.add(jrb_proponente, gridBagConstraints);
+        jPanel1.add(jrb_proponente, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 390, -1, -1));
 
+        jrb_colaborador.setText("Colaborador");
         jrb_colaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrb_colaboradorActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 20;
-        gridBagConstraints.gridwidth = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 20, 0, 0);
-        jPanel1.add(jrb_colaborador, gridBagConstraints);
+        jPanel1.add(jrb_colaborador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
 
+        jb_aceptar.setText("Aceptar");
         jb_aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_aceptarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 22;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(40, 20, 49, 0);
-        jPanel1.add(jb_aceptar, gridBagConstraints);
+        jPanel1.add(jb_aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 504, -1, -1));
 
+        jb_cancelar.setText("Cancelar");
         jb_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_cancelarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 20;
-        gridBagConstraints.gridy = 22;
-        gridBagConstraints.gridwidth = 38;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(40, 8, 49, 0);
-        jPanel1.add(jb_cancelar, gridBagConstraints);
+        jPanel1.add(jb_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 504, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 90;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 27, 0, 0);
-        jPanel1.add(jLabel7, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 76;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 125;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 4, 0, 0);
-        jPanel1.add(jT_nick, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 76;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 125;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 4, 0, 0);
-        jPanel1.add(jT_nombre, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 76;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 125;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 4, 0, 0);
-        jPanel1.add(jT_apellido, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 76;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 125;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 4, 0, 0);
-        jPanel1.add(jT_email, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 20;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 61;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 60;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 18, 0, 0);
-        jPanel1.add(jdc_fechaNac, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 92;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 145;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 21, 0, 79);
-        jPanel1.add(jT_web, gridBagConstraints);
+        jLabel7.setText("Pagina Web");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 15, -1, -1));
+        jPanel1.add(jT_nick, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 9, 129, -1));
+        jPanel1.add(jT_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 37, 129, -1));
+        jPanel1.add(jT_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 65, 129, -1));
+        jPanel1.add(jT_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 92, 129, -1));
+        jPanel1.add(jdc_fechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 208, 86, -1));
+        jPanel1.add(jT_web, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 9, 132, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 90;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 27, 0, 0);
-        jPanel1.add(jLabel8, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 92;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 145;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 21, 0, 79);
-        jPanel1.add(jT_direccion, gridBagConstraints);
+        jLabel8.setText("Direccion");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 43, -1, -1));
+        jPanel1.add(jT_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 37, 132, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 90;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 32, 0, 0);
-        jPanel1.add(jLabel9, gridBagConstraints);
+        jLabel9.setText("Biografia");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
 
+        jtp_biografia.setColumns(20);
+        jtp_biografia.setRows(5);
         jScrollPane1.setViewportView(jtp_biografia);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 90;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 13;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 217;
-        gridBagConstraints.ipady = 327;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(9, 32, 0, 0);
-        jPanel1.add(jScrollPane1, gridBagConstraints);
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 94, 312, 370));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 17;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 15, 0, 0);
-        jPanel1.add(jLabel10, gridBagConstraints);
+        jLabel10.setText("Password");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 117, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 37;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipady = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(24, 50, 0, 0);
-        jPanel1.add(jLabel11, gridBagConstraints);
+        jLabel11.setText("Confirmacion password");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 156, -1, 19));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 59;
-        gridBagConstraints.ipadx = 209;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 20, 0, 0);
-        jPanel1.add(jP_contra, gridBagConstraints);
+        jP_contra.setText("jPasswordField1");
+        jPanel1.add(jP_contra, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 136, 213, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.gridwidth = 59;
-        gridBagConstraints.ipadx = 209;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
-        jPanel1.add(jP_contraVS, gridBagConstraints);
+        jP_contraVS.setText("jPasswordField2");
+        jPanel1.add(jP_contraVS, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 185, 213, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

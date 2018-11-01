@@ -17,8 +17,8 @@ public class dtPaypal extends dtPago {
 
     private String numeroPaypal;
 
-    public dtPaypal(String numeroPaypal, String titular) {
-        super(titular);
+    public dtPaypal(String numeroPaypal, String tituloP, String titular, String nickname) {
+        super(tituloP, titular, nickname);
         this.numeroPaypal = numeroPaypal;
     }
 
@@ -27,6 +27,10 @@ public class dtPaypal extends dtPago {
      */
     public String getNumeroPaypal() {
         return numeroPaypal;
+    }
+
+    public void setNumeroPaypal(String numeroPaypal) {
+        this.numeroPaypal = numeroPaypal;
     }
 
 }

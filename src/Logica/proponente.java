@@ -21,12 +21,20 @@ public class proponente extends usuario {
     protected final Map<String, propuesta> propuestasUsuario = new HashMap<String, propuesta>();//diccionario con clave string
     private String direccion;
     //   private Map<String, usuario> seguidos;
-
+    private boolean desactivado;
     private String biografia, web;
 
     public proponente(String nickname, String nombre, String apellido, String email, String imagen, dtFecha nacimiento, String direccion, String biografia, String web, String pass) {
         super(nickname, nombre, apellido, email, imagen, nacimiento, pass);
         this.direccion = direccion;
+        this.biografia = biografia;
+        this.web = web;
+    }
+
+    public proponente(String nickname, String nombre, String apellido, String email, String imagen, dtFecha nacimiento, String direccion, String biografia, String web, String pass, boolean desactivado) {
+        super(nickname, nombre, apellido, email, imagen, nacimiento, pass);
+        this.direccion = direccion;
+        this.desactivado = desactivado;
         this.biografia = biografia;
         this.web = web;
     }
@@ -190,11 +198,11 @@ public class proponente extends usuario {
         }
 
     }
-/**
- *
- * retorna un arreglo con las propuestas del proponente
- * by Jp
- */
+
+    /**
+     *
+     * retorna un arreglo con las propuestas del proponente by Jp
+     */
     public ArrayList<propuesta> getPropuestasObj() {
 
         ArrayList<propuesta> propuestas = new ArrayList<>();
@@ -216,12 +224,26 @@ public class proponente extends usuario {
 
     public List<String> listarmispropuestasmenosingresadas() {
         List<String> retorno = new ArrayList();
-        for(String key: this.propuestasUsuario.keySet()){
-            propuesta p=this.propuestasUsuario.get(key);
-            if(p.getEstadoActual().equals("Ingresada")==false && p.getEstadoActual().equals("Desactivada")==false){
+        for (String key : this.propuestasUsuario.keySet()) {
+            propuesta p = this.propuestasUsuario.get(key);
+            if (p.getEstadoActual().equals("Ingresada") == false && p.getEstadoActual().equals("Desactivada") == false) {
                 retorno.add(key);
             }
         }
-        return retorno;        
+        return retorno;
+    }
+
+    /**
+     * @return the desactivado
+     */
+    public boolean isDesactivado() {
+        return desactivado;
+    }
+
+    /**
+     * @param desactivado the desactivado to set
+     */
+    public void setDesactivado(boolean desactivado) {
+        this.desactivado = desactivado;
     }
 }

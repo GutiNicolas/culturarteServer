@@ -63,7 +63,6 @@ public class Seguir_Usuario extends javax.swing.JInternalFrame{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel1 = new javax.swing.JLabel();
         txtseguidor = new javax.swing.JTextField();
@@ -80,60 +79,29 @@ public class Seguir_Usuario extends javax.swing.JInternalFrame{
         jLabel4 = new javax.swing.JLabel();
         btncancelar = new javax.swing.JButton();
 
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 39, 0, 0);
-        getContentPane().add(jLabel1, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.ipadx = 96;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 39, 0, 0);
-        getContentPane().add(txtseguidor, gridBagConstraints);
+        jLabel1.setText("Usuario seguidor");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 85, -1, -1));
+        getContentPane().add(txtseguidor, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 112, 100, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 39, 0, 0);
-        getContentPane().add(jLabel2, gridBagConstraints);
+        jLabel2.setText("Usuario a seguir");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 161, 122, -1));
 
         txtbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtbuscarKeyPressed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 108;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 61, 0, 0);
-        getContentPane().add(txtbuscar, gridBagConstraints);
+        getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 47, 112, -1));
 
+        btnseguir.setText("Seguir");
         btnseguir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnseguirActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.ipadx = 27;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(1, 40, 0, 0);
-        getContentPane().add(btnseguir, gridBagConstraints);
+        getContentPane().add(btnseguir, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 252, 107, -1));
 
         tableseguidor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,18 +121,7 @@ public class Seguir_Usuario extends javax.swing.JInternalFrame{
         });
         jScrollPane1.setViewportView(tableseguidor);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridheight = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 96;
-        gridBagConstraints.ipady = 393;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(19, 34, 6, 73);
-        getContentPane().add(jScrollPane1, gridBagConstraints);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 85, 96, 442));
 
         tableseguidor1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -184,69 +141,29 @@ public class Seguir_Usuario extends javax.swing.JInternalFrame{
         });
         jScrollPane2.setViewportView(tableseguidor1);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridheight = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 96;
-        gridBagConstraints.ipady = 393;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(19, 59, 6, 0);
-        getContentPane().add(jScrollPane2, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.ipadx = 96;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 39, 0, 0);
-        getContentPane().add(txtaseguir1, gridBagConstraints);
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 85, 147, 442));
+        getContentPane().add(txtaseguir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 188, 100, -1));
 
         txtbuscar2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtbuscar2KeyPressed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 108;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 34, 0, 73);
-        getContentPane().add(txtbuscar2, gridBagConstraints);
+        getContentPane().add(txtbuscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 47, 96, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 17;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 61, 0, 0);
-        getContentPane().add(jLabel3, gridBagConstraints);
+        jLabel3.setText("Buscar usuario seguidor");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 26, 145, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 7, 0, 73);
-        getContentPane().add(jLabel4, gridBagConstraints);
+        jLabel4.setText("Buscar usuario a seguir");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 26, 123, -1));
 
+        btncancelar.setText("Cancelar");
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncancelarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.ipadx = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 40, 0, 0);
-        getContentPane().add(btncancelar, gridBagConstraints);
+        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 226, 108, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

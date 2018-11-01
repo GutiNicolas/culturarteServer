@@ -13,19 +13,20 @@ import Logica.dtEstado;
 import Logica.dtEstadosPropuestas;
 import Logica.dtFavoritos;
 import Logica.dtFecha;
-import Logica.dtHora;
+import Logica.dtPago;
+import Logica.dtPaypal;
 import Logica.dtProponente;
 import Logica.dtPropuestasBD;
 import Logica.dtSeguidores;
+import Logica.dtTarjetaCredito;
+import Logica.dtTransferencia;
 import Logica.dtUsuario;
 import Logica.utilidades;
-import static Persistencia.usuariosPersistencia.conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Clase del controlador de carga, se encarga de levantar datos a persistir y la
@@ -35,7 +36,7 @@ import java.util.Date;
  */
 public class BDCulturarte {
 
-   static ConexionDB conexion = ConexionDB.getInstance();
+    static ConexionDB conexion = ConexionDB.getInstance();
     utilidades util = new utilidades();
 
     public void levantaUsusOrigin(ArrayList<String> usus) {
@@ -153,19 +154,35 @@ public class BDCulturarte {
     }
 
     public void levantarFavoritosOrigin(ArrayList<dtFavoritos> fav) {
-        
+
         try {
-        String sql="SELECT * FROM `favoritosPer`";
-        Connection con = conexion.getConexion();
-        Statement st = con.createStatement();
-        ResultSet rs=st.executeQuery(sql);
-        while (rs.next()){
-        String usuario =null, propuesta = null;
-        usuario=rs.getString(1);
-        propuesta=rs.getString(2);
-        dtFavoritos dtfav= new dtFavoritos(usuario, propuesta, null, null);
-        fav.add(dtfav);
+            String sql = "SELECT * FROM `favoritosPer`";
+            Connection con = conexion.getConexion();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                String usuario = null, propuesta = null;
+                usuario = rs.getString(1);
+                propuesta = rs.getString(2);
+                dtFavoritos dtfav = new dtFavoritos(usuario, propuesta, null, null);
+                fav.add(dtfav);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
+    }
+
+    public void levantarPagosOrigin(ArrayList<dtPago> pagosPer) {
+        try {
+            String sql = "SELECT * FROM `pagosPersistencia`";
+            Connection conn = conexion.getConexion();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                dtPago pago = new dtPago(rs.getString(3), null, rs.getString(1), rs.getString(2));
+                pagosPer.add(pago);
+
+            }
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -353,9 +370,10 @@ public class BDCulturarte {
             monto = Integer.toString(dtcola.getMonto());
             retorno = dtcola.getRetorno();
             String sql = null;
-            if(dtcola.getComentario()!=null){
-            sql = "INSERT INTO `cultuRarte`.`Colaboraciones` (`nickusuario`, `tituloprop`, `fecha`, `hora`, `monto`, `retorno`,`comentario`) VALUES ('" + colaborador + "','" + titulo + "','" + fecha + "','" + hora + "','" + monto + "','" + retorno + "','"+dtcola.getComentario()+"')";
-            }else{sql = "INSERT INTO `cultuRarte`.`Colaboraciones` (`nickusuario`, `tituloprop`, `fecha`, `hora`, `monto`, `retorno`) VALUES ('" + colaborador + "','" + titulo + "','" + fecha + "','" + hora + "','" + monto + "','" + retorno + "')";
+            if (dtcola.getComentario() != null) {
+                sql = "INSERT INTO `cultuRarte`.`Colaboraciones` (`nickusuario`, `tituloprop`, `fecha`, `hora`, `monto`, `retorno`,`comentario`) VALUES ('" + colaborador + "','" + titulo + "','" + fecha + "','" + hora + "','" + monto + "','" + retorno + "','" + dtcola.getComentario() + "')";
+            } else {
+                sql = "INSERT INTO `cultuRarte`.`Colaboraciones` (`nickusuario`, `tituloprop`, `fecha`, `hora`, `monto`, `retorno`) VALUES ('" + colaborador + "','" + titulo + "','" + fecha + "','" + hora + "','" + monto + "','" + retorno + "')";
             }
             Connection conn = conexion.getConexion();
             Statement st = conn.createStatement();
@@ -405,17 +423,60 @@ public class BDCulturarte {
             return false;
         }
     }
-    
-    public void agregarFavoritosCD(String nickusuario, String titulo){
-        try{
-            String sql=null;
-            Connection con= conexion.getConexion();
-            Statement st= (Statement) con.createStatement();
-            sql="INSERT INTO `cultuRarte`.`Favoritos`(`nickusuario`,`tituloprop`) VALUES ('"+nickusuario+"','"+titulo+"')";
+
+    public void agregarFavoritosCD(String nickusuario, String titulo) {
+        try {
+            String sql = null;
+            Connection con = conexion.getConexion();
+            Statement st = (Statement) con.createStatement();
+            sql = "INSERT INTO `cultuRarte`.`Favoritos`(`nickusuario`,`tituloprop`) VALUES ('" + nickusuario + "','" + titulo + "')";
             st.executeUpdate(sql);
-        }catch (Exception e) {      
+        } catch (Exception e) {
             System.err.println(e.getMessage());
-        } 
+        }
+    }
+
+    public void agregarPagosCD(dtPago pago) {
+        System.out.println("Agregar Pago inicio...");
+        String sql = null, sql2 = null;
+        try {
+            Connection conn = conexion.getConexion();
+            System.out.println("Agregar Pago inicio...");
+            Statement st = conn.createStatement();
+            if (pago instanceof dtTransferencia) {
+                dtTransferencia dttrans = (dtTransferencia) pago;
+                sql = "INSERT INTO `pagos`(`titular`, `NumTTP`, `nickname`, `tituloPropuesta`) VALUES ('" + dttrans.getTitular() + "','" + dttrans.getNumeroCuenta() + "','" + dttrans.getNickname() + "','" + dttrans.getTituloP() + "')";
+                sql2 = "INSERT INTO `transferenciaBancaria`(`nickname`, `NumTransferencia`, `Banco`, `tituloProp`) VALUES ('" + dttrans.getNickname() + "','" + dttrans.getNumeroCuenta() + "','" + dttrans.getBanco() + "','" + dttrans.getTituloP() + "')";
+                st.executeUpdate(sql);
+                System.out.println(sql);
+                st.executeUpdate(sql2);
+                System.out.println(sql2);
+            }
+            if (pago instanceof dtPaypal) {
+                dtPaypal paypal = (dtPaypal) pago;
+                sql = "INSERT INTO `pagos`(`titular`, `NumTTP`, `nickname`, `tituloPropuesta`) VALUES ('" + paypal.getTitular() + "','" + paypal.getNumeroPaypal() + "','" + paypal.getNickname() + "','" + paypal.getTituloP() + "')";
+                sql2 = "INSERT INTO `paypal`(`nickname`, `NumPaypal`, `tituloProp`) VALUES ('" + paypal.getNickname() + "','" + paypal.getNumeroPaypal() + "','" + paypal.getTituloP() + "')";
+                st.executeUpdate(sql);
+                System.out.println(sql);
+                st.executeUpdate(sql2);
+                System.out.println(sql2);
+            }
+            if (pago instanceof dtTarjetaCredito) {
+                dtTarjetaCredito tarjeta = (dtTarjetaCredito) pago;
+                sql = "INSERT INTO `pagos`(`titular`, `NumTTP`, `nickname`, `tituloPropuesta`) VALUES ('" + tarjeta.getTitular() + "','" + tarjeta.getNumeroTarjeta() + "','" + tarjeta.getNickname() + "','" + tarjeta.getTituloP() + "')";
+                sql2 = "INSERT INTO `tarjetaCredito`(`nickname`, `NumTarjeta`, `TipoTarjeta`, `fechaVencimiento`, `CVC`, `tituloProp`) VALUES ('" + tarjeta.getNickname() + "','" + tarjeta.getNumeroTarjeta() + "','" + tarjeta.getTipo() + "','" + tarjeta.getfVencimiento() + "','" + tarjeta.getCvc() + "','" + tarjeta.getTituloP() + "')";
+                st.executeUpdate(sql);
+                System.out.println(sql);
+                st.executeUpdate(sql2);
+                System.out.println(sql2);
+            }
+            System.out.println("Agregar pago finalizo...");
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage() + " " + e.getCause());
+
+        }
+
     }
 
     public boolean truncarCategoria() {
@@ -445,6 +506,65 @@ public class BDCulturarte {
             return false;
         }
 
+    }
+
+    public boolean truncarPagos() {
+        try {
+            Connection conn = conexion.getConexion();
+            String sql = "TRUNCATE `cultuRarte`.`pagos`";
+            Statement st = conn.createStatement();
+            System.out.println(sql);
+            st.executeUpdate(sql);
+            truncarPagosTarjetaCredito();
+            truncarPagosTransferencia();
+            truncarPagosPaypal();
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean truncarPagosTarjetaCredito() {
+        try {
+            Connection conn = conexion.getConexion();
+            String sql = "TRUNCATE `cultuRarte`.`tarjetaCredito`";
+            Statement st = conn.createStatement();
+            System.out.println(sql);
+            st.executeUpdate(sql);
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean truncarPagosTransferencia() {
+        try {
+            Connection conn = conexion.getConexion();
+            String sql = "TRUNCATE `cultuRarte`.`transferenciaBancaria`";
+            Statement st = conn.createStatement();
+            System.out.println(sql);
+            st.executeUpdate(sql);
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean truncarPagosPaypal() {
+        try {
+            Connection conn = conexion.getConexion();
+            String sql = "TRUNCATE `cultuRarte`.`paypal`";
+            Statement st = conn.createStatement();
+            System.out.println(sql);
+            st.executeUpdate(sql);
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return false;
+        }
     }
 
     public boolean truncarFavoritos() {
@@ -479,6 +599,7 @@ public class BDCulturarte {
         try {
             truncarEstadoPropuesta();
             truncarColaboraciones();
+            truncarPagos();
             truncarEstado();
             truncarCategoria();
             //previo

@@ -23,7 +23,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author juan
  */
 public class Configuracion_Culturarte extends javax.swing.JFrame {
-    
+
     JFileChooser jF = new JFileChooser();
     JFileChooser jFProp = new JFileChooser();
     FileNameExtensionFilter filter = new FileNameExtensionFilter("Properties", "properties", "TXT", "txt");
@@ -311,8 +311,15 @@ public class Configuracion_Culturarte extends javax.swing.JFrame {
     private void btn_levantarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_levantarPActionPerformed
         jFProp.setFileFilter(filter);
         jFProp.showOpenDialog(this);
-        listarNuevo((HashMap<String, String>) contCarga.levantarYCargar((String) jFProp.getSelectedFile().getPath()));
-        btn_aceptar.setEnabled(true);
+        HashMap<String, String> nuevaLista = (HashMap<String, String>) contCarga.levantarYCargar((String) jFProp.getSelectedFile().getPath());
+        if (!nuevaLista.isEmpty()) {
+            btn_aceptar.setEnabled(true);
+            listarNuevo(nuevaLista);
+        } else {
+            cargarPropLogica();
+            JOptionPane.showMessageDialog(this, "Archivo Properties invalido");
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_levantarPActionPerformed
 
@@ -422,7 +429,7 @@ public class Configuracion_Culturarte extends javax.swing.JFrame {
         txt_imgPropIni.setText(configProperties.get("imgpropini"));
         txt_imgPropDes.setText(configProperties.get("imgpropdes"));
     }
-    
+
     private void listarNuevo(HashMap<String, String> prop) {
         txt_database.setText(prop.get("database"));
         txt_hostdb.setText(prop.get("hostdb"));
@@ -443,7 +450,7 @@ public class Configuracion_Culturarte extends javax.swing.JFrame {
         txt_imgPropIni.setText(prop.get("imgpropini"));
         txt_imgPropDes.setText(prop.get("imgpropdes"));
     }
-    
+
     private void bloquearTxt() {
         btn_aceptar.setEnabled(false);
         btn_imgPropDes.setEnabled(false);
@@ -469,7 +476,7 @@ public class Configuracion_Culturarte extends javax.swing.JFrame {
         txt_imgPropIni.setEditable(false);
         txt_imgPropDes.setEditable(false);
     }
-    
+
     private void desbloquearTxt() {
         btn_aceptar.setEnabled(true);
         btn_imgPropDes.setEnabled(true);
@@ -495,60 +502,60 @@ public class Configuracion_Culturarte extends javax.swing.JFrame {
         txt_imgPropIni.setEditable(true);
         txt_imgPropDes.setEditable(true);
     }
-    
+
     private boolean setearNuevosAtributos() {
         if (!verficaCambio("database", txt_database.getText())) {
             configProperties.replace("database", txt_database.getText());
         }
-        
+
         if (!verficaCambio("hostdb", txt_hostdb.getText())) {
             configProperties.replace("hostdb", txt_hostdb.getText());
         }
-        
+
         if (!verficaCambio("paswdb", txt_passwdb.getText())) {
             configProperties.replace("paswdb", txt_passwdb.getText());
         }
-        
+
         if (!verficaCambio("puertodb", txt_puertodb.getText())) {
             configProperties.replace("puertodb", txt_puertodb.getText());
         }
-        
+
         if (!verficaCambio("userdb", txt_userdb.getText())) {
             configProperties.replace("userdb", txt_userdb.getText());
         }
-        
+
         if (!verficaCambio("wscip", txt_wscip.getText())) {
             configProperties.replace("wscip", txt_wscip.getText());
         }
-        
+
         if (!verficaCambio("wscname", txt_wscname.getText())) {
             configProperties.replace("wscname", txt_wscname.getText());
         }
-        
+
         if (!verficaCambio("wscpuerto", txt_wscpuerto.getText())) {
             configProperties.replace("wscpuerto", txt_wscpuerto.getText());
         }
-        
+
         if (!verficaCambio("wspip", txt_wspip.getText())) {
             configProperties.replace("wspip", txt_wspip.getText());
         }
-        
+
         if (!verficaCambio("wspname", txt_wspname.getText())) {
             configProperties.replace("wspname", txt_wspname.getText());
         }
-        
+
         if (!verficaCambio("wsppuerto", txt_wsppuerto.getText())) {
             configProperties.replace("wsppuerto", txt_wsppuerto.getText());
         }
-        
+
         if (!verficaCambio("wsuip", txt_wsuip.getText())) {
             configProperties.replace("wsuip", txt_wsuip.getText());
         }
-        
+
         if (!verficaCambio("wsuname", txt_wsuname.getText())) {
             configProperties.replace("wsuname", txt_wsuname.getText());
         }
-        
+
         if (!verficaCambio("wsupuerto", txt_wsupuerto.getText())) {
             configProperties.replace("wsupuerto", txt_wsupuerto.getText());
         }
@@ -569,12 +576,12 @@ public class Configuracion_Culturarte extends javax.swing.JFrame {
             bloquearTxt();
             btn_aceptar.setEnabled(false);
             JOptionPane.showMessageDialog(null, "Se a cargado con exito la nueva configuracion...");
-            
+
         }
-        
+
         return true;
     }
-    
+
     private boolean verficaCambio(String key, String value) {
         System.out.println("verificaCambio...");
         String atri = (String) configProperties.get(key);

@@ -73,7 +73,7 @@ public class WebServiceContColaboracion {
         nuevo.setNick(nick);
         nuevo.setMontoC(monto);
         nuevo.setRetornoP(retorno);
-        cC.registrarColaboracion(nuevo, null);
+        cC.registrarColaboracion(nuevo);
     }
 
     @WebMethod

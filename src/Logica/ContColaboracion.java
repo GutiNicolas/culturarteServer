@@ -6,7 +6,9 @@
 package Logica;
 
 import Persistencia.colaboracionesPersistencia;
+import Persistencia.pagosPersistencia;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -21,6 +23,8 @@ public class ContColaboracion implements iConColaboracion {
     private ContUsuario cUsuario = ContUsuario.getInstance();
     private colaboracionesPersistencia colPer = new colaboracionesPersistencia();
     private ContCargaBD contCarga = ContCargaBD.getInstance();
+    private pagosPersistencia pPer = new pagosPersistencia();
+    private ArrayList<pago> pagos = new ArrayList<>();
 
     public static ContColaboracion getInstance() {
         if (instance == null) {
@@ -49,15 +53,16 @@ public class ContColaboracion implements iConColaboracion {
 
     public void cargarColaboraciones() {
         ArrayList<dtColaboracionCompleto> dtColaComp = new ArrayList<>();
-        //////////////     
+
         try {
             contCarga.levantarBDcolPer();
             colPer.cargarColaboraciones(dtColaComp);
+            cargarPagos();
             for (int i = 0; i < dtColaComp.size(); i++) {
                 dtColaboracionCompleto dt = (dtColaboracionCompleto) dtColaComp.get(i);
                 contCarga.agregardtcolaboraciones(dt);
-                pago pago = null;////verificar
-                colProp cp = new colProp(dt.getFecha(), dt.getHora(), dt.getMonto(), dt.getRetorno(), null, dt.getComentario(), pago);
+                colProp cp = new colProp(dt.getFecha(), dt.getHora(), dt.getMonto(), dt.getRetorno(), null, dt.getComentario());
+                setearPago(cp, dt.getNickname(), dt.getTitulo());
                 cUsuario.registrarcolaboracion(dt.getNickname(), dt.getTitulo(), cp);
 
             }
@@ -65,6 +70,22 @@ public class ContColaboracion implements iConColaboracion {
             System.err.println(e.getMessage());
         }
 
+    }
+
+    private void setearPago(colProp cp, String nick, String prop) {
+        try {
+            for (int i = 0; i < pagos.size(); i++) {
+                pago p = (pago) pagos.get(i);
+                if (p.getNickname().equals(nick)) {
+                    if (p.getTituloP().equals(prop)) {
+                        cp.setFormaPago(p);
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage() + " - " + e.getCause());
+        }
     }
 
     @Override
@@ -87,39 +108,36 @@ public class ContColaboracion implements iConColaboracion {
     }
 
     @Override
-    public boolean registrarColaboracion(DtColaboracionCompWeb cola, dtPago pf) {
+    public boolean registrarColaboracion(DtColaboracionCompWeb cola) {
 
         String titulo = (String) cola.getTituloP();
         String colab = (String) cola.getNick();
         int monto = (Integer) cola.getMontoC();
         String retorno = (String) cola.getRetornoP();
-
-        pago pago = null;
-        if (pf != null) {
-            pago = (pago) crearPago(pf);
-        }
-
-        return cUsuario.registrarColaboracion(titulo, colab, monto, retorno, null, pago);
+        return cUsuario.registrarColaboracion(titulo, colab, monto, retorno, null);
 
     }
 
     private pago crearPago(dtPago p) {
-        pago fp = null;
+
         if (p instanceof dtTarjetaCredito) {
             dtTarjetaCredito dttc = (dtTarjetaCredito) p;
-            fp = new tarjetaCredito(dttc.getTipo(), dttc.getNumeroTarjeta(), dttc.getCvc(), dttc.getfVencimiento(), dttc.getTitular());
+            /*String tipo, String numeroTarjeta, String cvc, dtFecha fVencimiento, String titular, String prop, String nick*/
+            pago fp = new tarjetaCredito(dttc.getTipo(), dttc.getNumeroTarjeta(), dttc.getCvc(), dttc.getfVencimiento(), dttc.getTitular(), dttc.getTituloP(), dttc.getNickname());
+            return fp;
         }
         if (p instanceof dtTransferencia) {
-            dtTransferencia dttf = (dtTransferencia) p;
-            fp = new transferencia(dttf.getBanco(), dttf.getNumeroCuenta(), dttf.getTitular());
+            dtTransferencia trans = (dtTransferencia) p;
+            /*String banco, String numeroCuenta, String titular, String prop, String nick*/
+            pago fp = new transferencia(trans.getBanco(), trans.getNumeroCuenta(), p.getTitular(), trans.getTituloP(), trans.getNickname());
+            return fp;
         }
         if (p instanceof dtPaypal) {
             dtPaypal dtpp = (dtPaypal) p;
-            fp = new payPal(dtpp.getNumeroPaypal(), dtpp.getTitular());
+            pago fp = new payPal(dtpp.getNumeroPaypal(), dtpp.getTitular(), dtpp.getTituloP(), dtpp.getNickname());
+            return fp;
         }
-
-        return fp;
-
+        return null;
     }
 
     @Override
@@ -135,13 +153,15 @@ public class ContColaboracion implements iConColaboracion {
     @Override
     public DtarregloDtColCompWeb listarmiscolaboracionesWeb(String nick) {
         List<dtColProp> listCol = new ArrayList<>();
-                listCol=cUsuario.listarmiscolaboraciones(nick);
+        listCol = cUsuario.listarmiscolaboraciones(nick);
         DtarregloDtColCompWeb nuevo = new DtarregloDtColCompWeb();
-        ArrayList<DtColaboracionCompWeb>arrColWeb= new ArrayList<>();
+        ArrayList<DtColaboracionCompWeb> arrColWeb = new ArrayList<>();
         try {
-            for(int i =0; i<listCol.size();i++){
-            arrColWeb.add((DtColaboracionCompWeb)invertirDtColProp((dtColProp)listCol.get(i)));
+            for (int i = 0; i < listCol.size(); i++) {
+                arrColWeb.add((DtColaboracionCompWeb) invertirDtColProp((dtColProp) listCol.get(i)));
+
             }
+            nuevo.setArregloCola(arrColWeb);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -152,7 +172,7 @@ public class ContColaboracion implements iConColaboracion {
         DtColaboracionCompWeb nuevo = new DtColaboracionCompWeb();
         nuevo.setTituloP(colP.getTitulo());
         nuevo.setNick(colP.getNickname());
-        nuevo.setFechaC((String)colP.getFechaCol().getFecha());
+        nuevo.setFechaC((String) colP.getFechaCol().getFecha());
         nuevo.setHoraC(colP.getHoraCol().getHora());
         nuevo.setMontoC(colP.getMontoColaborado());
         return nuevo;
@@ -162,5 +182,24 @@ public class ContColaboracion implements iConColaboracion {
     public String armarretorno(String cbe, String cbp) {
         return (String) cUsuario.armarretorno(cbe, cbp);
     }
+
+    @Override
+    public void cargarPagos() {
+        try {
+
+            contCarga.levantarBDPagosPer();
+            ArrayList<dtPago> Pagos = (ArrayList<dtPago>) pPer.cargarPagos();
+            for (int i = 0; i < Pagos.size(); i++) {
+                dtPago p = (dtPago) Pagos.get(i);
+                contCarga.seteardtPago(p);
+                pagos.add((pago) this.crearPago(p));
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
 
 }

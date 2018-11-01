@@ -12,16 +12,28 @@ package Logica;
 public class tarjetaCredito extends pago{
     private String tipo;
     private String numeroTarjeta;
-    private int cvc;
+    private String cvc;
     private dtFecha fVencimiento;
-
-    public tarjetaCredito(String tipo, String numeroTarjeta, int cvc, dtFecha fVencimiento, String titular) {
-        super(titular);
+/**
+     * @param tipo
+     * @param numeroTarjeta
+     * @param cvc
+     * @param fVencimiento
+     * @param titular
+     * @param prop
+     * @param nick
+ */
+    public tarjetaCredito(String tipo, String numeroTarjeta, String cvc, dtFecha fVencimiento, String titular, String prop, String nick) {
+        super(titular, prop, nick);
         this.tipo = tipo;
         this.numeroTarjeta = numeroTarjeta;
         this.cvc = cvc;
         this.fVencimiento = fVencimiento;
     }
+
+  
+
+   
 
     /**
      * @return the tipo
@@ -54,14 +66,14 @@ public class tarjetaCredito extends pago{
     /**
      * @return the cvc
      */
-    public int getCvc() {
+    public String getCvc() {
         return cvc;
     }
 
     /**
      * @param cvc the cvc to set
      */
-    public void setCvc(int cvc) {
+    public void setCvc(String cvc) {
         this.cvc = cvc;
     }
 

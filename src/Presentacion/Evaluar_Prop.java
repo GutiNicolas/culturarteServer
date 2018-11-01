@@ -43,7 +43,6 @@ public class Evaluar_Prop extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -57,7 +56,7 @@ public class Evaluar_Prop extends javax.swing.JFrame {
         jT_propuesta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabla_propuestas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,101 +76,52 @@ public class Evaluar_Prop extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_propuestas);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 237;
-        gridBagConstraints.ipady = 393;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(2, 12, 0, 0);
-        getContentPane().add(jScrollPane1, gridBagConstraints);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 31, 267, 441));
 
         jT_busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jT_busquedaKeyPressed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 189;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 19, 0, 0);
-        getContentPane().add(jT_busqueda, gridBagConstraints);
+        getContentPane().add(jT_busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 10, 193, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
-        getContentPane().add(jLabel1, gridBagConstraints);
+        jLabel1.setText("Buscar");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        jR_publicada.setText("Publicada");
         jR_publicada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jR_publicadaActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(44, 28, 0, 0);
-        getContentPane().add(jR_publicada, gridBagConstraints);
+        getContentPane().add(jR_publicada, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 96, -1, -1));
 
+        jR_cancelada.setText("Cancelada");
         jR_cancelada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jR_canceladaActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 28, 0, 0);
-        getContentPane().add(jR_cancelada, gridBagConstraints);
+        getContentPane().add(jR_cancelada, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 126, -1, -1));
 
+        btn_aceptar.setText("Aceptar");
         btn_aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_aceptarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.ipadx = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(217, 4, 0, 0);
-        getContentPane().add(btn_aceptar, gridBagConstraints);
+        getContentPane().add(btn_aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 366, 97, -1));
 
+        btn_cancelar.setText("Cancelar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridheight = 6;
-        gridBagConstraints.ipadx = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 4, 13, 0);
-        getContentPane().add(btn_cancelar, gridBagConstraints);
+        getContentPane().add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 412, 98, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.ipadx = 199;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 28, 0, 10);
-        getContentPane().add(jT_propuesta, gridBagConstraints);
+        jT_propuesta.setText("Propuesta");
+        getContentPane().add(jT_propuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 33, 203, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -13,15 +13,12 @@ import javax.xml.bind.annotation.XmlElement;
  *
  * @author Esteban Menendez
  */
-@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class dtProponente extends dtUsuario {
 
-    @XmlElement(name = "direccion", namespace = "")
     private String direccion;
-    @XmlElement(name = "biografia", namespace = "")
     private String biografia;
-    @XmlElement(name = "sitioWeb", namespace = "")
     private String sitioWeb;
+    private boolean desactivado;
 
     public dtProponente(String nombre, String apellido, String nickname, String imagen, String email, dtFecha fechaNac, String direccion, String biografia, String sitioWeb, String pass) {
         super(nombre, apellido, nickname, imagen, email, fechaNac, pass);
@@ -29,6 +26,14 @@ public class dtProponente extends dtUsuario {
         this.biografia = biografia;
         this.sitioWeb = sitioWeb;
 
+    }
+
+    public dtProponente(String nombre, String apellido, String nickname, String imagen, String email, dtFecha fechaNac, String direccion, String biografia, String sitioWeb, String pass,boolean desactivado) {
+        super(nombre, apellido, nickname, imagen, email, fechaNac, pass);
+        this.direccion = direccion;
+        this.biografia = biografia;
+        this.sitioWeb = sitioWeb;
+        this.desactivado = desactivado;
     }
 
     /**
@@ -50,6 +55,20 @@ public class dtProponente extends dtUsuario {
      */
     public String getSitioWeb() {
         return sitioWeb;
+    }
+
+    /**
+     * @return the desactivado
+     */
+    public boolean isDesactivado() {
+        return desactivado;
+    }
+
+    /**
+     * @param desactivado the desactivado to set
+     */
+    public void setDesactivado(boolean desactivado) {
+        this.desactivado = desactivado;
     }
 
 }

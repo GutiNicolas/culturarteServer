@@ -35,8 +35,8 @@ public class ContUsuario implements iConUsuario {
     propuestasPersistencia propPersis = new propuestasPersistencia();
     utilidades util = utilidades.getInstance();
     ArrayList<dtFavoritos> favo = new ArrayList<>();
-    private String imagenDestino="/home/juan/ProgAplicaciones2018/Servidor/Imagenes_mover/imagenesPer/";
-    private String imagenInicio="/home/juan/ProgAplicaciones2018/Servidor/imagenesPerfil/";
+    private String imagenDestino = "/home/juan/ProgAplicaciones2018/Servidor/Imagenes_mover/imagenesPer/";
+    private String imagenInicio = "/home/juan/ProgAplicaciones2018/Servidor/imagenesPerfil/";
 
     /**
      *
@@ -129,9 +129,7 @@ public class ContUsuario implements iConUsuario {
             contCarga.levantaBDusuPer();
             ArrayList<dtUsuario> dtUsuarios = new ArrayList<dtUsuario>();
             dtUsuarios = usuPer.cargaUsuarios();
-
             int tam = dtUsuarios.size();
-            //Iterator<dtUsuario> iterador = dtUsuarios.iterator();
             for (int i = 0; i < dtUsuarios.size(); i++) {
                 dtUsuario usu = (dtUsuario) dtUsuarios.get(i);
                 sacarRutaImagen(usu);
@@ -221,7 +219,7 @@ public class ContUsuario implements iConUsuario {
         if (dtusu instanceof dtProponente) {
             dtProponente dtProp = (dtProponente) dtusu;
             proponente usuProp = new proponente((dtProp.getNickname()), dtProp.getNombre(), dtProp.getApellido(), dtProp.getEmail(), dtProp.getImagen(),
-                    dtProp.getFechaNac(), dtProp.getDireccion(), dtProp.getBiografia(), dtProp.getSitioWeb(), dtProp.getPass());
+                    dtProp.getFechaNac(), dtProp.getDireccion(), dtProp.getBiografia(), dtProp.getSitioWeb(), dtProp.getPass(),dtProp.isDesactivado());
             usuarios.put(usuProp.getNickname(), usuProp);
 
         } else {
@@ -714,7 +712,7 @@ public class ContUsuario implements iConUsuario {
 
     }
 
-    public boolean registrarColaboracion(String titulo, String colab, int monto, String retorno, String comentario, pago pago) {
+    public boolean registrarColaboracion(String titulo, String colab, int monto, String retorno, String comentario) {
         propuesta p = this.damePropuesta(titulo);
         if (this.usuarios.get(colab) instanceof colaborador) {
             colaborador c = (colaborador) this.usuarios.get(colab);
@@ -723,7 +721,7 @@ public class ContUsuario implements iConUsuario {
                     dtFecha dtf = (dtFecha) util.getFecha();
                     dtHora dth = (dtHora) util.getHora();
 
-                    colProp cp = new colProp(dtf, dth, monto, retorno, p, comentario, pago);
+                    colProp cp = new colProp(dtf, dth, monto, retorno, p, comentario);
                     c.colaboracionesUsuario.put(p.getTitulo(), cp);
                     boolean h = colabPer.registrarColaboracion(colab, titulo, dtf.getFecha(), dth.getHora(), Integer.toString(monto), retorno, comentario);
 

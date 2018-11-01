@@ -50,7 +50,7 @@ public interface iConUsuario {
 
     public abstract List<String> listarColaboradoresLike(String nick);
 
-    public abstract boolean registrarColaboracion(String titulo, String colaborador, int monto, String retorno, String comentario, pago fp);
+    public abstract boolean registrarColaboracion(String titulo, String colaborador, int monto, String retorno, String comentario);
 
     public abstract void actualizardatospropuesta(dtPropuesta dtp, estado e, int orden, dtFecha dtf, dtHora dth) throws Exception;
 

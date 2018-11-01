@@ -54,7 +54,6 @@ private ContPropuesta contP=ContPropuesta.getInstance();
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tablacolaboradores = new javax.swing.JTable();
@@ -72,7 +71,7 @@ private ContPropuesta contP=ContPropuesta.getInstance();
         labeltitulo = new javax.swing.JLabel();
         labelnickname = new javax.swing.JLabel();
 
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablacolaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,26 +91,10 @@ private ContPropuesta contP=ContPropuesta.getInstance();
         });
         jScrollPane1.setViewportView(tablacolaboradores);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 97;
-        gridBagConstraints.ipady = 373;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(9, 35, 26, 0);
-        getContentPane().add(jScrollPane1, gridBagConstraints);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 87, 121, 421));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(28, 35, 0, 0);
-        getContentPane().add(jLabel1, gridBagConstraints);
+        jLabel1.setText("Colaboradores");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 28, -1, -1));
 
         tablacolaboracion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -126,59 +109,30 @@ private ContPropuesta contP=ContPropuesta.getInstance();
         ));
         jScrollPane2.setViewportView(tablacolaboracion);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 13;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 537;
-        gridBagConstraints.ipady = 133;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 11);
-        getContentPane().add(jScrollPane2, gridBagConstraints);
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 351, 577, 183));
 
+        btnconfirmar.setText("Eliminar");
         btnconfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnconfirmarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(134, 12, 0, 0);
-        getContentPane().add(btnconfirmar, gridBagConstraints);
+        getContentPane().add(btnconfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 260, -1, -1));
 
+        btncancelar.setText("Cancelar");
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncancelarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(134, 30, 0, 0);
-        getContentPane().add(btncancelar, gridBagConstraints);
+        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 260, -1, -1));
 
         txtbuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtbuscarKeyPressed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 119;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(16, 30, 0, 0);
-        getContentPane().add(txtbuscar, gridBagConstraints);
+        getContentPane().add(txtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 59, 123, -1));
 
         tablacolaboraciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -198,57 +152,22 @@ private ContPropuesta contP=ContPropuesta.getInstance();
         });
         jScrollPane3.setViewportView(tablacolaboraciones);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 267;
-        gridBagConstraints.ipady = 223;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(16, 20, 0, 0);
-        getContentPane().add(jScrollPane3, gridBagConstraints);
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 59, 291, 272));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(16, 20, 0, 0);
-        getContentPane().add(jLabel2, gridBagConstraints);
+        jLabel2.setText("Colaboracion seleccionada:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 59, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 20, 0, 0);
-        getContentPane().add(jLabel3, gridBagConstraints);
+        jLabel3.setText("Titulo");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 82, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 20, 0, 0);
-        getContentPane().add(jLabel4, gridBagConstraints);
+        jLabel4.setText("Nickname");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 111, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 13, 0, 0);
-        getContentPane().add(labeltitulo, gridBagConstraints);
+        labeltitulo.setText("Seleccione una colaboracion");
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 82, -1, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 7, 0, 0);
-        getContentPane().add(labelnickname, gridBagConstraints);
+        labelnickname.setText("Seleccione una colaboracion");
+        getContentPane().add(labelnickname, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 111, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
