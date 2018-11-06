@@ -322,4 +322,9 @@ public class WebServiceContUsusario {
     public boolean existeUsuario(@WebParam(name = "nick") String nick) {
         return cU.existeUsuario(nick);
     }
+    
+    @WebMethod
+    public boolean dardebaja(@WebParam( name = "nick") String nick) {
+        return cU.dardebaja(nick);
+    }
 }

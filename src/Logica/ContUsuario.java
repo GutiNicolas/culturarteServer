@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 import Persistencia.usuariosPersistencia;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -449,15 +451,19 @@ public class ContUsuario implements iConUsuario {
             for (String key : this.usuarios.keySet()) {
                 if (this.usuarios.get(key) instanceof proponente) {
                     proponente p = (proponente) this.usuarios.get(key);
+                    if(!p.isDesactivado()){
                     ret.addAll(p.listarmispropuestas());
-
+                    }
                 }
             }
         } else {
             for (String key : this.usuarios.keySet()) {
                 if (this.usuarios.get(key) instanceof proponente) {
                     proponente p = (proponente) this.usuarios.get(key);
+                    if(!p.isDesactivado()){
                     ret.addAll(p.listarmispropuestaslike(titulo));
+                    }
+                    
                 }
             }
         }
@@ -509,14 +515,25 @@ public class ContUsuario implements iConUsuario {
         if (nick.isEmpty() == false) {
             for (String key : this.usuarios.keySet()) {
                 if (key.contains(nick)) {
-
+                    if(this.usuarios.get(key) instanceof proponente){
+                        proponente p=(proponente) this.usuarios.get(key);
+                        if(!p.isDesactivado())
+                            lst.add(key);
+                    }
+                    else
                     lst.add(key);
                 }
 
             }
         } else {
             for (String key : this.usuarios.keySet()) {
-                lst.add(key);
+                                    if(this.usuarios.get(key) instanceof proponente){
+                        proponente p=(proponente) this.usuarios.get(key);
+                        if(!p.isDesactivado())
+                            lst.add(key);
+                    }
+                    else
+                    lst.add(key);
             }
         }
         return lst;
@@ -837,8 +854,10 @@ public class ContUsuario implements iConUsuario {
             if (this.usuarios.containsKey(usu)) {
                 if (this.usuarios.get(usu) instanceof proponente) {
                     proponente p = (proponente) this.usuarios.get(usu);
-                    retorno = p.getDtProponente();
-                    retorno.setRol("Proponente");
+                    if(!p.isDesactivado()){
+                        retorno = p.getDtProponente();
+                        retorno.setRol("Proponente");
+                    }
                 } else {
                     colaborador c = (colaborador) this.usuarios.get(usu);
                     retorno = c.getColaborador();
@@ -876,6 +895,7 @@ public class ContUsuario implements iConUsuario {
         DtUsuarioWeb dtu = new DtUsuarioWeb();
         if (this.usuarios.get(nick) instanceof proponente) {
             proponente p = (proponente) this.usuarios.get(nick);
+            if(!p.isDesactivado())
             dtu = (DtUsuarioWeb) recombinar(p.getDtProponente());
         }
         if (this.usuarios.get(nick) instanceof colaborador) {
@@ -928,8 +948,19 @@ public class ContUsuario implements iConUsuario {
         for (String key : this.usuarios.keySet()) {
             usuario u = this.usuarios.get(key);
             if (u.seguidos.containsKey(nick)) {
-                DtUsuarioWeb dtu = (DtUsuarioWeb) infoUsuarioGeneral(u.getNickname());
-                retorno.add(dtu);
+                if(this.usuarios.get(key) instanceof proponente){
+                    proponente p= (proponente) this.usuarios.get(key);
+                    if(!p.isDesactivado()){
+                        DtUsuarioWeb dtu = (DtUsuarioWeb) infoUsuarioGeneral(u.getNickname());
+                        retorno.add(dtu);
+                    }
+                }
+                else {
+                    DtUsuarioWeb dtu = (DtUsuarioWeb) infoUsuarioGeneral(u.getNickname());
+                    retorno.add(dtu);
+                    
+                }
+                
             }
         }
         return retorno;
@@ -950,10 +981,12 @@ public class ContUsuario implements iConUsuario {
             if (u.seguidos.get(key) instanceof proponente) {
                 DtSigoAWeb nuevo = new DtSigoAWeb();
                 proponente aux = (proponente) this.usuarios.get(key);
+                if(!aux.isDesactivado()){
                 nuevo.setNickusuario(key);
                 nuevo.setNombrecompleto(aux.getNombre() + " " + aux.getApellido());
                 nuevo.setRol("Proponente");
                 retorno.add(nuevo);
+                }
             }
             if (u.seguidos.get(key) instanceof colaborador) {
                 colaborador aux = (colaborador) this.usuarios.get(key);
@@ -971,9 +1004,26 @@ public class ContUsuario implements iConUsuario {
         ArrayList<String> retorno = new ArrayList<>();
         usuario u = this.usuarios.get(nick);
         for (String key : u.favoritas.keySet()) {
-            retorno.add(key);
+            if(lapropestadesactivada(key)==false)
+                retorno.add(key);
         }
         return retorno;
+    }
+    
+    public boolean lapropestadesactivada(String titulo){
+        boolean reto = false;
+        try {
+            String propo=this.infoPropuesta(titulo).getProponente();
+            proponente p=(proponente) this.usuarios.get(propo);
+            if(p.isDesactivado()){
+                reto=true;
+                
+            }          
+               
+        } catch (Exception ex) {
+            Logger.getLogger(ContUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return reto;
     }
 
     /**
@@ -1001,7 +1051,13 @@ public class ContUsuario implements iConUsuario {
         ArrayList<String> retorno = new ArrayList<>();
         if (this.usuarios.get(nick) instanceof colaborador) {
             colaborador c = (colaborador) this.usuarios.get(nick);
-            retorno = c.listarmiscolaboraciones();
+            
+        for(String key: c.colaboracionesUsuario.keySet()){
+            if(this.lapropestadesactivada(key)==false){
+            retorno.add(key);
+            }
+        }
+        
         }
         return retorno;
     }
@@ -1025,9 +1081,11 @@ public class ContUsuario implements iConUsuario {
         if (this.usuarios.get(nick) instanceof colaborador) {
             colaborador c = (colaborador) this.usuarios.get(nick);
             for (String key : c.colaboracionesUsuario.keySet()) {
+                if(this.lapropestadesactivada(key)==false){
                 colProp cp = c.colaboracionesUsuario.get(key);
                 dtColProp dtcp = new dtColProp(nick, cp.getFecha(), cp.getHora(), cp.getMontocolaborado(), key);
                 retorno.add(dtcp);
+                }
             }
         }
         return retorno;
@@ -1040,7 +1098,9 @@ public class ContUsuario implements iConUsuario {
             for (String key : this.usuarios.keySet()) {
                 if (this.usuarios.get(key) instanceof proponente) {
                     proponente p = (proponente) this.usuarios.get(key);
+                    if(!p.isDesactivado()){
                     ret.addAll(p.listarmispropuestasmenosingresadas());
+                    }
 
                 }
             }
@@ -1048,7 +1108,9 @@ public class ContUsuario implements iConUsuario {
             for (String key : this.usuarios.keySet()) {
                 if (this.usuarios.get(key) instanceof proponente) {
                     proponente p = (proponente) this.usuarios.get(key);
+                    if(!p.isDesactivado()){
                     ret.addAll(p.listarmispropuestaslike(titulo));
+                    }
                 }
             }
         }
@@ -1067,12 +1129,14 @@ public class ContUsuario implements iConUsuario {
         for (String key : this.usuarios.keySet()) {
             if (this.usuarios.get(key) instanceof proponente) {
                 proponente p = (proponente) this.usuarios.get(key);
-                for (String keyp : p.propuestasUsuario.keySet()) {
+                if(!p.isDesactivado()){
+                    for (String keyp : p.propuestasUsuario.keySet()) {
                     //   dtPropuesta dtp = new dtPropuesta(keyp, key);
                     DtPropuestaWeb dtp = new DtPropuestaWeb();
                     dtp.setProponente(key);
                     dtp.setTitulo(keyp);
                     retorno.add(dtp);
+                    }
                 }
             }
         }
@@ -1115,7 +1179,8 @@ public class ContUsuario implements iConUsuario {
         if (u != null) {
 
             for (String key : u.favoritas.keySet()) {
-                retorno.add(key);
+                if(this.lapropestadesactivada(key)==false)
+                    retorno.add(key);
             }
             return retorno;
         }
@@ -1220,13 +1285,25 @@ public class ContUsuario implements iConUsuario {
         if (nick.isEmpty() == false) {
             for (String key : this.usuarios.keySet()) {
                 if (key.contains(nick)) {
-                    lst.add((DtUsuarioWeb) this.infoUsuarioGeneral(key));
+                    if(this.usuarios.get(key) instanceof proponente){
+                        proponente p=(proponente) this.usuarios.get(key);
+                        if(!p.isDesactivado())
+                            lst.add((DtUsuarioWeb) this.infoUsuarioGeneral(key));
+                    }
+                    else
+                        lst.add((DtUsuarioWeb) this.infoUsuarioGeneral(key));
                 }
 
             }
         } else {
             for (String key : this.usuarios.keySet()) {
-                lst.add((DtUsuarioWeb) this.infoUsuarioGeneral(key));
+                    if(this.usuarios.get(key) instanceof proponente){
+                        proponente p=(proponente) this.usuarios.get(key);
+                        if(!p.isDesactivado())
+                            lst.add((DtUsuarioWeb) this.infoUsuarioGeneral(key));
+                    }
+                    else
+                        lst.add((DtUsuarioWeb) this.infoUsuarioGeneral(key));
             }
         }
         return lst;
@@ -1238,11 +1315,13 @@ public class ContUsuario implements iConUsuario {
             colaborador c = (colaborador) this.usuarios.get(string);
             for (String key : c.colaboracionesUsuario.keySet()) {
                 propuesta p = this.damePropuesta(key);
+                if(this.lapropestadesactivada(key)==false){
                 if (p.getEstadoActual().equals("Financiada")) {
                     colProp cp = c.colaboracionesUsuario.get(key);
                     if (cp.getComentario().isEmpty() || cp.getComentario().equals("null") || cp.getComentario() == null) {
                         retorno.add(key);
                     }
+                }
                 }
             }
         }
@@ -1300,12 +1379,26 @@ public class ContUsuario implements iConUsuario {
         for (String key : this.usuarios.keySet()) {
             usuario u = this.usuarios.get(key);
             if (contarseguidores(key) > 0) {
-                DtUsuarioWeb dtU = new DtUsuarioWeb();
-                dtU.setNombre(u.getNombre());
-                dtU.setApellido(u.getApellido());
-                dtU.setNickname(u.getNickname());
-                dtU.setPuntaje((Integer) contarseguidores(key));
-                rank.add(dtU);
+                if(this.usuarios.get(key) instanceof proponente){
+                    proponente p=(proponente) this.usuarios.get(key);
+                    if(!p.isDesactivado()){
+                        DtUsuarioWeb dtU = new DtUsuarioWeb();
+                        dtU.setNombre(u.getNombre());
+                        dtU.setApellido(u.getApellido());
+                        dtU.setNickname(u.getNickname());
+                        dtU.setPuntaje((Integer) contarseguidores(key));
+                        rank.add(dtU);    
+                    }
+                }
+                else{
+                    DtUsuarioWeb dtU = new DtUsuarioWeb();
+                    dtU.setNombre(u.getNombre());
+                    dtU.setApellido(u.getApellido());
+                    dtU.setNickname(u.getNickname());
+                    dtU.setPuntaje((Integer) contarseguidores(key));
+                    rank.add(dtU);
+                }
+                
             }
         }
 
@@ -1498,6 +1591,21 @@ public class ContUsuario implements iConUsuario {
      */
     public void setImagenInicio(String imagenInicio) {
         this.imagenInicio = imagenInicio;
+    }
+
+    /**
+     * 
+     * @param nick
+     * para dar de baja un proponente desde la web 
+     */
+    public boolean dardebaja(String nick) {
+        boolean retorno = false;
+        if(this.usuarios.get(nick) instanceof proponente){
+            proponente p= (proponente) this.usuarios.get(nick);
+            p.setDesactivado(true);
+            retorno = true;
+        }
+        return retorno;
     }
 
 }

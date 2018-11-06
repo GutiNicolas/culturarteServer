@@ -85,6 +85,8 @@ public class proponente extends usuario {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+    
+    
 
     /**
      * @return the biografia
